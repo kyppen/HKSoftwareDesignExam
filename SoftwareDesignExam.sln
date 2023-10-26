@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareDesignExam", "SoftwareDesignExam\SoftwareDesignExam.csproj", "{C367A205-A924-4FDF-A334-5249D35752B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftWareDesignExamTest", "SoftWareDesignExamTest\SoftWareDesignExamTest.csproj", "{56C75D45-1D6F-43E3-AC22-542DD47E4848}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

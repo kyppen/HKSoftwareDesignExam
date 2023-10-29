@@ -1,8 +1,11 @@
-namespace SoftwareDesignExam;
+namespace SoftwareDesignExam.Items;
 
-public class Item{
+public class Item
+{
     private string _id;
     private string _name;
+
+    // Not sure we need this variable or not yet
     private string _category;
     private double _price;
 

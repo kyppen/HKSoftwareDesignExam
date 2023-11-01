@@ -8,7 +8,7 @@ namespace SoftwareDesignExam.ShoppingList
 {
     public class ShoppingListFactory
     {
-        public ShoppingList CreateList(string type, string id, string name)
+        public AbstractShoppingList CreateList(string type, string id, string name)
         {
             switch (type)
             {

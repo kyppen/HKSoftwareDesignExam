@@ -26,9 +26,10 @@ namespace SoftwareDesignExam.Logging
 
         public void Log(String message)
         {
+            
             _logMessages.Add(message);
         }
-
+        // Save to the database
         public List<String> GetLogs()
         {
             return _logMessages;

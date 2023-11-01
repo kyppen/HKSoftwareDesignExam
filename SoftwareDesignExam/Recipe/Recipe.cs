@@ -26,7 +26,7 @@ namespace SoftwareDesignExam.Recipe
             _ingredients.Add(item);
         }
 
-        public void AddToList(SoftwareDesignExam.ShoppingList.ShoppingList shoppingList) 
+        public void AddToList(SoftwareDesignExam.ShoppingList.AbstractShoppingList shoppingList) 
         {
             foreach (var ingredient in _ingredients) 
             {

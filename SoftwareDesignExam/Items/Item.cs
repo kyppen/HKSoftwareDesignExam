@@ -9,6 +9,10 @@ public class Item
     private string _category;
     private double _price;
 
+    public string Id => _id;
+    public string Name => _name;
+    public double Price => _price;
+
     public Item(string id, string name, double price)
     {
         _id = id;
@@ -18,6 +22,6 @@ public class Item
 
     public string ToString()
     {
-        return $"price: {_price}, Name: {_name}, Id: {_id}";
+        return $"Id: {_id}, Name: {_name}, Price: {_price}";
     }
 }

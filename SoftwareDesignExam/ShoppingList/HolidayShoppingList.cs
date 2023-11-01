@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace SoftwareDesignExam.ShoppingList
 {
-    public class HolidayShoppingList : ShoppingList
+    public class HolidayShoppingList : AbstractShoppingList
     {
         private List<Item> _defaultItems;
 

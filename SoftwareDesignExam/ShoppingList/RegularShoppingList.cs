@@ -7,7 +7,7 @@ using SoftwareDesignExam.Items;
 
 namespace SoftwareDesignExam.ShoppingList
 {
-    public class RegularShoppingList : ShoppingList
+    public class RegularShoppingList : AbstractShoppingList
     {
         private List<Item> _defaultItems;
 

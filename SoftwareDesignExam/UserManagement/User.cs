@@ -14,7 +14,7 @@ namespace SoftwareDesignExam.UserManagement
         private string _userName;
         private string _email;
         private string _password;
-        private List<SoftwareDesignExam.ShoppingList.ShoppingList> _shoppingLists;
+        private List<SoftwareDesignExam.ShoppingList.AbstractShoppingList> _shoppingLists;
         public string Username => _userName;
 
         public User(string userId, string userName, string email)
@@ -22,10 +22,10 @@ namespace SoftwareDesignExam.UserManagement
             _userId = userId;
             _userName = userName;
             _email = email;
-            _shoppingLists = new List<SoftwareDesignExam.ShoppingList.ShoppingList>();
+            _shoppingLists = new List<SoftwareDesignExam.ShoppingList.AbstractShoppingList>();
         }
 
-        public SoftwareDesignExam.ShoppingList.ShoppingList CreateList()
+        public SoftwareDesignExam.ShoppingList.AbstractShoppingList CreateList()
         {
             var id = Guid.NewGuid().ToString();
             var name = $"{_userName}-List";

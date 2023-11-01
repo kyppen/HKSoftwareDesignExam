@@ -15,5 +15,10 @@ namespace SoftwareDesignExam.ShoppingList
         {
             _defaultItems = new List<Item>();
         }
+
+        public override double GetTotalPrice()
+        {
+            return base.GetTotalPrice();
+        }
     }
 }

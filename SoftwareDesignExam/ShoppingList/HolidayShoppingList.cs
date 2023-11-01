@@ -16,5 +16,13 @@ namespace SoftwareDesignExam.ShoppingList
         {
             _defaultItems = new List<Item>();
         }
+
+        public override double GetTotalPrice()
+        {
+            double holidayPrice = base.GetTotalPrice();
+
+            // 10 percent discount than regular day
+            return holidayPrice * 0.9;
+        }
     }
 }

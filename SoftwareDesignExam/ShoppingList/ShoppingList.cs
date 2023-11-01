@@ -50,6 +50,11 @@ namespace SoftwareDesignExam.ShoppingList
         {
             return _items;
         }
+
+        public virtual double GetTotalPrice()
+        {
+            return _items.Sum(item => item.Price);
+        }
         public override string ToString()
         {
             return $"Shopping List: {_name}, Created On: {_creationDate.ToShortDateString()}";

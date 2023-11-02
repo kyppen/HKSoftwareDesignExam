@@ -9,22 +9,32 @@ namespace SoftwareDesignExam.Store
 {
     public class Store
     {
-        private string _id;
-        private string _name;
-        private string _location;
-        private List<Item> _itemAvailable;
+		public void login() {
 
-        public Store(string id, string name, string location) 
-        {
-            _id = id;
-            _name = name;
-            _location = location;
-            _itemAvailable = new List<Item>();
-        }
+		}
 
-        public List<Item> GetAvailableItems()
-        {
-            return _itemAvailable;
-        }
-    }
+		public void logout() { 
+		
+		}
+
+		public void buy() {
+
+		}
+
+		public void addToShoppingCart() { 
+		
+		}
+
+		public void removeFromShoppingCart() {
+
+		}
+
+		public void viewShoppingCart() {
+
+		}
+
+		public void multithreadProcessOrder() {
+
+		}
+	}
 }

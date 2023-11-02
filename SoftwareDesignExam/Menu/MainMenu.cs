@@ -64,6 +64,9 @@ public static class MainMenu{
                 break;
             case "4":
                 Console.WriteLine("Sign up option selected");
+                
+                //password can be left empty for testing purposes.
+                MenuPrintOptions.CreateUser();
                 break;
         }
     }

@@ -20,4 +20,10 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Resources\Store.db">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -17,5 +17,8 @@ namespace SoftwareDesignExam.Entities {
 
 		[Required]
 		public string User_Email { get; set; } = string.Empty;
+
+		[Required]
+		public string User_Password { get; set;} = string.Empty;
 	}
 }

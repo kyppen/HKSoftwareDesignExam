@@ -15,14 +15,14 @@ namespace SoftwareDesignExam.Items.Decorators
             _expiryDate = expiryDate;
         }
 
-        public override double CalculatePrice()
+        public override string GetName()
         {
-            return _item.GetPrice();
+            return $"{base.GetName()} (Expires on {_expiryDate.ToShortDateString()})";
         }
 
-        public override string GetDescription()
+        public override string ToString()
         {
-            return $"{_item.GetName()} (Expires on {_expiryDate.ToShortDateString()})";
+            return base.ToString() + $" Expires on: {_expiryDate.ToShortDateString()}";
         }
 
     }

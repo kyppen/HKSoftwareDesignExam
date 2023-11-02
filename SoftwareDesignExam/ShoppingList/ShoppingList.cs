@@ -14,7 +14,7 @@ namespace SoftwareDesignExam.ShoppingList
         protected string _id;
         protected string _name;
         protected DateTime _creationDate;
-        protected List<Item> _items;
+        protected List<AbstractItem> _items;
         protected Logger _logger;
 
         
@@ -22,20 +22,20 @@ namespace SoftwareDesignExam.ShoppingList
         {
             _id = id;
             _name = name;
-            _items = new List<Item>();
+            _items = new List<AbstractItem>();
             _creationDate = DateTime.Now;
             _logger = Logger.GetInstance();
         }
 
 
 
-        public void AddItem(Item item)
+        public void AddItem(AbstractItem item)
         {
             if(item != null)
                 _items.Add(item);
         }
 
-        public void RemoveItem(Item item)
+        public void RemoveItem(AbstractItem item)
         {
             if(_items.Contains(item))
                 _items.Remove(item);
@@ -46,14 +46,14 @@ namespace SoftwareDesignExam.ShoppingList
                 
         }
 
-        public List<Item> GetItems()
+        public List<AbstractItem> GetItems()
         {
             return _items;
         }
 
         public virtual double GetTotalPrice()
         {
-            return _items.Sum(item => item.Price);
+            return _items.Sum(item => item.GetPrice());
         }
         public override string ToString()
         {

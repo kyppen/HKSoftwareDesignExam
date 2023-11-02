@@ -1,6 +1,7 @@
 ﻿using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
+using SoftwareDesignExam.Items.Decorators;
 
 namespace SoftwareDesignExam;
 class Program 
@@ -17,20 +18,25 @@ class Program
 
         var holidayshoppingList = factory.CreateList("Holiday", "list002", $"{user.Username}-HolidayList");
 
-        var item1 = new Item("001", "Apple", 0.50);
-        var item2 = new Item("002", "Orange", 0.60);
+        var apple = new Item("001", "Apple", 0.50);
+        var orange = new Item("002", "Orange", 0.60);
 
-        regularshoppingList.AddItem(item1);
-        regularshoppingList.AddItem(item2);
+        // 10 percent discount
+        var discountedApple = new DiscountedItem(apple, 10);
+        var expiryDecoratedApple = new ExpiryDateItem(discountedApple, DateTime.Now.AddDays(5));
 
-        holidayshoppingList.AddItem(item1);
-        holidayshoppingList.AddItem(item2);
+        regularshoppingList.AddItem(expiryDecoratedApple);
+        regularshoppingList.AddItem(apple);
+        regularshoppingList.AddItem(orange);
+
+        holidayshoppingList.AddItem(apple);
+        holidayshoppingList.AddItem(orange);
 
         Console.WriteLine("Before delte item");
         DisplayItems(regularshoppingList);
         Console.WriteLine($"Total price for Regular Shopping List before delete: ${Math.Round(regularshoppingList.GetTotalPrice(), 2):0.00}\n");
 
-        DeleteItem(regularshoppingList, item1);
+        DeleteItem(regularshoppingList, apple);
 
         Console.WriteLine("After delete item");
         // Math.Round method to round the total price to 2 decimal places
@@ -49,9 +55,9 @@ class Program
         }
     }
 
-    private static void DeleteItem(AbstractShoppingList shoppingList, Item item)
+    private static void DeleteItem(AbstractShoppingList shoppingList, AbstractItem item)
     {
         shoppingList.RemoveItem(item);
-        Console.WriteLine($"Item {item.Name} removed from the list.\n");
+        Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
     }
 }

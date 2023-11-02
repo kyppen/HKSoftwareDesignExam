@@ -15,7 +15,18 @@ namespace SoftwareDesignExam.Items.Decorators
             _item = item;
         }
 
-        public abstract double CalculatePrice();
-        public abstract string GetDescription();
+        public override double GetPrice()
+        {
+            return _item.GetPrice();
+        }
+        public override string GetName()
+        {
+            return _item.GetName();
+        }
+
+        public override string ToString()
+        {
+            return _item.ToString();
+        }
     }
 }

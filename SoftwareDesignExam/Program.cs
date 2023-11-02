@@ -1,12 +1,16 @@
 ﻿using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
+using SoftwareDesignExam.Menu;
 
 namespace SoftwareDesignExam;
 class Program 
 {
     static public void Main(String[] args)
     {
+        MainMenu.startMenu();
+        
+        
         Console.WriteLine("Starting program!");
 
         var user = new User("123abc", "Alex", "alex@example.com");

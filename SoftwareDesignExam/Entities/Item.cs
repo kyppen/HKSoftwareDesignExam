@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SoftwareDesignExam.Entities {
-	internal class Item {
+	public class Item {
 		public int Id { get; set; }
 
 		[Required]

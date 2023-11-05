@@ -17,26 +17,32 @@ class Program
             Console.WriteLine(user);
         }
 
-        /*
+        RemoveUserFromUserTable.Remove(1);
+
+		foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
+			Console.WriteLine(user);
+		}
+
+		/*
         AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
         AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
         AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
         */
-        /*
+		/*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }
         */
 
-        /*
+		/*
         foreach(var item in ReadSingleItemFromItemTable.Read("grandiosa")) {
             Console.WriteLine(item);
         }
         */
 
-        // RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
+		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 
-        /*
+		/*
         Console.WriteLine();
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
 			Console.WriteLine(item);

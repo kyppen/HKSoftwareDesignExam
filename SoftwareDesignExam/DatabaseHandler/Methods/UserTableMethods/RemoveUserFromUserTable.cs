@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SoftwareDesignExam.DataAccess.SqLite;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods {
-	internal class RemoveUserFromUserTable {
+	public class RemoveUserFromUserTable {
+
+		public static void Remove(int id) {
+			using StoreDbContext db = new StoreDbContext();
+			var user = db.User.Find(id);
+			if (user != null) {
+				db.User.Remove(user);
+			}
+			db.SaveChanges();
+		}
 	}
 }

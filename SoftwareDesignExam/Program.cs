@@ -11,17 +11,21 @@ class Program
     static public void Main(String[] args)
     {
 
-        AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
+        // AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
+        /*
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
             Console.WriteLine(user);
         }
+        */
 
-        RemoveUserFromUserTable.Remove(1);
+        // RemoveUserFromUserTable.Remove(1);
 
+        /*
 		foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
 			Console.WriteLine(user);
 		}
+        */
 
 		/*
         AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);

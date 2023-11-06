@@ -6,18 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods {
-	public class DecrementQuantityOfItemInStockTable {
-		public static void Decrement(int itemId, int ammount) {
+	public class IncrementQuantityOfItemInStockTable {
+		public static void Increment(int itemId, int ammount) {
 			using StoreDbContext db = new StoreDbContext();
-			var QuantityAfterDecrement = db.Stock.Find(itemId).Item_Quantity -= ammount;
 			if (db.Stock.Find(itemId) != null) {
-				if (QuantityAfterDecrement > 0) {
-					db.Stock.Find(itemId).Item_Quantity -= ammount;
-				}
+				db.Stock.Find(itemId).Item_Quantity += ammount;
 			}
 			else {
-				Console.WriteLine($"Item {itemId} is not in stock");
-			}
+                Console.WriteLine($"Item {itemId} is not in stock");
+            }
 		}
 	}
 }

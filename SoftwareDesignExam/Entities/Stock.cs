@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Entities {
-	internal class Stock {
+	public class Stock {
 		public int Id { get; set; }
 
-		public Item Item { get; set; }
+		public int Item_Id { get; set; } 
 
-		public int Quantity { get; set; }
+		public String Item_Name { get; set; } = "";
+
+		public int? Item_Quantity { get; set; }
 	}
 }

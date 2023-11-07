@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Items
 {
-    public class AbstractItem
+    public abstract class AbstractItem
     {
         protected string _name;
         protected double _price;
 
-        public string GetName()
-        {
-            return _name;
-        }
+        public abstract string GetName();
 
-        public double GetPrice()
-        {
-            return _price;
-        }
+        public abstract double GetPrice();
+
     }
 }

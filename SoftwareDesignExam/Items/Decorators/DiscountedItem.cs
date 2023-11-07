@@ -15,14 +15,29 @@ namespace SoftwareDesignExam.Items.Decorators
             _discount = discount;
         }
 
-        public override double CalculatePrice()
+        public override double GetPrice()
         {
-            return _item.GetPrice() * (1 - _discount / 100);
+            return base.GetPrice() * (1 - _discount / 100);
         }
 
-        public override string GetDescription()
+        public override string GetName()
         {
-            return $"{_item.GetName()} (Discounted by {_discount}%)";
+            return $"{base.GetName()} (Discounted by {_discount}%)";
+        }
+
+        public override string ToString()
+
+        {
+            // Cast the decorated item (_item) to the type "Item"
+            // This is to check if the underlying decorated item is of type "Item"
+            // so we can directly access its properties like Id and Name
+            var item = _item as Item;
+            if (item != null)
+            {
+                return $"Id: {item.Id}, Name: {item.Name}, Price: {GetPrice():0.00} (Discounted by {_discount}%)";
+            }
+            return base.ToString();
+
         }
     }
 }

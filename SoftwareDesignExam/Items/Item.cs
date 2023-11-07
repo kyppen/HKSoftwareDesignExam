@@ -1,6 +1,6 @@
 namespace SoftwareDesignExam.Items;
 
-public class Item
+public class Item : AbstractItem
 {
     private string _id;
     private string _name;
@@ -20,8 +20,12 @@ public class Item
         _price = price;
     }
 
-    public string ToString()
+    public override string GetName() => _name;
+
+    public override double GetPrice() => _price;
+
+    public override string ToString()
     {
-        return $"Id: {_id}, Name: {_name}, Price: {_price}";
+        return $"Id: {_id}, Name: {_name}, Price: {GetPrice(): 0.00}";
     }
 }

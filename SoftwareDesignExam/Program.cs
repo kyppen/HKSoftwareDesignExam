@@ -4,6 +4,8 @@ using SoftwareDesignExam.ShoppingList;
 using SoftwareDesignExam.DatabaseHandler.Methods;
 using SoftwareDesignExam.DatabaseHandler.Methods.ItemTableMethods;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
+using SoftwareDesignExam.Menu;
+using SoftwareDesignExam.Items.Decorators;
 
 namespace SoftwareDesignExam;
 class Program 
@@ -11,21 +13,34 @@ class Program
     static public void Main(String[] args)
     {
 
+        MainMenu.startMenu();
+        
+        
+        Console.WriteLine("Starting program!");
+
         // AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
-        /*
-        foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
-            Console.WriteLine(user);
-        }
-        */
 
-        // RemoveUserFromUserTable.Remove(1);
+        var factory = new ShoppingListFactory();
 
-        /*
-		foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
-			Console.WriteLine(user);
-		}
-        */
+        var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
+
+        var holidayshoppingList = factory.CreateList("Holiday", "list002", $"{user.Username}-HolidayList");
+
+        var apple = new Item("001", "Apple", 0.50);
+        var orange = new Item("002", "Orange", 0.60);
+
+        // 10 percent discount
+        var discountedApple = new DiscountedItem(apple, 10);
+        var expiryDecoratedApple = new ExpiryDateItem(discountedApple, DateTime.Now.AddDays(5));
+
+        regularshoppingList.AddItem(expiryDecoratedApple);
+        regularshoppingList.AddItem(apple);
+        regularshoppingList.AddItem(orange);
+
+        holidayshoppingList.AddItem(apple);
+        holidayshoppingList.AddItem(orange);
+
 
 		/*
         AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
@@ -38,11 +53,7 @@ class Program
         }
         */
 
-		/*
-        foreach(var item in ReadSingleItemFromItemTable.Read("grandiosa")) {
-            Console.WriteLine(item);
-        }
-        */
+        DeleteItem(regularshoppingList, apple);
 
 		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 
@@ -62,9 +73,9 @@ class Program
         }
     }
 
-    private static void DeleteItem(AbstractShoppingList shoppingList, Item item)
+    private static void DeleteItem(AbstractShoppingList shoppingList, AbstractItem item)
     {
         shoppingList.RemoveItem(item);
-        Console.WriteLine($"Item {item.Name} removed from the list.\n");
+        Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
     }
 }

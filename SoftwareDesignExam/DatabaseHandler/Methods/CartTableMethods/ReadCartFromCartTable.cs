@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.CartTableMethods {
-	internal class ReadCart {
+	internal class ReadCartFromCartTable {
 	}
 }

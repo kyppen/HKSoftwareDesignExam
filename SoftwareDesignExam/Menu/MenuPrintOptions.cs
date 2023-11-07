@@ -1,4 +1,8 @@
+using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
+using SoftwareDesignExam.Controller;
+
 namespace SoftwareDesignExam.Menu;
+using UserManagement;
 
 
 public class MenuPrintOptions{
@@ -8,6 +12,15 @@ public class MenuPrintOptions{
                           "2: Search for item\n" +
                           "3: Login\n" +
                           "4: Sign up");
+    }
+
+    public static void Login()
+    {
+        Console.WriteLine("Enter Email");
+        string email = Console.ReadLine();
+        Console.WriteLine("Enter Password");
+        string password = Console.ReadLine();
+        
     }
 
     public void UserMainMenu()
@@ -22,11 +35,15 @@ public class MenuPrintOptions{
                           "8: Log out");
     }
 
+    
     public static void CreateUser()
     {
         string[] passwords = {"", ""};
         Console.WriteLine("User Form:");
-        
+        Console.WriteLine("Enter firstname");
+        string firstname = Console.ReadLine();
+        Console.WriteLine("Enter Lastname");
+        string lastname = Console.ReadLine();
         Console.WriteLine("Enter your Email address:\n");
         string email = Console.ReadLine();
         Console.WriteLine($"Email: {email}");
@@ -34,16 +51,46 @@ public class MenuPrintOptions{
         passwords[0] = Console.ReadLine();
         Console.WriteLine("Re-enter your password");
         passwords[1] = Console.ReadLine();
+        string password = passwords[1];
+
+        if (!MenuUtils.ValidateFirstName(firstname))
+        {
+            Console.WriteLine("Firstname cannot be empty");
+            return;
+        }
+
+        if (!MenuUtils.ValidateLastName(lastname))
+        {
+            Console.WriteLine("Lastname cannot be empty");
+            return;
+        }
         
-        if(MenuUtils.ValidateEmail(email) && MenuUtils.ValidatePassword(passwords))
+
+        if (!MenuUtils.ValidateEmail(email))
         {
-            Console.WriteLine("User has been created");
-            //Function to create user and add it to datebase
+            Console.WriteLine("should run after this ");
+            
+            
+            Console.WriteLine("Email does not pass verification [must only contain one @]");
+            return;
         }
-        else
+
+        if (!MenuUtils.ValidatePassword(passwords))
         {
-            Console.WriteLine("There was an error creating user, Either the passwords didnt match or you had more then one @ in your email");
+            Console.WriteLine("Passwords does not match");
+            return;
         }
+        
+        
+
+        Controller.UserController.CreateUser(firstname, lastname, email, password);
+        
+        //Console.WriteLine(firstname);
+        //Console.WriteLine(lastname);
+        //Console.WriteLine(email);
+        //Console.WriteLine(passwords[0]);
+        //Console.WriteLine(passwords[1]);
+        
     }
     
     

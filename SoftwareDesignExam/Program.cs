@@ -21,15 +21,19 @@ class Program
         }
         Console.ReadLine();
         */
+
+        //CheckForDuplicateEmail.Check("Sondre@Sondre");
+        //AddUserToUserTable.Add("sondre", "sondre", "sondre@sondre", "sondre");
+        //CheckForDuplicateEmail.Check("Sondre@Sondre");
         MainMenu.startMenu();
         
         
         Console.WriteLine("Starting program!");
 
-        AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
+        //AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
 
-        var factory = new ShoppingListFactory();
+        //var factory = new ShoppingListFactory();
 
         //var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
 

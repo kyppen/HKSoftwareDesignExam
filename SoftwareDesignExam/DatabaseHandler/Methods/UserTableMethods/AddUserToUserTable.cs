@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods {
 	public class AddUserToUserTable {
-		public static int Add(string fName, string lName, string email, string password) {
+		public static long Add(string fName, string lName, string email, string password) {
 			User user = new User() {
 				User_FName = fName,
 				User_LName = lName,

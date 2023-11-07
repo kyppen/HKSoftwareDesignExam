@@ -6,12 +6,15 @@ using SoftwareDesignExam.DatabaseHandler.Methods.ItemTableMethods;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.Items.Decorators;
+using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
+using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 
 namespace SoftwareDesignExam;
 class Program 
 {
     static public void Main(String[] args)
     {
+
         /*
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%"))
@@ -25,10 +28,21 @@ class Program
         
         
         Console.WriteLine("Starting program!");
+        /*
+        PopulateUserTable.Populate();
+        foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
+            Console.WriteLine(user);
+        }
+
 
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
 
+        PopulateStockTable.Populate();
+        foreach(var item in ReadAllItemsFromStockTable.Read()) {
+            Console.WriteLine($"{item.Item_Name}\n{item.Item_Quantity}");
+        }
+		/*
         var factory = new ShoppingListFactory();
 
         //var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
@@ -61,6 +75,7 @@ class Program
         }
         */
 
+
         //DeleteItem(regularshoppingList, apple);
 
 		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
@@ -71,6 +86,7 @@ class Program
 			Console.WriteLine(item);
 		}
         */
+
 	}
 
 	private static void DisplayItems(AbstractShoppingList shoppingList)

@@ -19,7 +19,8 @@ namespace SoftwareDesignExam.DataAccess.SqLite {
 		public DbSet<Entities.Stock> Stock => Set<Entities.Stock>();
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-			optionsBuilder.UseSqlite(@"Data Source = /home/fam/RiderProjects/HKSoftwareDesignExam231/SoftwareDesignExam/Resources/Store.db");
+			//Sondre = /home/fam/RiderProjects/HKSoftwareDesignExam231/SoftwareDesignExam/Resources/Store.db
+			optionsBuilder.UseSqlite(@"Data Source = Resources\Store.db");
 		}
 
 	}

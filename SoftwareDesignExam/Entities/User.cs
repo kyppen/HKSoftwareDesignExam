@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Entities {
-	internal class User {
-		public int Id { get; set; }
+	public class User {
+		public long Id { get; set; }
 
 		[Required]
 		public string User_FName { get; set; } = string.Empty;
@@ -17,5 +17,12 @@ namespace SoftwareDesignExam.Entities {
 
 		[Required]
 		public string User_Email { get; set; } = string.Empty;
+
+		[Required]
+		public string User_Password { get; set;} = string.Empty;
+
+		public override string ToString() {
+			return $"ID: {Id}\nName: {User_FName} {User_LName}\nEmail: {User_Email}";
+		}
 	}
 }

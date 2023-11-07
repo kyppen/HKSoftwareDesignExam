@@ -1,6 +1,9 @@
 ﻿using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
+using SoftwareDesignExam.DatabaseHandler.Methods;
+using SoftwareDesignExam.DatabaseHandler.Methods.ItemTableMethods;
+using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.Items.Decorators;
 
@@ -9,12 +12,14 @@ class Program
 {
     static public void Main(String[] args)
     {
+
         MainMenu.startMenu();
         
         
         Console.WriteLine("Starting program!");
 
-        var user = new User("123abc", "Alex", "alex@example.com");
+        // AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
+
 
         var factory = new ShoppingListFactory();
 
@@ -36,22 +41,31 @@ class Program
         holidayshoppingList.AddItem(apple);
         holidayshoppingList.AddItem(orange);
 
-        Console.WriteLine("Before delte item");
-        DisplayItems(regularshoppingList);
-        Console.WriteLine($"Total price for Regular Shopping List before delete: ${Math.Round(regularshoppingList.GetTotalPrice(), 2):0.00}\n");
+
+		/*
+        AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
+        AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
+        AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
+        */
+		/*
+        foreach (var item in ReadAllItemsFromItemTable.Read()) {
+            Console.WriteLine(item);
+        }
+        */
 
         DeleteItem(regularshoppingList, apple);
 
-        Console.WriteLine("After delete item");
-        // Math.Round method to round the total price to 2 decimal places
-        DisplayItems(regularshoppingList);
-        Console.WriteLine($"Total price for Regular Shopping List: ${Math.Round(regularshoppingList.GetTotalPrice(), 2):0.00}\n");
+		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 
-        DisplayItems(holidayshoppingList);
-        Console.WriteLine($"Total price for Holiday Shopping List: ${Math.Round(holidayshoppingList.GetTotalPrice(), 2):0.00}");
-    }
+		/*
+        Console.WriteLine();
+        foreach (var item in ReadAllItemsFromItemTable.Read()) {
+			Console.WriteLine(item);
+		}
+        */
+	}
 
-    private static void DisplayItems(AbstractShoppingList shoppingList)
+	private static void DisplayItems(AbstractShoppingList shoppingList)
     {
         foreach (var item in shoppingList.GetItems())
         {

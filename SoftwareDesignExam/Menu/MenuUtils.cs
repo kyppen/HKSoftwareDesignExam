@@ -26,8 +26,24 @@ public static class MenuUtils{
         }
         Console.WriteLine("Denied");
         return false;
-
-
     }
+
+    public static Boolean ValidateFirstName(string firstname)
+    {
+        if (firstname != "") {
+            return true;
+        }
+        return false;
+    }
+
+    public static Boolean ValidateLastName(string lastname)
+    {
+        if (lastname != "") {
+            return true;
+        }
+
+        return false;
+    }
+    
         
 }

@@ -12,20 +12,28 @@ class Program
 {
     static public void Main(String[] args)
     {
-
+        /*
+        AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
+        foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%"))
+        {
+            Console.WriteLine(user);
+            
+        }
+        Console.ReadLine();
+        */
         MainMenu.startMenu();
         
         
         Console.WriteLine("Starting program!");
 
-        // AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
+        AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
 
         var factory = new ShoppingListFactory();
 
-        var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
+        //var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
 
-        var holidayshoppingList = factory.CreateList("Holiday", "list002", $"{user.Username}-HolidayList");
+        //var holidayshoppingList = factory.CreateList("Holiday", "list002", $"{user.Username}-HolidayList");
 
         var apple = new Item("001", "Apple", 0.50);
         var orange = new Item("002", "Orange", 0.60);
@@ -34,12 +42,12 @@ class Program
         var discountedApple = new DiscountedItem(apple, 10);
         var expiryDecoratedApple = new ExpiryDateItem(discountedApple, DateTime.Now.AddDays(5));
 
-        regularshoppingList.AddItem(expiryDecoratedApple);
-        regularshoppingList.AddItem(apple);
-        regularshoppingList.AddItem(orange);
+        //regularshoppingList.AddItem(expiryDecoratedApple);
+        //regularshoppingList.AddItem(apple);
+        //regularshoppingList.AddItem(orange);
 
-        holidayshoppingList.AddItem(apple);
-        holidayshoppingList.AddItem(orange);
+        //holidayshoppingList.AddItem(apple);
+        //holidayshoppingList.AddItem(orange);
 
 
 		/*
@@ -53,7 +61,7 @@ class Program
         }
         */
 
-        DeleteItem(regularshoppingList, apple);
+        //DeleteItem(regularshoppingList, apple);
 
 		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 

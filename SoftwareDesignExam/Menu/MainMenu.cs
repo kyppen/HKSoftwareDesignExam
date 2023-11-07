@@ -1,10 +1,10 @@
 using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace SoftwareDesignExam.Menu;
 
 
 public static class MainMenu{
-
     public static void startMenu()
     {
         MenuPrintOptions printer = new MenuPrintOptions();
@@ -61,6 +61,8 @@ public static class MainMenu{
                 break;
             case "3":
                 Console.WriteLine("Login option selected");
+                MenuPrintOptions.Login();
+                
                 break;
             case "4":
                 Console.WriteLine("Sign up option selected");

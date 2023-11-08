@@ -20,7 +20,7 @@ namespace SoftwareDesignExam.DataAccess.SqLite {
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
 			//Sondre = /home/fam/RiderProjects/HKSoftwareDesignExam231/SoftwareDesignExam/Resources/Store.db
-			optionsBuilder.UseSqlite(@"Data Source = Resources\Store.db");
+			optionsBuilder.UseSqlite(@"Data Source = Resources/Store.db");
 		}
 
 	}

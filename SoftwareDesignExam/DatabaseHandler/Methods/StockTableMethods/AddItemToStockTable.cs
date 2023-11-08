@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods {
 	public class AddItemToStockTable {
-		public static void Add(Item item) {
+		public static void Add(Item item, int quantity) {
 			using StoreDbContext db = new StoreDbContext();
 
 			if (db.Stock.Find(item.Id) == null) {
-				Stock StockItem = new Stock() { 
+                Stock StockItem = new Stock() { 
 					Item_Id = item.Id,
 					Item_Name = item.Item_Name,
-					Item_Quantity = 0
+					Item_Quantity = quantity
 				};
 				
 				db.Stock.Add(StockItem);

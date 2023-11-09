@@ -95,7 +95,7 @@ class Program
 
 	}
 
-	private static void DisplayItems(AbstractShoppingList shoppingList)
+	/*private static void DisplayItems(AbstractShoppingList shoppingList)
     {
         foreach (var item in shoppingList.GetItems())
         {
@@ -109,4 +109,3 @@ class Program
         Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
     }*/
  }
-}

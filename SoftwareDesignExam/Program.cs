@@ -2,10 +2,8 @@
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
 using SoftwareDesignExam.DatabaseHandler.Methods;
-using SoftwareDesignExam.DatabaseHandler.Methods.ItemTableMethods;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
-using SoftwareDesignExam.Items.Decorators;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 
@@ -28,7 +26,7 @@ class Program
         
         
         Console.WriteLine("Starting program!");
-        /*
+		/*
         PopulateUserTable.Populate();
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
             Console.WriteLine(user);
@@ -39,11 +37,11 @@ class Program
 
         */
 
-        PopulateItemTable.Populate();
-        PopulateStockTable.Populate();
+		PopulateStockTable.Populate();
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
-            Console.WriteLine($"{item.Item_Name}\n{item.Item_Quantity}");
+            Console.WriteLine($"{item.Item_Name}\nprice: kr{item.Item_Price}\nQuantity in stock: {item.Item_Quantity}\n");
         }
+        
 		/*
         var factory = new ShoppingListFactory();
 
@@ -91,6 +89,10 @@ class Program
 
 	}
 
+    public static void pop() {
+
+    }
+
 	private static void DisplayItems(AbstractShoppingList shoppingList)
     {
         foreach (var item in shoppingList.GetItems())
@@ -98,10 +100,11 @@ class Program
             Console.WriteLine(item.ToString());
         }
     }
-
+    /*
     private static void DeleteItem(AbstractShoppingList shoppingList, AbstractItem item)
     {
         shoppingList.RemoveItem(item);
         Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
     }
+    */
 }

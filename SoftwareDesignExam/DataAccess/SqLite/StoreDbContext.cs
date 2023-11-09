@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DataAccess.SqLite {
 	internal class StoreDbContext : DbContext {
-		public DbSet<Entities.Item> Item => Set<Entities.Item>();
 
 		public DbSet<Entities.Cart> Cart => Set<Entities.Cart>();
 

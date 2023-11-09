@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignExam.DataAccess.SqLite;
 
@@ -10,9 +11,11 @@ using SoftwareDesignExam.DataAccess.SqLite;
 namespace SoftwareDesignExam.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109162519_removedItemFromProgramAndDatabase")]
+    partial class removedItemFromProgramAndDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -29,7 +32,7 @@ namespace SoftwareDesignExam.Migrations
                     b.Property<int>("Cart_Item_Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("ItemId")
+                    b.Property<int>("ItemId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("PurchaceDate")
@@ -49,22 +52,18 @@ namespace SoftwareDesignExam.Migrations
 
             modelBuilder.Entity("SoftwareDesignExam.Entities.Stock", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Item_Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Item_Id")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Item_Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Item_Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<long>("Item_Quantity")
+                    b.Property<int?>("Item_Quantity")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

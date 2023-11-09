@@ -7,7 +7,7 @@
 
 		public User User { get; set; }
 
-		public Item Item { get; set; }
+		public Stock Item { get; set; }
 
 		public DateTime PurchaceDate { get; set; }
 

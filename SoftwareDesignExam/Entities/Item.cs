@@ -16,7 +16,7 @@ namespace SoftwareDesignExam.Entities {
 		public string Item_Description { get; set; } = string.Empty;
 
 		[Required]
-		public int Item_Price { get; set;}
+		public double Item_Price { get; set;}
 
 		public override string ToString() {
 			return $"Id: {Id}\nName: {Item_Name}\nDescription: {Item_Description}\nPrice: {Item_Price}";

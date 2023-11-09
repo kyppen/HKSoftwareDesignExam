@@ -8,10 +8,11 @@ using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 
 namespace SoftwareDesignExam;
-class Program 
+class Program
 {
     static public void Main(String[] args)
     {
+
 
         /*
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
@@ -23,6 +24,7 @@ class Program
         Console.ReadLine();
         */
         //MainMenu.startMenu();
+
         
         
         Console.WriteLine("Starting program!");
@@ -31,7 +33,6 @@ class Program
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
             Console.WriteLine(user);
         }
-
 
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
@@ -64,36 +65,36 @@ class Program
         //holidayshoppingList.AddItem(orange);
 
 
-		/*
+		*//*
         AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
         AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
         AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
         */
-		/*
+        /*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }
-        */
+        *//*
 
 
         //DeleteItem(regularshoppingList, apple);
 
 		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 
-		/*
+		*//*
         Console.WriteLine();
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
 			Console.WriteLine(item);
 		}
         */
 
+
 	}
 
-    public static void pop() {
+	//private static void DisplayItems(AbstractShoppingList shoppingList)
 
-    }
+	/*private static void DisplayItems(AbstractShoppingList shoppingList)
 
-	private static void DisplayItems(AbstractShoppingList shoppingList)
     {
         foreach (var item in shoppingList.GetItems())
         {
@@ -105,6 +106,9 @@ class Program
     {
         shoppingList.RemoveItem(item);
         Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
+
     }
     */
 }
+ 
+

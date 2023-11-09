@@ -42,7 +42,9 @@ class Program
 
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
+        */
 
+        PopulateItemTable.Populate();
         PopulateStockTable.Populate();
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
             Console.WriteLine($"{item.Item_Name}\n{item.Item_Quantity}");

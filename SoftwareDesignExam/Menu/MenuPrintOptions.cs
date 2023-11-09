@@ -1,8 +1,8 @@
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.Entities;
 
 namespace SoftwareDesignExam.Menu;
-using UserManagement;
 
 
 public class MenuPrintOptions{
@@ -13,18 +13,11 @@ public class MenuPrintOptions{
                           "3: Login\n" +
                           "4: Sign up");
     }
+    
 
-    public static void Login()
+    public void UserMainMenu(User user)
     {
-        Console.WriteLine("Enter Email");
-        string email = Console.ReadLine();
-        Console.WriteLine("Enter Password");
-        string password = Console.ReadLine();
-        
-    }
-
-    public void UserMainMenu()
-    {
+        Console.WriteLine($"Welcome {user.User_FName} {user.User_LName}");
         Console.WriteLine("1: See all wares \n" +
                           "2: Search for item\n" +
                           "3: Add wares to cart\n" +
@@ -80,10 +73,14 @@ public class MenuPrintOptions{
             Console.WriteLine("Passwords does not match");
             return;
         }
-        
-        
 
-        Controller.UserController.CreateUser(firstname, lastname, email, password);
+        if (!UserController.CheckDuplicate(email))
+        {
+            Console.WriteLine("This email is already registered");
+            return;
+        }
+        Console.WriteLine("User is being created");
+        UserController.CreateUser(firstname, lastname, email, password);
         
         //Console.WriteLine(firstname);
         //Console.WriteLine(lastname);

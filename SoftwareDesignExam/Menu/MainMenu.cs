@@ -1,14 +1,18 @@
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore.Query;
+using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.Entities;
 
 namespace SoftwareDesignExam.Menu;
 
 
 public static class MainMenu{
+    private static Boolean Authenticated = false;
+    private static User? Current_user = null;
     public static void startMenu()
     {
         MenuPrintOptions printer = new MenuPrintOptions();
-        if (1 == 1) // If the user is not logged inn
+        if (!Authenticated) // If the user is not logged inn
         {
             Boolean optionSelected = false;
             string input;
@@ -26,13 +30,13 @@ public static class MainMenu{
             }
         }
 
-        if (2 == 2) //if the user is logged inn
+        if (Authenticated) //if the user is logged inn
         {
             Boolean optionSelected = false;
             string input;
             while (optionSelected == false)
             {
-                printer.UserMainMenu();
+                printer.UserMainMenu(Current_user);
                 Console.WriteLine("choose");
                 input = Console.ReadLine();
                 //Takes inn how many options the user has and their input after we've checked if its valid
@@ -55,13 +59,30 @@ public static class MainMenu{
         {
             case "1": 
                 Console.WriteLine("See all wares option selected");
+                Controller.ItemController.printItem();
+
                 break;
             case "2":
                 Console.WriteLine("Search for item option selected");
+                string userSelectItem = Console.ReadLine();
+                Controller.ItemController.printUserSelectItem(userSelectItem);
+
                 break;
             case "3":
                 Console.WriteLine("Login option selected");
-                MenuPrintOptions.Login();
+                var answer = UserController.Login();
+                if (answer == null)
+                {
+                    Console.WriteLine("user is null");
+                    return;
+                }
+
+                Authenticated = true;
+                Current_user = answer; 
+
+                
+                
+                
                 
                 break;
             case "4":
@@ -75,6 +96,7 @@ public static class MainMenu{
 
     public static void UserSelectOption(string input)
     {
+        
         switch (input)
         {
             case "1":
@@ -120,6 +142,7 @@ public static class MainMenu{
         {
             return false;
         }
+        
     }
     
 }

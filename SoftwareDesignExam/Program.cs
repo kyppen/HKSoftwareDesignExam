@@ -40,7 +40,7 @@ class Program
 
 		PopulateStockTable.Populate();
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
-            Console.WriteLine($"{item.Item_Name}\nprice: kr{item.Item_Price}\nQuantity in stock: {item.Item_Quantity}\n");
+            Console.WriteLine($"{item.Item_Name}\nprice: kr{item.Item_Price}\nQuantity in stock: {item.Item_Quantity}\n{item.Id}");
         }
         
 		/*

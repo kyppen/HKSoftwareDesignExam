@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Items {
 	public class ItemFactory {
-		public AbstractItem CreateItem(long id, string type, string name, string description, double price, long quantity) {
+		public static AbstractItem CreateItem(long id, string type, string name, string description, double price, long quantity) {
 			switch (type) {
 				case "regular":
 					return new Item(name, description, price);

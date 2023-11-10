@@ -12,7 +12,10 @@ namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
 		public static AbstractItem Jarlsberg = new Item("Jarlsberg", "Block of yellow cheese", 109);
 		public static AbstractItem Grandiosa = new Item("Grandiosa", "Frozen Pizza", 59);
 		public static AbstractItem AliKaffeBønner = new Item("Ali Kaffe 500g", "500g bag of coffee beans", 89);
+
 		public static void Populate() {
+			//StockController.CreateStockItem(ItemFactory.CreateItem(1,"item","Jarlsberg", "Block of yellow cheese", 109, 40));
+
 			StockController.CreateStockItem(item: Jarlsberg, quantity: 40);
 			StockController.CreateStockItem(item: Grandiosa, quantity: 34);
 			StockController.CreateStockItem(item: AliKaffeBønner, quantity: 99);

@@ -41,15 +41,13 @@ namespace SoftwareDesignExam.Controller {
 			List<AbstractItem> Items = new();
 
 			foreach (var stock in stockList) {
-				AbstractItem StockItem = new StockItem(
+				Items.Add(ItemFactory.CreateItem(
 					stock.Id,
 					stock.Item_Name,
 					stock.Item_Description,
 					stock.Item_Price,
 					stock.Item_Quantity
-					);
-
-				Items.Add(StockItem);
+				));
 			}
 			return Items;
 		}

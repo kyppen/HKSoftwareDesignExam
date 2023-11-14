@@ -28,29 +28,19 @@ namespace SoftwareDesignExam.Controller {
 		*/
 
 		public static List<AbstractItem> GetAll() {
-			List<AbstractItem> Items = new ();
 			List<Stock> DbStock = ReadAllItemsFromStockTable.Read();
-
-            foreach (var stock in DbStock)
-            {
-				AbstractItem StockItem = new StockItem(
-					stock.Id, 
-					stock.Item_Name, 
-					stock.Item_Description, 
-					stock.Item_Price, 
-					stock.Item_Quantity
-					);
-
-				Items.Add( StockItem );
-            }
-			return Items;
+			return GetBody(DbStock);
         }
 
 		public static List<AbstractItem> GetByMatchingString(string name) {
-			List<AbstractItem> Items = new();
 			List<Stock> DbStock = ReadSingleItemFromStockTable.Read(name);
+			return GetBody(DbStock);
+		}
 
-			foreach (var stock in DbStock) {
+		private static List<AbstractItem> GetBody(List<Stock> stockList) {
+			List<AbstractItem> Items = new();
+
+			foreach (var stock in stockList) {
 				AbstractItem StockItem = new StockItem(
 					stock.Id,
 					stock.Item_Name,

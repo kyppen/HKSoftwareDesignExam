@@ -1,4 +1,5 @@
-﻿using SoftwareDesignExam.Entities;
+using SoftwareDesignExam.DatabaseHandler.Methods;
+using SoftwareDesignExam.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,15 @@ namespace SoftwareDesignExam.Controller
 {
     public class ItemController
     {
+      public static void CreateItem(Items.Item item) {
+            Entities.Item newItem = new() {
+				Item_Name = item.Name,
+				Item_Description = item.Description,
+				Item_Price = item.Price
+			};
+
+			AddItemToItemTable.Add(newItem);
+		}
         public static void printItem()
         {
             List<Item> itemlist = DatabaseHandler.Methods.ReadAllItemsFromItemTable.Read();

@@ -8,6 +8,7 @@ using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.Items.Decorators;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
+using SoftwareDesignExam.Controller;
 
 namespace SoftwareDesignExam;
 class Program
@@ -16,10 +17,7 @@ class Program
     {
 
 
-        AddItemToItemTable.Add("cheese", "yellow", 3);
-        AddItemToItemTable.Add("cheese", "yellow", 3);
-        AddItemToItemTable.Add("cheese", "yellow", 3);
-        AddItemToItemTable.Add("cheese", "yellow", 3);
+        PopulateItemTable.Populate();
         /*
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%"))
@@ -42,7 +40,9 @@ class Program
 
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
+        */
 
+        PopulateItemTable.Populate();
         PopulateStockTable.Populate();
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
             Console.WriteLine($"{item.Item_Name}\n{item.Item_Quantity}");

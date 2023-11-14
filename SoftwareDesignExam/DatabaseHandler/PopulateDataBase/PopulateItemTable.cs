@@ -1,5 +1,7 @@
-﻿using SoftwareDesignExam.DataAccess.SqLite;
+﻿using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.DatabaseHandler.Methods;
+using SoftwareDesignExam.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,10 @@ namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
 	public class PopulateItemTable {
 
 		public static void Populate() {
-			AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
-			AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
-			AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
+
+			ItemController.CreateItem(new Item("", "Jarlsberg", "Yellow Cheese", 99));
+			ItemController.CreateItem(new Item("", "Toro Tomatsuppe", "Toro Tomatosoup in bag", 23));
+			ItemController.CreateItem(new Item("", "Grandiosa", "Frozen classic Pizza Grandiosa", 45));			
 		}
 	}
 }

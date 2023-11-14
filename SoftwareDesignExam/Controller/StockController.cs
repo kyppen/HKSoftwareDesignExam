@@ -9,47 +9,51 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Controller {
-	public class StockController {
+    public class StockController {
 		
-		public static void CreateStockItem(AbstractItem item, long quantity) {
-			Stock StockItem = new Stock() {
-				Item_Name = item.name,
-				Item_Quantity = quantity,
-				Item_Description = item.description,
-				Item_Price = item.price
-			};
-			AddItemToStockTable.Add(StockItem);
-		}
-		/*
-		public static Boolean CheckIfExists(Item item) {
-			using StoreDbContext db = new StoreDbContext();
-			return (db.Stock.Find(item.Id) == null);
-		}
-		*/
+        public static void CreateStockItem(AbstractItem item, int quantity) {
+            Stock StockItem = new Stock() {
+                Item_Name = item.name,
+                Item_Quantity = quantity,
+                Item_Description = item.description,
+                Item_Price = item.price
+            };
+            AddItemToStockTable.Add(StockItem);
+        }
+        /*
+        public static Boolean CheckIfExists(Item item) {
+            using StoreDbContext db = new StoreDbContext();
+            return (db.Stock.Find(item.Id) == null);
+        }
+        */
 
-		public static List<AbstractItem> GetAll() {
-			List<Stock> DbStock = ReadAllItemsFromStockTable.Read();
-			return GetBody(DbStock);
+        public static List<StockItem> GetAll() {
+            List<Stock> DbStock = ReadAllItemsFromStockTable.Read();
+            Console.WriteLine("GetAll()");
+            Console.WriteLine(DbStock.Count);
+            return GetBody(DbStock);
         }
 
-		public static List<AbstractItem> GetByMatchingString(string name) {
-			List<Stock> DbStock = ReadSingleItemFromStockTable.Read(name);
-			return GetBody(DbStock);
-		}
+        public static List<StockItem> GetByMatchingString(string name) {
+            Console.WriteLine("GetByMatchingString()");
+            List<Stock> DbStock = ReadSingleItemFromStockTable.Read(name);
+            Console.WriteLine(DbStock.Count);
+            return GetBody(DbStock);
+        }
 
-		private static List<AbstractItem> GetBody(List<Stock> stockList) {
-			List<AbstractItem> Items = new();
+        private static List<StockItem> GetBody(List<Stock> stockList) {
+            List<StockItem> Items = new();
 
-			foreach (var stock in stockList) {
+            foreach (var stock in stockList) {
                 Items.Add(ItemFactory.CreateItem(
-					stock.Id,
-					stock.Item_Name,
-					stock.Item_Description,
-					stock.Item_Price,
-					stock.Item_Quantity
-				));
-			}
-			return Items;
-		}
-	}
+                    stock.Id,
+                    stock.Item_Name,
+                    stock.Item_Description,
+                    stock.Item_Price,
+                    stock.Item_Quantity
+                ));
+            }
+            return Items;
+        }
+    }
 }

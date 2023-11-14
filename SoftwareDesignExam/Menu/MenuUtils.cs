@@ -45,5 +45,21 @@ public static class MenuUtils{
         return false;
     }
     
+    public static Boolean CheckIfValid(int options, string input = "")
+    {
+        int something;
+        Boolean accepted = int.TryParse(input, out something);
+        //Console.WriteLine("is it a number? " + accepted);
+        //Console.WriteLine(something);
+        if (something <= options && something != 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
         
 }

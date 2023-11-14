@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftwareDesignExam", "SoftwareDesignExam\SoftwareDesignExam.csproj", "{C367A205-A924-4FDF-A334-5249D35752B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftWareDesignExamTest", "SoftWareDesignExamTest\SoftWareDesignExamTest.csproj", "{56C75D45-1D6F-43E3-AC22-542DD47E4848}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BinResources", "BinResources", "{873A32C7-3CDE-4834-AFEA-9ECB236A4EFA}"
+	ProjectSection(SolutionItems) = preProject
+		SoftwareDesignExam\bin\Debug\net7.0\Resources\Store.db = SoftwareDesignExam\bin\Debug\net7.0\Resources\Store.db
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C367A205-A924-4FDF-A334-5249D35752B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C75D45-1D6F-43E3-AC22-542DD47E4848}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {435B6FD2-3874-4E3F-88E4-738B459F2474}
+	EndGlobalSection
+EndGlobal

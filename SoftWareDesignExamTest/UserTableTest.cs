@@ -4,7 +4,7 @@ using SoftwareDesignExam.Entities;
 
 namespace SoftWareDesignExamTest;
 
-public class Tests
+public class UserTableTest
 {
     private long _id;
     private string _email = "ladygaga@gmail.com";

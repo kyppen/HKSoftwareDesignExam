@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoftwareDesignExam.DataAccess.SqLite;
 
@@ -10,38 +11,41 @@ using SoftwareDesignExam.DataAccess.SqLite;
 namespace SoftwareDesignExam.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231109195942_modifiedStock")]
+    partial class modifiedStock
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
 
             modelBuilder.Entity("SoftwareDesignExam.Entities.Cart", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("Cart_Id")
+                    b.Property<int>("Cart_Id")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("Item_Id")
+                    b.Property<int>("Cart_Item_Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Item_Price")
-                        .HasColumnType("REAL");
-
-                    b.Property<long>("Item_Quantity")
+                    b.Property<long>("ItemId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("PurchaceDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("User_Id")
+                    b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Cart");
                 });
@@ -96,6 +100,25 @@ namespace SoftwareDesignExam.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("SoftwareDesignExam.Entities.Cart", b =>
+                {
+                    b.HasOne("SoftwareDesignExam.Entities.Stock", "Item")
+                        .WithMany()
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SoftwareDesignExam.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

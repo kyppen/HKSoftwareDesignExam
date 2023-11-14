@@ -53,7 +53,7 @@ namespace SoftwareDesignExam.ShoppingList
 
         public virtual double GetTotalPrice()
         {
-            return _items.Sum(item => item.GetPrice());
+            return _items.Sum(item => item.price);
         }
         public override string ToString()
         {

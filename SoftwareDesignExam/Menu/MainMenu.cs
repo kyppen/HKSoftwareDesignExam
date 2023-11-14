@@ -59,13 +59,13 @@ public static class MainMenu{
         {
             case "1": 
                 Console.WriteLine("See all wares option selected");
-                Controller.ItemController.printItem();
+                //Controller.ItemController.printItem();
 
                 break;
             case "2":
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
-                Controller.ItemController.printUserSelectItem(userSelectItem);
+                //Controller.ItemController.printUserSelectItem(userSelectItem);
 
                 break;
             case "3":

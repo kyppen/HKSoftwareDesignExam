@@ -12,16 +12,16 @@ namespace SoftwareDesignExam.Recipe
     {
         private string _id;
         private string _name;
-        private List<Item> _ingredients;
+        private List<AbstractItem> _ingredients;
 
         public Recipe(string id, string name)
         {
             _id = id;
             _name = name;
-            _ingredients = new List<Item>();
+            _ingredients = new List<AbstractItem>();
         }
 
-        public void Addingredient(Item item)
+        public void Addingredient(AbstractItem item)
         {
             _ingredients.Add(item);
         }

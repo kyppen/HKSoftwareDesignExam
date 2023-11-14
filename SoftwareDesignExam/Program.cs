@@ -2,10 +2,8 @@
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
 using SoftwareDesignExam.DatabaseHandler.Methods;
-using SoftwareDesignExam.DatabaseHandler.Methods.ItemTableMethods;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
-using SoftwareDesignExam.Items.Decorators;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Controller;
@@ -17,7 +15,6 @@ class Program
     {
 
 
-        PopulateItemTable.Populate();
         /*
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%"))
@@ -27,12 +24,12 @@ class Program
         }
         Console.ReadLine();
         */
-        MainMenu.startMenu();
+        //MainMenu.startMenu();
 
         
         
         Console.WriteLine("Starting program!");
-        /*
+		/*
         PopulateUserTable.Populate();
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
             Console.WriteLine(user);
@@ -42,11 +39,22 @@ class Program
 
         */
 
-        PopulateItemTable.Populate();
-        PopulateStockTable.Populate();
+		PopulateStockTable.Populate();
+        
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
-            Console.WriteLine($"{item.Item_Name}\n{item.Item_Quantity}");
+			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}\n"); ;
         }
+
+		foreach (var item in StockController.GetAll()) {
+			Console.WriteLine($"{item.name}\nprice kr          : {item.price}\nQuantity in stock : {item.quantity}\nProduct ID        : {item.id}\n"); ;
+		}
+		/*
+        Console.Write("Input item name > ");
+        string input = Console.ReadLine();
+        foreach (var item in ReadSingleItemFromStockTable.Read(input)) {
+			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}");
+		}
+        */
 		/*
         var factory = new ShoppingListFactory();
 
@@ -74,7 +82,7 @@ class Program
         AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
         AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
         */
-        /*
+		/*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }
@@ -95,17 +103,24 @@ class Program
 
 	}
 
+	//private static void DisplayItems(AbstractShoppingList shoppingList)
+
 	/*private static void DisplayItems(AbstractShoppingList shoppingList)
+
     {
         foreach (var item in shoppingList.GetItems())
         {
             Console.WriteLine(item.ToString());
         }
     }
-
+    /*
     private static void DeleteItem(AbstractShoppingList shoppingList, AbstractItem item)
     {
         shoppingList.RemoveItem(item);
         Console.WriteLine($"Item {item.GetName()} removed from the list.\n");
-    }*/
- }
+
+    }
+    */
+}
+ 
+

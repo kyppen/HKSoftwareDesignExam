@@ -16,9 +16,8 @@ public class UserController{
 			User_Password = password
 		};
 
-		return AddUserToUserTable.Add(user);
-        //AddUserToUserTable UserAdder = new AddUserToUserTable();
-        //AddUserToUserTable.Add(firstname, lastname, email, password);
+		AddUserToUserTable.Add(user);
+        return user.Id;
     }
 
     public static Boolean CheckDuplicate(string email)

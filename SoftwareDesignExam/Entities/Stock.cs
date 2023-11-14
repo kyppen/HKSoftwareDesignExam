@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Entities {
 	public class Stock {
-		public int Id { get; set; }
+		public long Id { get; set; }
 
-		public int Item_Id { get; set; } 
+		public string Item_Description { get; set; }
 
-		public String Item_Name { get; set; } = "";
+		public string Item_Name { get; set; } = "";
 
-		public int? Item_Quantity { get; set; }
+		public double Item_Price { get; set; }
+
+		public long Item_Quantity { get; set; }
 	}
 }

@@ -9,11 +9,11 @@ namespace SoftwareDesignExam.ShoppingList
 {
     public class RegularShoppingList : AbstractShoppingList
     {
-        private List<Item> _defaultItems;
+        private List<AbstractItem> _defaultItems;
 
         public RegularShoppingList(string id, string name) : base(id, name)
         {
-            _defaultItems = new List<Item>();
+            _defaultItems = new List<AbstractItem>();
         }
 
         public override double GetTotalPrice()

@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 public class UserController{
 
-    public static void CreateUser(string firstname, string lastname, string email, string password)
+    public static long CreateUser(string firstname, string lastname, string email, string password)
     {
   		User user = new User() {
 			User_FName = firstname,
@@ -16,7 +16,7 @@ public class UserController{
 			User_Password = password
 		};
 
-		AddUserToUserTable.Add(user);
+		return AddUserToUserTable.Add(user);
         //AddUserToUserTable UserAdder = new AddUserToUserTable();
         //AddUserToUserTable.Add(firstname, lastname, email, password);
     }

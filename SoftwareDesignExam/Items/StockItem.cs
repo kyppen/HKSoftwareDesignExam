@@ -9,13 +9,13 @@ namespace SoftwareDesignExam.Items {
 		public long Id { get; set; }
 		public long Quantity { get; set; }
 
-		public StockItem(long id, string name, string description, double price, long quantity) : base(name, description, price) {
-			this.Quantity = quantity;
-			this.Id = id;
+		public StockItem(long id, string name, string description, double price, long quantity) : base(id, name, description, price, quantity) {
+			Quantity = quantity;
+			Id = id;
 		}
 
 		public double CalculatePrice() {
-			return this.Quantity*base.price;
+			return Quantity*base.price;
 		}
 	}
 }

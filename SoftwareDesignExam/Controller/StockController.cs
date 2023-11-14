@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SoftwareDesignExam.Controller {
 	public class StockController {
 		
-		public static void CreateStockItem(AbstractItem item, int quantity) {
+		public static void CreateStockItem(AbstractItem item, long quantity) {
 			Stock StockItem = new Stock() {
 				Item_Name = item.name,
 				Item_Quantity = quantity,
@@ -41,7 +41,7 @@ namespace SoftwareDesignExam.Controller {
 			List<AbstractItem> Items = new();
 
 			foreach (var stock in stockList) {
-				Items.Add(ItemFactory.CreateItem(
+                Items.Add(ItemFactory.CreateItem(
 					stock.Id,
 					stock.Item_Name,
 					stock.Item_Description,

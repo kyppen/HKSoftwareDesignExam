@@ -1,3 +1,4 @@
+using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Entities;
 
@@ -13,7 +14,7 @@ public class Tests
     [SetUp]
     public void Setup()
     {
-        _id = AddUserToUserTable.Add("Lady", "Gaga", "ladygaga@gmail.com", "password");
+        _id = UserController.CreateUser("Lady", "Gaga", "ladygaga@gmail.com", "password");
 
     }
 

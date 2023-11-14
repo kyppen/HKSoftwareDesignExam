@@ -39,10 +39,15 @@ class Program
         */
 
 		PopulateStockTable.Populate();
+        /*
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
             Console.WriteLine($"{item.Item_Name}\nprice: kr{item.Item_Price}\nQuantity in stock: {item.Item_Quantity}\n{item.Id}");
         }
-        
+        */
+		foreach (var item in ReadSingleItemFromStockTable.Read("grandiosa")) {
+			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}");
+		}
+
 		/*
         var factory = new ShoppingListFactory();
 
@@ -70,7 +75,7 @@ class Program
         AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
         AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
         */
-        /*
+		/*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }

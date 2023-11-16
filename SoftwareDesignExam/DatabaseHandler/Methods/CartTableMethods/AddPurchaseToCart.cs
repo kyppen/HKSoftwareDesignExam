@@ -9,6 +9,7 @@ public class AddPurchaseToCart
     {
         using StoreDbContext db = new StoreDbContext();
         db.Cart.Add(cart);
+        db.SaveChanges();
     }
     
 }

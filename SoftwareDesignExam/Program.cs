@@ -7,6 +7,7 @@ using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.UIColor;
 
 namespace SoftwareDesignExam;
 class Program
@@ -47,11 +48,18 @@ class Program
         }
         */
 		foreach (var item in StockController.GetAll()) {
-			Console.WriteLine($"{item.name}\nprice kr          : {item.price}\nQuantity in stock : {item.quantity}\nProduct ID        : {item.id}\n"); ;
+			UIColorController.ColorWriteYellow("Name        : ");
+			Console.Write($"{item.name}\n");
+			UIColorController.ColorWriteYellow("Description : ");
+			Console.Write($"{item.description}\n");
+			UIColorController.ColorWriteYellow("Price       : ");
+			Console.WriteLine($"{item.price}\n");
+
+
 		}
 
-		
-        
+
+
 		Console.Write("Input item name > ");
         string input = Console.ReadLine();
         foreach (var item in ReadSingleItemFromStockTable.Read(input)) {

@@ -1,6 +1,8 @@
-﻿using SoftwareDesignExam.Items;
+﻿﻿using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.ShoppingList;
+using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.DatabaseHandler.Methods;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
@@ -25,11 +27,17 @@ class Program
         }
         Console.ReadLine();
         */
-        //MainMenu.startMenu();
+        Console.WriteLine("Starting program!");
+        //PopulateStockTable.Populate();
+
+
+        //Run these only once!
+        //PopulateStockTable.Populate();
+        //PopulateUserTable.Populate();
+        MainMenu.startMenu();
 
         
-        
-        Console.WriteLine("Starting program!");
+        Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 		/*
         PopulateUserTable.Populate();
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
@@ -39,7 +47,7 @@ class Program
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
         */
-
+        /*
 		PopulateStockTable.Populate();
 
 		/*
@@ -62,11 +70,11 @@ class Program
 
 		Console.Write("Input item name > ");
         string input = Console.ReadLine();
-        foreach (var item in ReadSingleItemFromStockTable.Read(input)) {
-			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}");
+        //Not safe input
+        foreach (var item in StockController.GetByMatchingString(input)) {
+			Console.WriteLine($"{item.name}\nprice kr          : {item.price}\nQuantity in stock : {item.quantity}\nProduct ID        :");
+            //ShoppingList.AddItem(item);)
 		}
-        
-		/*
         var factory = new ShoppingListFactory();
 
         //var regularshoppingList = factory.CreateList("Regular", "list001", $"{user.Username}-RegularList");
@@ -88,31 +96,31 @@ class Program
         //holidayshoppingList.AddItem(orange);
 
 
-		*//*
+        */ /*
         AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
         AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
         AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
         */
-		/*
+        /*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }
-        *//*
+        */ /*
 
 
         //DeleteItem(regularshoppingList, apple);
 
-		// RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
+        // RemoveItemFromItemTable.Remove(ReadSingleItemFromItemTable.Read("grandiosa"));
 
-		*//*
+        */ /*
         Console.WriteLine();
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
-			Console.WriteLine(item);
-		}
+            Console.WriteLine(item);
+        }
         */
 
 
-	}
+    }
 
 	//private static void DisplayItems(AbstractShoppingList shoppingList)
 
@@ -134,4 +142,3 @@ class Program
     */
 }
  
-

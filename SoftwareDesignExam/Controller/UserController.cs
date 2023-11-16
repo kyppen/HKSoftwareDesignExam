@@ -9,14 +9,16 @@ public class UserController{
 
     public static long CreateUser(string firstname, string lastname, string email, string password)
     {
-  		User user = new User() {
-			User_FName = firstname,
-			User_LName = lastname,
-			User_Email = email,
-			User_Password = password
-		};
+        User user = new User() {
+            User_FName = firstname,
+            User_LName = lastname,
+            User_Email = email,
+            User_Password = password
+        };
 
-		AddUserToUserTable.Add(user);
+        AddUserToUserTable.Add(user);
+        //AddUserToUserTable UserAdder = new AddUserToUserTable();
+        //AddUserToUserTable.Add(firstname, lastname, email, password);
         return user.Id;
     }
 
@@ -30,7 +32,7 @@ public class UserController{
         //not finished
     }
 
-    public static User Login()
+    public static UserManagement.User Login()
     {
         Console.WriteLine("Enter Email");
         string email = Console.ReadLine();
@@ -43,7 +45,8 @@ public class UserController{
             return null;
         }
 
-        return user[0];
+        UserManagement.User userObject = new UserManagement.User($"{user[0].Id}", user[0].User_Email, user[0].User_FName);
+        return userObject;
 
     }
 

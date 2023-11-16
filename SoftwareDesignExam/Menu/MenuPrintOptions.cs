@@ -1,33 +1,213 @@
+using Microsoft.VisualBasic.CompilerServices;
 using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Controller;
-using SoftwareDesignExam.Entities;
-
+using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
+using SoftwareDesignExam.Items;
+using SoftwareDesignExam.UserManagement;
 namespace SoftwareDesignExam.Menu;
 
 
-public class MenuPrintOptions{
+public class MenuPrintOptions
+{
+    private User user = null;
+    
+    
     public void GuestMainMenu()
     {
         Console.WriteLine("1: See all wares\n" +
                           "2: Search for item\n" +
                           "3: Login\n" +
-                          "4: Sign up");
+                          "4: Sign up\n" +
+                          "5: Exit");
     }
     
 
-    public void UserMainMenu(User user)
+    public void UserMainMenu(User currentUser)
     {
-        Console.WriteLine($"Welcome {user.User_FName} {user.User_LName}");
+        user = currentUser;
+        Console.WriteLine($"Welcome {user.Username}");
         Console.WriteLine("1: See all wares \n" +
                           "2: Search for item\n" +
-                          "3: Add wares to cart\n" +
-                          "4: Remove ware from cart\n" +
-                          "5: Add recipe to cart\n" +
-                          "6: Remove recipe from cart\n" +
-                          "7: View cart\n" +
+                          "3: Remove ware from cart\n" +
+                          "4: Add recipe to cart\n" +
+                          "5: Remove recipe from cart\n" +
+                          "6: View cart\n" +
+                          "7: Checkout\n" +
                           "8: Log out");
     }
 
+    public void PrintAll()
+    {
+        var allItems = StockController.GetAll();
+        //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
+        foreach (var item in allItems)
+        {
+            Console.WriteLine($"name: {item.name}, price: {item.price}, quanitity: {item.quantity}");
+        }
+        
+    }
+
+    public void PrintAllLoggedInn()
+    {
+        var allItems = StockController.GetAll();
+        //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
+        for (int i = 0; i < allItems.Count; i++)
+        {
+            Console.WriteLine($"Select : {i} | Name: {allItems[i].name} | Quantity: {allItems[i].quantity}"); 
+        }
+
+        Boolean selected = false;
+        while (!selected)
+        {
+            Console.WriteLine("Enter the number you want or type exit");
+            string input = Console.ReadLine();
+            if (input.ToLower().Equals("exit"))
+            {
+                return;
+            }
+            int index;
+            if (int.TryParse(input, out index))
+            {
+                Console.WriteLine(allItems[index].ToString());
+                StockItem item = allItems[index];    
+                Console.WriteLine("item name " + item.name);
+                int quantity = SelectQuantity(item);
+                if (quantity == -1)
+                {
+                    return;
+                }
+                user.addItem(item, quantity);
+                selected = true;
+            };
+            
+        }
+    }
+
+    public int SelectQuantity(StockItem item)
+    {
+        Boolean QuantitySelected = false;
+        int amount = 0;
+        while (!QuantitySelected)
+        {
+            Console.WriteLine($"Selected how many of the item you want | in stock: {item.quantity}");
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out amount))
+            {
+                if (amount != 0 && amount < item.quantity)
+                {
+                    return amount;
+                }
+            }
+        }
+
+        return -1;
+    } 
+    public List<StockItem> ContainsSearch()
+    {
+        Console.WriteLine("Enter an item name");
+        string search = Console.ReadLine();
+        List<StockItem> items = StockController.GetByMatchingString(search);
+        for (int I = 0; I < items.Count; I++)
+        {
+            Console.WriteLine($"{I} | {items[I].name} | {items[I].quantity}");
+        }  
+        SelectItem(items);
+
+        return items;
+    }
+
+    public void SelectItem(List<StockItem> items)
+    {
+        Console.WriteLine("Enter the number corresponding to desired item, Enter exit to return");
+        string input = Console.ReadLine();
+        if (input.ToLower().Equals("exit"))
+        {
+            return;
+        }
+
+        int number;
+        if (int.TryParse(input, out number))
+        {
+            
+            Console.WriteLine("Select item: valid: true");
+            Console.WriteLine("list size " + items.Count);
+            var num = int.Parse(input);
+            Console.WriteLine("index attempted " + num);
+            var item = items[num];
+            Console.WriteLine(item);
+            int amount = SelectQuantity(item);
+            if (amount == -1)
+            {
+                Console.WriteLine("Quantity was not accepted");
+                return;
+            }
+            user.addItem(item, amount);
+        }
+    }
+
+    public static AbstractItem RemoveItemMenu(User user)
+    {
+        List<AbstractItem> items = user.getShoppingList();
+        for (int i = 0; i < items.Count; i++)
+        {
+            AbstractItem item = items[i];
+            Console.WriteLine($"{i} : {item}");
+        }
+
+        Boolean ItemSelcted = false;
+        while (!ItemSelcted)
+        {
+            Console.WriteLine("Enter the number corresponding to item");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "exit")
+            {
+                return null;
+            }
+            int inputNum;
+            if (int.TryParse(input, out inputNum))
+            {
+                Console.WriteLine("Selected: " + items[inputNum]);
+                return items[inputNum];
+            }
+            Console.WriteLine("Input not accepted");
+        }
+        return null;
+    }
+
+    public static void RemoveItem(User user)
+    {
+        AbstractItem item = RemoveItemMenu(user);
+        
+        Console.WriteLine("0: Edit quantity");
+        Console.WriteLine("1: Remove Item from List");
+        string input = Console.ReadLine();
+        if (input.Equals("0")){
+            
+            List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
+            Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
+            Console.WriteLine("Quantity in cart: " + item.quantity);
+            Console.WriteLine("Enter new quantity");
+            string newquantity = Console.ReadLine();
+            int intQuantity;
+            if (int.TryParse(newquantity, out intQuantity))
+            {
+                item.quantity = intQuantity;
+                Console.WriteLine($"Quantity has been updated to {item.quantity}");
+            }
+            Console.WriteLine("Invalid input");
+            
+
+        }else if (input.Equals("1"))
+        {
+            user.RemoveItem(item);
+            Console.WriteLine(item.name + " has been removed from shoppinglist");
+        }
+        else
+        {
+            Console.WriteLine("Input not accepted");
+        }
+    }
+    
     
     public static void CreateUser()
     {

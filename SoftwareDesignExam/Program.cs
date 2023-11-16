@@ -40,21 +40,24 @@ class Program
         */
 
 		PopulateStockTable.Populate();
-        
+
+		/*
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
 			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}\n"); ;
         }
-
+        */
 		foreach (var item in StockController.GetAll()) {
 			Console.WriteLine($"{item.name}\nprice kr          : {item.price}\nQuantity in stock : {item.quantity}\nProduct ID        : {item.id}\n"); ;
 		}
-		/*
-        Console.Write("Input item name > ");
+
+		
+        
+		Console.Write("Input item name > ");
         string input = Console.ReadLine();
         foreach (var item in ReadSingleItemFromStockTable.Read(input)) {
 			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}");
 		}
-        */
+        
 		/*
         var factory = new ShoppingListFactory();
 

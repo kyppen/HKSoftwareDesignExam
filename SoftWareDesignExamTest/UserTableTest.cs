@@ -62,4 +62,10 @@ public class UserTableTest
         RemoveUserFromUserTable.Remove(_id);
 
     }
+
+    [Test]
+    public void Test_duplicateItemsInShoppingList()
+    {
+        
+    }
 }

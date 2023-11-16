@@ -10,6 +10,15 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Controller {
 	public class StockController {
+
+		public static bool CheckStockQuantityOfItems(List<AbstractItem> listOfItems) {
+			foreach (AbstractItem item in listOfItems) {
+				if (item.quantity > ReadQuantityOfItemInStockTable.Read(item.id)) {
+					return false;
+				}
+			}
+			return true;
+		}
 		
 		public static void CreateStockItem(AbstractItem item, long quantity) {
 			Stock StockItem = new Stock() {

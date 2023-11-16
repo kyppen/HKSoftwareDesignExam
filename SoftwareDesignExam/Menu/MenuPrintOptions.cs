@@ -66,7 +66,7 @@ public class MenuPrintOptions
                 return;
             }
             int index;
-            if (int.TryParse(input, out index))
+            if (int.TryParse(input, out index ) && MenuUtils.CheckIfValidZeroAccepted(allItems.Count, input))
             {
                 Console.WriteLine(allItems[index].ToString());
                 StockItem item = allItems[index];    
@@ -126,22 +126,27 @@ public class MenuPrintOptions
         }
 
         int number;
-        if (int.TryParse(input, out number))
+        if (int.TryParse(input, out number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, input))
         {
-            
+
+            Console.WriteLine("number" + number);
+            Console.WriteLine("input" + input);
+
             Console.WriteLine("Select item: valid: true");
             Console.WriteLine("list size " + items.Count);
             var num = int.Parse(input);
-            Console.WriteLine("index attempted " + num);
-            var item = items[num];
-            Console.WriteLine(item);
-            int amount = SelectQuantity(item);
-            if (amount == -1)
+            if (num < 0 && num < items.Count)
             {
-                Console.WriteLine("Quantity was not accepted");
-                return;
+                Console.WriteLine("index attempted " + num);
+                var item = items[num];
+                Console.WriteLine(item);
+                int amount = SelectQuantity(item);
+                user.addItem(item, amount);
             }
-            user.addItem(item, amount);
+            else
+            {
+                Console.WriteLine("Invalid input please try again");
+            }
         }
     }
 
@@ -176,14 +181,19 @@ public class MenuPrintOptions
 
     public static void RemoveItem(User user)
     {
+        if (user.getShoppingList().Count == 0)
+        {
+            Console.WriteLine("You have no items in ur cart");
+            return;
+        }
         AbstractItem item = RemoveItemMenu(user);
         
         Console.WriteLine("0: Edit quantity");
         Console.WriteLine("1: Remove Item from List");
         string input = Console.ReadLine();
         if (input.Equals("0")){
-            
             List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
+            
             Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
             Console.WriteLine("Quantity in cart: " + item.quantity);
             Console.WriteLine("Enter new quantity");

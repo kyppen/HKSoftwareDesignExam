@@ -15,8 +15,11 @@ public static class MainMenu{
     static MenuPrintOptions printer = new MenuPrintOptions();
     public static void startMenu()
     {
+        
+        //While will run until program is exited
         while (running)
         {
+            
             if (!Authenticated) // If the user is not logged inn
             {
                 Boolean optionSelected = false;
@@ -27,7 +30,7 @@ public static class MainMenu{
                     Console.WriteLine("choose");
                     input = Console.ReadLine();
                     //Console.WriteLine(CheckIfValid(4, input))
-                    if (MenuUtils.CheckIfValid(4, input))
+                    if (MenuUtils.CheckIfValid(5, input))
                     {
                         GuestSelectOption(input);
                         optionSelected = true;
@@ -65,10 +68,12 @@ public static class MainMenu{
         switch (input)
         {
             case "1": 
+                //Gets all items from db and prints them for the user
                 Console.WriteLine("See all wares option selected");
                 printer.PrintAll();
                 break;
             case "2":
+                //Gets spesific items based on entered term
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
                 foreach (var item in StockController.GetByMatchingString(userSelectItem)) {
@@ -77,6 +82,7 @@ public static class MainMenu{
 
                 break;
             case "3":
+                //sends the user to a login menu
                 Console.WriteLine("Login option selected");
                 var answer = UserController.Login();
                 if (answer == null)
@@ -88,17 +94,17 @@ public static class MainMenu{
                 Authenticated = true;
                 Current_user = answer;
                 Current_user.CreateList();
-
-                
-                
-                
-                
                 break;
             case "4":
+                //Allows user to sign up
                 Console.WriteLine("Sign up option selected");
                 
                 //password can be left empty for testing purposes.
                 MenuPrintOptions.CreateUser();
+                break;
+            case "5":
+                Console.WriteLine("Program is exiting");
+                running = false;
                 break;
         }
     }
@@ -108,15 +114,19 @@ public static class MainMenu{
         
         switch (input)
         {
+            
+            //prints all items, user can add items and item quantity here
             case "1":
                 Console.WriteLine("See all wares option selected");
                 printer.PrintAllLoggedInn();
                 break;
             case "2":
+                //Same as the above but give the user a list based on search term
                 Console.WriteLine("Search for wares option selected");
                 var something = printer.ContainsSearch();
                 break;
             case "3":
+                //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(Current_user);
                 Console.WriteLine("Remove wares from cart option selected");
                 break;
@@ -128,6 +138,7 @@ public static class MainMenu{
                 break;
             case "6":
                 Console.WriteLine("View Cart");
+                //prints the users cart
                 Current_user.printAll();
                 break;
             case "7":

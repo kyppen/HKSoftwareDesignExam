@@ -1,5 +1,5 @@
 ﻿namespace SoftwareDesignExam.Entities {
-	internal class Cart {
+	public class Cart {
 
 		public long Id { get; set; }
 

@@ -71,7 +71,9 @@ public static class MainMenu{
             case "2":
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
-                StockController.GetByMatchingString(userSelectItem);
+                foreach (var item in StockController.GetByMatchingString(userSelectItem)) {
+                    Console.WriteLine(item);
+                } 
 
                 break;
             case "3":

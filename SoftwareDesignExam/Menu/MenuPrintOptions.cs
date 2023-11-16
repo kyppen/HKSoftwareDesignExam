@@ -142,9 +142,71 @@ public class MenuPrintOptions
             }
             user.addItem(item, amount);
         }
-        
-        
     }
+
+    public static AbstractItem RemoveItemMenu(User user)
+    {
+        List<AbstractItem> items = user.getShoppingList();
+        for (int i = 0; i < items.Count; i++)
+        {
+            AbstractItem item = items[i];
+            Console.WriteLine($"{i} : {item}");
+        }
+
+        Boolean ItemSelcted = false;
+        while (!ItemSelcted)
+        {
+            Console.WriteLine("Enter the number corresponding to item");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "exit")
+            {
+                return null;
+            }
+            int inputNum;
+            if (int.TryParse(input, out inputNum))
+            {
+                Console.WriteLine("Selected: " + items[inputNum]);
+                return items[inputNum];
+            }
+            Console.WriteLine("Input not accepted");
+        }
+        return null;
+    }
+
+    public static void RemoveItem(User user)
+    {
+        AbstractItem item = RemoveItemMenu(user);
+        
+        Console.WriteLine("0: Edit quantity");
+        Console.WriteLine("1: Remove Item from List");
+        string input = Console.ReadLine();
+        if (input.Equals("0")){
+            
+            List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
+            Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
+            Console.WriteLine("Quantity in cart: " + item.quantity);
+            Console.WriteLine("Enter new quantity");
+            string newquantity = Console.ReadLine();
+            int intQuantity;
+            if (int.TryParse(newquantity, out intQuantity))
+            {
+                item.quantity = intQuantity;
+                Console.WriteLine($"Quantity has been updated to {item.quantity}");
+            }
+            Console.WriteLine("Invalid input");
+            
+
+        }else if (input.Equals("1"))
+        {
+            user.RemoveItem(item);
+            Console.WriteLine(item.name + " has been removed from shoppinglist");
+        }
+        else
+        {
+            Console.WriteLine("Input not accepted");
+        }
+    }
+    
     
     public static void CreateUser()
     {

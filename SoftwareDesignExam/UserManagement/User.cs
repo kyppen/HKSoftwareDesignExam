@@ -48,9 +48,29 @@ namespace SoftwareDesignExam.UserManagement
         {
             StockItem CartItem = item;
             CartItem.quantity = quantity;
+            foreach (var i in shoppingList)
+            {
+                if (i.name == item.name)
+                {
+                    i.quantity += item.quantity;
+                    Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
+                    return;
+                }
+            }
+            
             Console.WriteLine("item has been added");
             shoppingList.Add(CartItem);
-            //Console.WriteLine(item.ToString());
+            
+        }
+
+        public void RemoveItem(AbstractItem item)
+        {
+            shoppingList.Remove(item);
+        }
+
+        public List<AbstractItem> getShoppingList()
+        {
+            return shoppingList;
         }
 
         public void printAll(){

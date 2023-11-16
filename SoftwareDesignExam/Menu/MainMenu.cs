@@ -117,6 +117,7 @@ public static class MainMenu{
                 var something = printer.ContainsSearch();
                 break;
             case "3":
+                MenuPrintOptions.RemoveItem(Current_user);
                 Console.WriteLine("Remove wares from cart option selected");
                 break;
             case "4":

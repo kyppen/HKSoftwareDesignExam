@@ -26,7 +26,7 @@ class Program
         Console.ReadLine();
         */
         Console.WriteLine("Starting program!");
-        PopulateStockTable.Populate();
+        //PopulateStockTable.Populate();
 
 
         //Run these only once!

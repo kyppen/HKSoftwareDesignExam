@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods {
 	public class DecrementQuantityOfItemInStockTable {
-		public static void Decrement(int itemId, int ammount) {
+		public static void Decrement(long itemId, long ammount) {
 			using StoreDbContext db = new StoreDbContext();
 			var QuantityAfterDecrement = db.Stock.Find(itemId).Item_Quantity -= ammount;
 			if (db.Stock.Find(itemId) != null) {

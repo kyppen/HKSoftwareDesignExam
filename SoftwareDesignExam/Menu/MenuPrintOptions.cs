@@ -17,7 +17,8 @@ public class MenuPrintOptions
         Console.WriteLine("1: See all wares\n" +
                           "2: Search for item\n" +
                           "3: Login\n" +
-                          "4: Sign up");
+                          "4: Sign up\n" +
+                          "5: Exit");
     }
     
 
@@ -55,7 +56,7 @@ public class MenuPrintOptions
             Console.WriteLine($"Select : {i} | Name: {allItems[i].name} | Quantity: {allItems[i].quantity}"); 
         }
 
-        System.Boolean selected = false;
+        Boolean selected = false;
         while (!selected)
         {
             Console.WriteLine("Enter the number you want or type exit");

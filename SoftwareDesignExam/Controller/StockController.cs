@@ -29,15 +29,15 @@ namespace SoftwareDesignExam.Controller {
 
         public static List<StockItem> GetAll() {
             List<Stock> DbStock = ReadAllItemsFromStockTable.Read();
-            Console.WriteLine("GetAll()");
-            Console.WriteLine(DbStock.Count);
+            //Console.WriteLine("GetAll()");
+            //Console.WriteLine(DbStock.Count);
             return GetBody(DbStock);
         }
 
         public static List<StockItem> GetByMatchingString(string name) {
-            Console.WriteLine("GetByMatchingString()");
+            //Console.WriteLine("GetByMatchingString()");
             List<Stock> DbStock = ReadSingleItemFromStockTable.Read(name);
-            Console.WriteLine(DbStock.Count);
+            //Console.WriteLine(DbStock.Count);
             return GetBody(DbStock);
         }
 

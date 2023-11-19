@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftwareDesignExam.UIColorController;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,12 @@ namespace SoftwareDesignExam.Items {
 
         public override string ToString()
         {
+            UIColor.ColorWriteYellow("Name        : ");
+            Console.Write($"{name}\n");
+            UIColor.ColorWriteYellow("Description : ");
+            Console.Write($"{description}\n");
+            UIColor.ColorWriteYellow("Price       : ");
+            Console.WriteLine($"{price}\n");
             return $"name: {name} price: {price} quantity: {quantity}";
         }
     }

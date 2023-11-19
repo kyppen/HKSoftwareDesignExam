@@ -4,6 +4,10 @@ using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
+using SoftwareDesignExam.UIColorController;
+using System.Diagnostics;
+using System.Xml.Linq;
+
 namespace SoftwareDesignExam.Menu;
 
 
@@ -24,6 +28,7 @@ public class MenuPrintOptions
 
     public void UserMainMenu(User currentUser)
     {
+        Console.Clear();
         user = currentUser;
         Console.WriteLine($"Welcome {user.Username}");
         Console.WriteLine("1: See all wares \n" +
@@ -42,7 +47,13 @@ public class MenuPrintOptions
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         foreach (var item in allItems)
         {
-            Console.WriteLine($"name: {item.name}, price: {item.price}, quanitity: {item.quantity}");
+            UIColor.ColorWriteCyan("Name        : ");
+            Console.Write($"{item.name}\n");
+            UIColor.ColorWriteCyan("Description : ");
+            Console.Write($"{item.description}\n");
+            UIColor.ColorWriteCyan("Price       : ");
+            Console.WriteLine($"{item.price}\n");
+    
         }
         
     }
@@ -53,14 +64,25 @@ public class MenuPrintOptions
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         for (int i = 0; i < allItems.Count; i++)
         {
-            Console.WriteLine($"Select : {i} | Name: {allItems[i].name} | Quantity: {allItems[i].quantity}"); 
+            Console.WriteLine($"selection number: {i}");
+            UIColor.ColorWriteYellow("Id          : ");
+            Console.Write($"{allItems[i].id}\n");
+            UIColor.ColorWriteYellow("Name        : ");
+            Console.Write($"{allItems[i].name}\n");
+            UIColor.ColorWriteYellow("Description : ");
+            Console.Write($"{allItems[i].description}\n");
+            UIColor.ColorWriteYellow("Price       : ");
+            Console.WriteLine($"{allItems[i].price}\n");
+
         }
+
 
         Boolean selected = false;
         while (!selected)
         {
             Console.WriteLine("Enter the number you want or type exit");
             string input = Console.ReadLine();
+            Console.Clear();
             if (input.ToLower().Equals("exit"))
             {
                 return;
@@ -70,7 +92,7 @@ public class MenuPrintOptions
             {
                 Console.WriteLine(allItems[index].ToString());
                 StockItem item = allItems[index];    
-                Console.WriteLine("item name " + item.name);
+                Console.WriteLine("Item name " + item.name);
                 int quantity = SelectQuantity(item);
                 if (quantity == -1)
                 {
@@ -109,7 +131,14 @@ public class MenuPrintOptions
         List<StockItem> items = StockController.GetByMatchingString(search);
         for (int I = 0; I < items.Count; I++)
         {
-            Console.WriteLine($"{I} | {items[I].name} | {items[I].quantity}");
+            UIColor.ColorWriteYellow("Id          : ");
+            Console.Write($"{items[I].id}\n");
+            UIColor.ColorWriteYellow("Name        : ");
+            Console.Write($"{items[I].name}\n");
+            UIColor.ColorWriteYellow("Description : ");
+            Console.Write($"{items[I].description}\n");
+            UIColor.ColorWriteYellow("Price       : ");
+            Console.WriteLine($"{items[I].price}\n");
         }  
         SelectItem(items);
 
@@ -194,9 +223,9 @@ public class MenuPrintOptions
         if (input.Equals("0")){
             List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
             
-            Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
+            /*Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
             Console.WriteLine("Quantity in cart: " + item.quantity);
-            Console.WriteLine("Enter new quantity");
+            Console.WriteLine("Enter new quantity");*/
             string newquantity = Console.ReadLine();
             int intQuantity;
             if (int.TryParse(newquantity, out intQuantity))
@@ -225,15 +254,21 @@ public class MenuPrintOptions
         Console.WriteLine("User Form:");
         Console.WriteLine("Enter firstname");
         string firstname = Console.ReadLine();
+        Console.WriteLine();
         Console.WriteLine("Enter Lastname");
         string lastname = Console.ReadLine();
-        Console.WriteLine("Enter your Email address:\n");
+        Console.WriteLine();
+        Console.WriteLine("Enter your Email address:");
         string email = Console.ReadLine();
+        Console.WriteLine();
         Console.WriteLine($"Email: {email}");
+        Console.WriteLine();
         Console.WriteLine("Enter your password");
         passwords[0] = Console.ReadLine();
+        Console.WriteLine();
         Console.WriteLine("Re-enter your password");
         passwords[1] = Console.ReadLine();
+        Console.ReadLine();
         string password = passwords[1];
 
         if (!MenuUtils.ValidateFirstName(firstname))
@@ -251,10 +286,10 @@ public class MenuPrintOptions
 
         if (!MenuUtils.ValidateEmail(email))
         {
-            Console.WriteLine("should run after this ");
+            //Console.WriteLine("should run after this ");
             
             
-            Console.WriteLine("Email does not pass verification [must only contain one @]");
+            Console.WriteLine("Email does not pass verification [must only contain one @]\n");
             return;
         }
 
@@ -269,8 +304,11 @@ public class MenuPrintOptions
             Console.WriteLine("This email is already registered");
             return;
         }
+        Console.Clear();
         Console.WriteLine("User is being created");
         UserController.CreateUser(firstname, lastname, email, password);
+        Thread.Sleep(1000);
+        Console.Clear();
         
         //Console.WriteLine(firstname);
         //Console.WriteLine(lastname);

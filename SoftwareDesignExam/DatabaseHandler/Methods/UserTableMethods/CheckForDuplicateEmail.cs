@@ -8,7 +8,7 @@ public class CheckForDuplicateEmail{
         using StoreDbContext dbContext = new StoreDbContext();
         Console.WriteLine("it did something");
         var user = dbContext.User.Where(x => x.User_Email.ToLower() == email.ToLower()).ToList();
-        Console.WriteLine("!!!!!!!!!!!!! "+user.Count);
+        //Console.WriteLine("!!!!!!!!!!!!! "+user.Count);
         if (user.Count == 0)
         {
             Console.WriteLine("True");

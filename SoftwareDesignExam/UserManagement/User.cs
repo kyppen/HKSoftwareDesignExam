@@ -74,6 +74,7 @@ namespace SoftwareDesignExam.UserManagement
         }
 
         public void printAll(){
+            Console.WriteLine("TESTSTETSTSTETETSTS");
             foreach (var item in shoppingList)
             {
                 Console.WriteLine(item.ToString());

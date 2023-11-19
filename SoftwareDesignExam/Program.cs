@@ -8,6 +8,9 @@ using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
+using SoftwareDesignExam.UIColorController;
+
+
 
 namespace SoftwareDesignExam;
 class Program
@@ -26,8 +29,11 @@ class Program
         Console.ReadLine();
         */
         Console.WriteLine("Starting program!");
+        Console.WriteLine();
+        PopulateStockTable.Populate();
         //PopulateStockTable.Populate();
 
+       
 
         //Run these only once!
         //PopulateStockTable.Populate();
@@ -36,7 +42,9 @@ class Program
 
         
         Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-		/*
+
+       
+        /*
         PopulateUserTable.Populate();
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
             Console.WriteLine(user);
@@ -46,12 +54,18 @@ class Program
 
         */
         /*
-		PopulateStockTable.Populate();
 
 		/*
-        foreach(var item in ReadAllItemsFromStockTable.Read()) {
-			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}\n"); ;
-        }
+        foreach (var item in StockController.GetAll()) {
+			UIColorController.ColorWriteYellow("Name        : ");
+			Console.Write($"{item.name}\n");
+			UIColorController.ColorWriteYellow("Description : ");
+			Console.Write($"{item.description}\n");
+			UIColorController.ColorWriteYellow("Price       : ");
+			Console.WriteLine($"{item.price}\n");
+
+
+		}
 
         
         Console.Write("Input item name > ");
@@ -108,9 +122,9 @@ class Program
 
     }
 
-	//private static void DisplayItems(AbstractShoppingList shoppingList)
+    //private static void DisplayItems(AbstractShoppingList shoppingList)
 
-	/*private static void DisplayItems(AbstractShoppingList shoppingList)
+    /*private static void DisplayItems(AbstractShoppingList shoppingList)
 
     {
         foreach (var item in shoppingList.GetItems())

@@ -169,7 +169,7 @@ public class MenuPrintOptions
                 return null;
             }
             int inputNum;
-            if (int.TryParse(input, out inputNum))
+            if (int.TryParse(input, out inputNum) && inputNum < items.Count)
             {
                 Console.WriteLine("Selected: " + items[inputNum]);
                 return items[inputNum];

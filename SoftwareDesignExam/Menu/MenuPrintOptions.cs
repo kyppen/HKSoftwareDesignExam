@@ -199,7 +199,7 @@ public class MenuPrintOptions
                 return null;
             }
             int inputNum;
-            if (int.TryParse(input, out inputNum) && inputNum < items.Count)
+            if (int.TryParse(input, out inputNum) && inputNum < items.Count && inputNum >= 0)
             {
                 Console.WriteLine("Selected: " + items[inputNum]);
                 return items[inputNum];
@@ -224,18 +224,23 @@ public class MenuPrintOptions
         if (input.Equals("0")){
             List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
             
-            /*Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
+            Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
             Console.WriteLine("Quantity in cart: " + item.quantity);
-            Console.WriteLine("Enter new quantity");*/
-            string newquantity = Console.ReadLine();
+            Console.WriteLine("Enter new quantity");
+            string inputQuantity = Console.ReadLine();
             int intQuantity;
-            if (int.TryParse(newquantity, out intQuantity))
+            if (int.TryParse(inputQuantity, out intQuantity))
             {
-                item.quantity = intQuantity;
-                Console.WriteLine($"Quantity has been updated to {item.quantity}");
+                if (intQuantity < itemStock[0].quantity)
+                {
+                    item.quantity = intQuantity;
+                    Console.WriteLine($"Quantity has been updated to {item.quantity}");
+                    return;
+                }
+                Console.WriteLine("Cant add more quantity then we have in stock");
             }
-            Console.WriteLine("Invalid input");
             
+
 
         }else if (input.Equals("1"))
         {

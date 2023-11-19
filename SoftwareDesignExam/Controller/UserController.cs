@@ -36,8 +36,10 @@ public class UserController{
     {
         Console.WriteLine("Enter Email");
         string email = Console.ReadLine();
+        Console.WriteLine();
         Console.WriteLine("Enter Password");
         string password = Console.ReadLine();
+        Console.WriteLine();
         List<User> user = ReadUserFromUserTable.Read(email, password);
         if (user.Count == 0)
         {

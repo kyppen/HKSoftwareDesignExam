@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.VisualBasic.CompilerServices;
-using SoftwareDesignExam.Entities;
+ using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
+ using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.ShoppingList;
 
@@ -52,8 +53,14 @@ namespace SoftwareDesignExam.UserManagement
             {
                 if (i.name == item.name)
                 {
-                    i.quantity += item.quantity;
-                    Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
+                    var something = ReadSingleItemFromStockTable.Read(item.name);
+                    var wantedQuantity = i.quantity + item.quantity;
+                    if (wantedQuantity < something[0].Item_Quantity)
+                    {
+                        Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
+                        return;
+                    }
+                    Console.WriteLine("Not enough in stock");
                     return;
                 }
             }

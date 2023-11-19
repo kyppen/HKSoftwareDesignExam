@@ -67,13 +67,14 @@ public class MenuPrintOptions
         {
             Console.WriteLine($"selection number: {i}");
             UIColor.ColorWriteYellow("Id          : ");
-            Console.WriteLine($"{allItems[i].id}\n");
+            Console.WriteLine($"{allItems[i].id}");
             UIColor.ColorWriteYellow("Name        : ");
-            Console.WriteLine($"{allItems[i].name}\n");
+            Console.WriteLine($"{allItems[i].name}");
             UIColor.ColorWriteYellow("Description : ");
-            Console.WriteLine($"{allItems[i].description}\n");
+            Console.WriteLine($"{allItems[i].description}");
             UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{allItems[i].price}\n");
+            Console.WriteLine($"{allItems[i].price}");
+            Console.WriteLine();
         }
 
         Boolean selected = false;
@@ -87,17 +88,18 @@ public class MenuPrintOptions
                 return;
             }
             int index;
-            if (int.TryParse(input, out index ) && MenuUtils.CheckIfValidZeroAccepted(allItems.Count, input))
+            if (int.TryParse(input, out index ) && MenuUtils.CheckIfValidZeroAccepted(allItems.Count, input) && index < allItems.Count)
             {
-                Console.WriteLine(allItems[index].ToString());
-                StockItem item = allItems[index];    
-                Console.WriteLine("Item name " + item.name);
+                allItems[index].ToString();
+                StockItem item = allItems[index];
+                item.printItem();
                 int quantity = SelectQuantity(item);
                 if (quantity == -1)
                 {
                     return;
                 }
                 user.addItem(item, quantity);
+                Console.WriteLine($"{item.name} has been added to cart!");
                 selected = true;
             };
             
@@ -108,9 +110,10 @@ public class MenuPrintOptions
     {
         Boolean QuantitySelected = false;
         int amount = 0;
+        
         while (!QuantitySelected)
         {
-            Console.WriteLine($"Selected how many of the item you want | in stock: {item.quantity}");
+            Console.WriteLine($"Selected how many of the item you want in stock: {item.quantity}");
             string input = Console.ReadLine();
             if (int.TryParse(input, out amount))
             {
@@ -130,14 +133,9 @@ public class MenuPrintOptions
         List<StockItem> items = StockController.GetByMatchingString(search);
         for (int I = 0; I < items.Count; I++)
         {
-            UIColor.ColorWriteYellow("Id          : ");
-            Console.Write($"{items[I].id}\n");
-            UIColor.ColorWriteYellow("Name        : ");
-            Console.Write($"{items[I].name}\n");
-            UIColor.ColorWriteYellow("Description : ");
-            Console.Write($"{items[I].description}\n");
-            UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{items[I].price}\n");
+            Console.WriteLine($"item number: {I}");
+            items[I].printItem();
+            //Console.WriteLine($"{items[I].price}\n");
         }  
         SelectItem(items);
 
@@ -154,7 +152,7 @@ public class MenuPrintOptions
         }
 
         int number;
-        if (int.TryParse(input, out number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, input))
+        if (int.TryParse(input, out number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, input)) 
         {
 
             Console.WriteLine("number" + number);
@@ -162,11 +160,11 @@ public class MenuPrintOptions
 
             Console.WriteLine("Select item: valid: true");
             Console.WriteLine("list size " + items.Count);
-            var num = int.Parse(input);
-            if (num < 0 && num < items.Count)
+           
+            if (number >= 0 && number < items.Count)
             {
-                Console.WriteLine("index attempted " + num);
-                var item = items[num];
+                Console.WriteLine("index attempted " + number);
+                var item = items[number];
                 Console.WriteLine(item);
                 int amount = SelectQuantity(item);
                 user.addItem(item, amount);
@@ -192,8 +190,9 @@ public class MenuPrintOptions
         Boolean ItemSelcted = false;
         while (!ItemSelcted)
         {
-            Console.WriteLine("Enter the number corresponding to item");
+            Console.WriteLine("Enter the number corresponding to item.");
             string input = Console.ReadLine();
+            Console.WriteLine();
             if (input.ToLower() == "exit")
             {
                 return null;
@@ -221,6 +220,7 @@ public class MenuPrintOptions
         Console.WriteLine("0: Edit quantity");
         Console.WriteLine("1: Remove Item from List");
         string input = Console.ReadLine();
+        Console.WriteLine();
         if (input.Equals("0")){
             List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
             
@@ -274,7 +274,6 @@ public class MenuPrintOptions
         Console.WriteLine();
         Console.WriteLine("Re-enter your password");
         passwords[1] = Console.ReadLine();
-        Console.ReadLine();
         string password = passwords[1];
 
         if (!MenuUtils.ValidateFirstName(firstname))
@@ -309,7 +308,7 @@ public class MenuPrintOptions
             return;
         }
         //Console.Clear();
-        Console.WriteLine("User is being created");
+        Console.WriteLine("User is being created\n");
         UserController.CreateUser(firstname, lastname, email, password);
         Thread.Sleep(1000);
        // Console.Clear() ;

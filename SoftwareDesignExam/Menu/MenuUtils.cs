@@ -7,12 +7,12 @@ public static class MenuUtils{
         string[] words = email.Split("@");
         if (words.Length == 2)
         {
-            Console.WriteLine("accepted");
+            //Console.WriteLine("Accepted your mail!");
             return true;
         }
         else
         {
-            Console.WriteLine("Denied");
+            Console.WriteLine("Your email address is not valid. Use @ to register e-mail.");
             return false;
         }
     }
@@ -21,10 +21,10 @@ public static class MenuUtils{
     {
         if (passwords[0] == passwords[1])
         {
-            Console.WriteLine("Accepted");
+            Console.WriteLine("Accepted Password!");
             return true;
         }
-        Console.WriteLine("Denied");
+        Console.WriteLine("Password is wrong. Enter password again!");
         return false;
     }
 

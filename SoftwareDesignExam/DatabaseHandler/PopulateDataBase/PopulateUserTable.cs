@@ -14,6 +14,7 @@ namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
 			UserController.CreateUser("Roald", "Troll", "troll@email.com", "ofdshfi74");
 			UserController.CreateUser("Joe", "Biden", "potus@whitehouse.com", "what11111111111");
 			UserController.CreateUser("Snåsa", "Mannen", "snaasamannen@yandex.com", "varmehender123");
+			UserController.CreateUser("aaa", "aaa", "aaa@", "1234");
 		} 
 	}
 }

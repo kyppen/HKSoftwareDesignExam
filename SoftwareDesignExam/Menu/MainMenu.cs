@@ -142,10 +142,10 @@ public static class MainMenu{
                 Console.Clear();
                 //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(Current_user);
-                Console.WriteLine("Remove wares from cart option selected");
+                Console.WriteLine("Remove wares from cart option selected\n");
                 break;
             case "4":
-                //Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Add recipe to cart");
                 break;
             case "5":

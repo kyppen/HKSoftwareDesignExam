@@ -19,16 +19,19 @@ namespace SoftwareDesignExam.Items {
         public double CalculatePrice() {
             return this.Quantity*base.price;
         }
+        public void printItem()
+        {
+            UIColor.ColorWriteGreen("Name        : ");
+            Console.Write($"{name}\n");
+            UIColor.ColorWriteGreen("Description : ");
+            Console.Write($"{description}\n");
+            UIColor.ColorWriteGreen("Price       : ");
+            Console.WriteLine($"{price}\n");
+        }
 
         public override string ToString()
         {
-            UIColor.ColorWriteYellow("Name        : ");
-            Console.Write($"{name}\n");
-            UIColor.ColorWriteYellow("Description : ");
-            Console.Write($"{description}\n");
-            UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{price}\n");
-            return $"name: {name} price: {price} quantity: {quantity}";
+            return $"name: {name} description: {description} price: {price}";
         }
     }
 }

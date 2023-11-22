@@ -24,6 +24,7 @@ class Program
             
         }
         Console.ReadLine();
+       
         */
         Console.WriteLine("Starting program!");
         Console.WriteLine();
@@ -32,6 +33,7 @@ class Program
 
         //Run these only once!
         PopulateStockTable.Populate();
+        PopulateUserTable.Populate();
         //PopulateUserTable.Populate();
         MainMenu.startMenu();
 

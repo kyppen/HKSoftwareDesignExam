@@ -65,7 +65,7 @@ namespace SoftwareDesignExam.UserManagement
                 }
             }
             
-            Console.WriteLine("item has been added");
+            Console.WriteLine("Item has been added\n");
             shoppingList.Add(CartItem);
             
         }
@@ -86,7 +86,7 @@ namespace SoftwareDesignExam.UserManagement
             {
                 Console.WriteLine(item.ToString());
             }
-            Console.WriteLine($"Total: {getTotalPrice()} Nok");
+            Console.WriteLine($"Total: {getTotalPrice()} Nok\n");
         }
 
         public double getTotalPrice()

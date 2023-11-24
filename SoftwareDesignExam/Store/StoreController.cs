@@ -4,36 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.Menu;
+using SoftwareDesignExam.UIColor;
+
 
 namespace SoftwareDesignExam.Store
 {
-    public class StoreController
-    {
-		private static readonly object CheckOutLock = new ();
-
-		public static async void CheckOut(List<AbstractItem> shoppingList, long userId) {
-			var tasks = new Task[1];
-
-			for (int i = 0; i < tasks.Length; i++) {
-				tasks[i] = Task.Run(() => MultiThreadBuy(shoppingList, userId));
-			}
-			await Task.WhenAll(tasks);
-			
+	public class StoreController {
+		public static void CheckOut(List<AbstractItem> shoppingList, long userId) {
+			MultiThreadBuy(shoppingList, userId);
 		}
 
 		public static void MultiThreadBuy(List<AbstractItem> shoppingList, long userId) {
-			lock (CheckOutLock) {
-				if (StockController.CheckStockQuantityOfItems(shoppingList)) {
-					foreach (AbstractItem item in shoppingList) {
-						DecrementQuantityOfItemInStockTable.Decrement(item.quantity, item.id);
-
+			Parallel.ForEach(shoppingList, item => {
+				using (var context = new StoreDbContext()) {
+					if (StockController.CheckStockQuantityOfItems(new List<AbstractItem> { item }, context)) {
+						DecrementQuantityOfItemInStockTable.Decrement(item.id, item.quantity, context);
 					}
-
 				}
-			}
+			});
 		}
 	}
+
 }

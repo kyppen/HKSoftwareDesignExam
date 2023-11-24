@@ -13,5 +13,11 @@ namespace SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods {
 			using StoreDbContext dbContext = new StoreDbContext();
 			return dbContext.Stock.Where(x => EF.Functions.Like(x.Item_Name, $"%{name}%")).ToList();
 		}
+
+		public static long ReadById(long id) {
+			using StoreDbContext dbContext = new StoreDbContext();
+			var item = dbContext.Stock.FirstOrDefault(x => x.Id == id);
+			return item.Item_Quantity;
+		}
 	}
 }

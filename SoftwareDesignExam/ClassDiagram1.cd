@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SoftwareDesignExam.Controller.StockController" Collapsed="true">
+    <Position X="17.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAIAAgAAAAEAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Controller\StockController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Controller.UserController" Collapsed="true">
+    <Position X="19.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAAAAAAAAAAAAAAAAQAAAAACA=</HashCode>
+      <FileName>Controller\UserController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DataAccess.SqLite.StoreDbContext" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAEAAAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataAccess\SqLite\StoreDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.CartTableMethods.AddCartToCartTable" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\CartTableMethods\AddCartToCartTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.CartTableMethods.ReadCartFromCartTable" Collapsed="true">
+    <Position X="14" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\CartTableMethods\ReadCartFromCartTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.AddItemToStockTable" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\AddItemToStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.DecrementQuantityOfItemInStockTable" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\DecrementQuantityOfItemInStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.IncrementQuantityOfItemInStockTable" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\IncrementQuantityOfItemInStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.ReadAllItemsFromStockTable" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\ReadAllItemsFromStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.ReadQuantityOfItemInStockTable" Collapsed="true">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\ReadQuantityOfItemInStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods.ReadSingleItemFromStockTable" Collapsed="true">
+    <Position X="17.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\StockTableMethods\ReadSingleItemFromStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods.AddUserToUserTable" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\UserTableMethods\AddUserToUserTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods.CheckForDuplicateEmail" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\UserTableMethods\CheckForDuplicateEmail.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods.ReadUserFromUserTable" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\UserTableMethods\ReadUserFromUserTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods.RemoveUserFromUserTable" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\Methods\UserTableMethods\RemoveUserFromUserTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.PopulateDataBase.PopulateCartTable" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\PopulateDataBase\PopulateCartTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.PopulateDataBase.PopulateStockTable" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\PopulateDataBase\PopulateStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.DatabaseHandler.PopulateDataBase.PopulateUserTable" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DatabaseHandler\PopulateDataBase\PopulateUserTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Entities.Cart" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACIAAAAAAAAACAgAAAAAAAAAAAAIAAAAAAAAAIAAA=</HashCode>
+      <FileName>Entities\Cart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Entities.Stock" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAgAAAAAAAAgAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Stock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Entities.User" Collapsed="true">
+    <Position X="17.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAIAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Items.AbstractItem" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAIAAAAAAAAAAEAACAAAAAAAAAAgA=</HashCode>
+      <FileName>Items\AbstractItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Items.Item" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Items.ItemFactory" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Items\ItemFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Items.StockItem" Collapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAAAAAAAAAAAIAAAAAgAAAAAA=</HashCode>
+      <FileName>Items\StockItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Logging.Logger" Collapsed="true">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAEAIAAABAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logging\Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Menu.MainMenu" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAgAAAAAAAAAAAAAAA0AAAAAAAAAQAAAAAE=</HashCode>
+      <FileName>Menu\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Menu.MenuPrintOptions" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAAAAAABAAAAAAAIAAIEAAEAAQAAAAAAwA=</HashCode>
+      <FileName>Menu\MenuPrintOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Menu.MenuUtils" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAIAAAAAAAAAAAAAIAAIAEAEA=</HashCode>
+      <FileName>Menu\MenuUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.buildDatabaseFirstVersion" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231102124710_buildDatabaseFirstVersion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.addedPasswordToUser" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231102152157_addedPasswordToUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.minorChangesToStockTable" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231106105956_minorChangesToStockTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.addedDateOfPurchaceToCartTable" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231107111141_addedDateOfPurchaceToCartTable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.removedItemFromProgramAndDatabase" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231109162519_removedItemFromProgramAndDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.modifiedStock" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231109195942_modifiedStock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.changedCartRows" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20231114171014_changedCartRows.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Migrations.StoreDbContextModelSnapshot" Collapsed="true">
+    <Position X="10.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\StoreDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Recipe.Recipe" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAACBAAAAAQAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Recipe\Recipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.ShoppingList.HolidayShoppingList" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ShoppingList\HolidayShoppingList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.ShoppingList.RegularShoppingList" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>ShoppingList\RegularShoppingList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.ShoppingList.AbstractShoppingList" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAEAABAAAAAoBAAAgAUAAAAAABAAAA=</HashCode>
+      <FileName>ShoppingList\ShoppingList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.ShoppingList.ShoppingListFactory" Collapsed="true">
+    <Position X="14" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShoppingList\ShoppingListFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Store.StoreController" Collapsed="true">
+    <Position X="19.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAFAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Store\StoreController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.Store.TestRunner" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Store\TestRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.UIColor.UIColorController" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAI=</HashCode>
+      <FileName>UIColor\UIColorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.UserManagement.Notification" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEBAAAAAAAAAAIAAEAAAAAAAAAA=</HashCode>
+      <FileName>UserManagement\Notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoftwareDesignExam.UserManagement.User" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAAAAEAAAEBQCAAACAAAAAAAAMAEIAAAAAAAE=</HashCode>
+      <FileName>UserManagement\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="SoftwareDesignExam.Program" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="SoftwareDesignExam.UserManagement.IUser" Collapsed="true">
+    <Position X="8.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserManagement\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

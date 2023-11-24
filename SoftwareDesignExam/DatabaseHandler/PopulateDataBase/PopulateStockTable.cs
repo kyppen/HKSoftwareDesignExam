@@ -17,7 +17,7 @@ namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
 			StockController.CreateStockItem(ItemFactory.CreateItem("Colgate", "Medium tube of toothpase", 23), 132);
 			StockController.CreateStockItem(ItemFactory.CreateItem("Head and Shoulders", "neutral unisex shampoo", 54), 666);
 			StockController.CreateStockItem(ItemFactory.CreateItem("Mutti", "500g can of crushed tomatoes", 18), 321);
-			StockController.CreateStockItem(ItemFactory.CreateItem("Ajax bathroom", "Bathroom cleaning supplies", 45), 76);
+			StockController.CreateStockItem(ItemFactory.CreateItem("Ajax bathroom", "Bathroom cleaning supplies", 45), 76);	
 		}
 	}
 }

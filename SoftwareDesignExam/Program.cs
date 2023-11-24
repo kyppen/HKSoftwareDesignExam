@@ -10,6 +10,7 @@ using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.UIColor;
+using SoftwareDesignExam.Store;
 
 namespace SoftwareDesignExam;
 class Program
@@ -28,16 +29,17 @@ class Program
         Console.ReadLine();
         */
         Console.WriteLine("Starting program!");
-        //PopulateStockTable.Populate();
+        TestRunner.Run();
+		//PopulateStockTable.Populate();
 
 
-        //Run these only once!
-        //PopulateStockTable.Populate();
-        //PopulateUserTable.Populate();
-        MainMenu.startMenu();
+		//Run these only once!
+		//PopulateStockTable.Populate();
+		//PopulateUserTable.Populate();
+		//MainMenu.startMenu();
 
-        
-        Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+		//Console.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 		/*
         PopulateUserTable.Populate();
         foreach (var user in ReadUserFromUserTable.Read("harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%")) {
@@ -47,26 +49,18 @@ class Program
         AddUserToUserTable.Add("King", "Harkinian", "harkinian@hyrule.official.co.uk.ru", "123Shipsflakes%");
 
         */
-        /*
-		PopulateStockTable.Populate();
+
+
 
 		/*
         foreach(var item in ReadAllItemsFromStockTable.Read()) {
 			Console.WriteLine($"{item.Item_Name}\nprice kr          : {item.Item_Price}\nQuantity in stock : {item.Item_Quantity}\nProduct ID        : {item.Id}\n"); ;
         }
         */
-		foreach (var item in StockController.GetAll()) {
-			UIColorController.ColorWriteYellow("Name        : ");
-			Console.Write($"{item.name}\n");
-			UIColorController.ColorWriteYellow("Description : ");
-			Console.Write($"{item.description}\n");
-			UIColorController.ColorWriteYellow("Price       : ");
-			Console.WriteLine($"{item.price}\n");
 
+		
 
-		}
-
-
+		/*
 
 		Console.Write("Input item name > ");
         string input = Console.ReadLine();
@@ -83,25 +77,26 @@ class Program
 
         var apple = new Item("001", "Apple", 0.50);
         var orange = new Item("002", "Orange", 0.60);
-
+        */
+		/*
         // 10 percent discount
         var discountedApple = new DiscountedItem(apple, 10);
         var expiryDecoratedApple = new ExpiryDateItem(discountedApple, DateTime.Now.AddDays(5));
+*/
+		//regularshoppingList.AddItem(expiryDecoratedApple);
+		//regularshoppingList.AddItem(apple);
+		//regularshoppingList.AddItem(orange);
 
-        //regularshoppingList.AddItem(expiryDecoratedApple);
-        //regularshoppingList.AddItem(apple);
-        //regularshoppingList.AddItem(orange);
-
-        //holidayshoppingList.AddItem(apple);
-        //holidayshoppingList.AddItem(orange);
+		//holidayshoppingList.AddItem(apple);
+		//holidayshoppingList.AddItem(orange);
 
 
-        */ /*
-        AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
-        AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
-        AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
-        */
-        /*
+		/*
+	   AddItemToItemTable.Add("Jarlsberg", "Yellow Cheese", 99);
+	   AddItemToItemTable.Add("Toro Tomatsuppe", "Toro Tomatosoup in bag", 23);
+	   AddItemToItemTable.Add("Grandiosa", "Frozen classic Pizza Grandiosa", 45);
+	   */
+		/*
         foreach (var item in ReadAllItemsFromItemTable.Read()) {
             Console.WriteLine(item);
         }
@@ -120,7 +115,7 @@ class Program
         */
 
 
-    }
+	}
 
 	//private static void DisplayItems(AbstractShoppingList shoppingList)
 

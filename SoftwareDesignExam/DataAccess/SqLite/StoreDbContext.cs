@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DataAccess.SqLite {
-	internal class StoreDbContext : DbContext {
+	public class StoreDbContext : DbContext {
 
 		public DbSet<Entities.Cart> Cart => Set<Entities.Cart>();
 

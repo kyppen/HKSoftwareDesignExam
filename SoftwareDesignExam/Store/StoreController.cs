@@ -8,7 +8,6 @@ using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.Menu;
-using SoftwareDesignExam.UIColor;
 
 
 namespace SoftwareDesignExam.Store

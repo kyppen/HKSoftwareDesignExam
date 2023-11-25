@@ -14,7 +14,7 @@ namespace SoftwareDesignExam.Menu;
 
 public class MenuPrintOptions
 {
-    private User user = null;
+    private User? user;
     
     
     public void GuestMainMenu()
@@ -36,11 +36,9 @@ public class MenuPrintOptions
         Console.WriteLine("1: See all wares \n" +
                           "2: Search for item\n" +
                           "3: Remove ware from cart\n" +
-                          "4: Add recipe to cart\n" +
-                          "5: Remove recipe from cart\n" +
-                          "6: View cart\n" +
-                          "7: Checkout\n" +
-                          "8: Log out");
+                          "4: View cart\n" +
+                          "5: Checkout\n" +
+                          "6: Log out");
     }
 
     public void PrintAll()
@@ -66,8 +64,6 @@ public class MenuPrintOptions
         for (int i = 0; i < allItems.Count; i++)
         {
             Console.WriteLine($"selection number: {i}");
-            UIColor.ColorWriteYellow("Id          : ");
-            Console.WriteLine($"{allItems[i].id}");
             UIColor.ColorWriteYellow("Name        : ");
             Console.WriteLine($"{allItems[i].name}");
             UIColor.ColorWriteYellow("Description : ");
@@ -117,20 +113,42 @@ public class MenuPrintOptions
             string input = Console.ReadLine();
             if (int.TryParse(input, out amount))
             {
-                if (amount != 0 && amount < item.quantity)
+                if (amount > 0 && amount < item.quantity)
                 {
                     return amount;
                 }
+                Console.WriteLine("Invalid quantity selected");
+                
             }
         }
 
+        //returns -1 if quantity selected is invalid
         return -1;
     } 
-    public List<StockItem> ContainsSearch()
+    public void ContainsSearch()
     {
         Console.WriteLine("Enter an item name");
         string search = Console.ReadLine();
         List<StockItem> items = StockController.GetByMatchingString(search);
+        if (items.Count == 0)
+        {
+            Console.WriteLine($"No items found containing : {search} ");
+            return;
+        }
+        if (items.Count == 1)
+        {
+            Console.WriteLine("Only one item");
+            var item = items[0];
+            item.printItem();
+            int quantity = SelectQuantity(item);
+            if (quantity == -1)
+            {
+                return;
+            }
+            user.addItem(item, quantity);
+            return;
+
+        }
         for (int I = 0; I < items.Count; I++)
         {
             Console.WriteLine($"item number: {I}");
@@ -139,7 +157,7 @@ public class MenuPrintOptions
         }  
         SelectItem(items);
 
-        return items;
+        return;
     }
 
     public void SelectItem(List<StockItem> items)
@@ -154,19 +172,17 @@ public class MenuPrintOptions
         int number;
         if (int.TryParse(input, out number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, input)) 
         {
-
-            Console.WriteLine("number" + number);
-            Console.WriteLine("input" + input);
-
-            Console.WriteLine("Select item: valid: true");
-            Console.WriteLine("list size " + items.Count);
+            
            
             if (number >= 0 && number < items.Count)
             {
-                Console.WriteLine("index attempted " + number);
                 var item = items[number];
                 Console.WriteLine(item);
                 int amount = SelectQuantity(item);
+                if (amount == -1)
+                {
+                    return;
+                }
                 user.addItem(item, amount);
             }
             else
@@ -174,17 +190,18 @@ public class MenuPrintOptions
                 Console.WriteLine("Invalid input please try again");
             }
         }
+        Console.WriteLine("Invalid input please try again");
     }
-
+    
     public static AbstractItem RemoveItemMenu(User user)
     {
         List<AbstractItem> items = user.getShoppingList();
         for (int i = 0; i < items.Count; i++)
         {
             AbstractItem item = items[i];
-            Console.WriteLine("Item number " + i);
-            item.ToString();
-           
+            Console.WriteLine("Item number: " + i);
+            Console.WriteLine(item);
+            Console.WriteLine(item.quantity);
         }
 
         Boolean ItemSelcted = false;
@@ -231,13 +248,16 @@ public class MenuPrintOptions
             int intQuantity;
             if (int.TryParse(inputQuantity, out intQuantity))
             {
-                if (intQuantity < itemStock[0].quantity)
+                
+                if (intQuantity < itemStock[0].quantity && intQuantity > 0)
                 {
                     item.quantity = intQuantity;
                     Console.WriteLine($"Quantity has been updated to {item.quantity}");
                     return;
                 }
-                Console.WriteLine("Cant add more quantity then we have in stock");
+                Console.WriteLine("There seems to be an issue");
+                Console.WriteLine("You cannot change quantity to less then 1");
+                Console.WriteLine("And you cannot add more then there is in stock");
             }
             
 

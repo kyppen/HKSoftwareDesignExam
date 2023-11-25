@@ -18,12 +18,12 @@ namespace SoftwareDesignExam.Store
 			MultiThreadBuy(shoppingList, userId);
 		}
 
-		public static void MultiThreadBuy(List<AbstractItem> shoppingList, long userId) {
+		private static void MultiThreadBuy(List<AbstractItem> shoppingList, long userId) {
 			Parallel.ForEach(shoppingList, item => {
-				using (var context = new StoreDbContext()) {
-					if (StockController.CheckStockQuantityOfItems(new List<AbstractItem> { item }, context)) {
-						DecrementQuantityOfItemInStockTable.Decrement(item.id, item.quantity, context);
-					}
+				using var context = new StoreDbContext();
+				if (StockController.CheckStockQuantityOfItems(new List<AbstractItem> { item }, context)) {
+					DecrementQuantityOfItemInStockTable.Decrement(item.id, item.quantity, context);
+
 				}
 			});
 		}

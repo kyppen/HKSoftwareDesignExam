@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
-	public class PopulateStockTable {
+    public class PopulateStockTable {
 		
 		public static void Populate() {
 			StockController.CreateStockItem(ItemFactory.CreateItem("Jarlsberg", "Block of yellow cheese", 109), 140);

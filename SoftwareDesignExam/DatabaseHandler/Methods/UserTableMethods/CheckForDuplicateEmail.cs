@@ -6,15 +6,14 @@ public class CheckForDuplicateEmail{
     public static Boolean Check(string email)
     {
         using StoreDbContext dbContext = new StoreDbContext();
-        Console.WriteLine("it did something");
         var user = dbContext.User.Where(x => x.User_Email.ToLower() == email.ToLower()).ToList();
-        Console.WriteLine("!!!!!!!!!!!!! "+user.Count);
+        //Console.WriteLine("!!!!!!!!!!!!! "+user.Count);
         if (user.Count == 0)
         {
-            Console.WriteLine("True");
+            //Console.WriteLine("True");
             return true;
         }
-        Console.WriteLine("False");
+        Console.WriteLine("Your email have already registred in our system.");
         return false;
     }
 }

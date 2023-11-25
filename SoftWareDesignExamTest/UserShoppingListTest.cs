@@ -1,8 +1,6 @@
 using NUnit.Framework.Internal;
 using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.UserManagement;
-using SoftwareDesignExam.DatabaseHandler.Methods;
-using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Items;
 
 namespace SoftWareDesignExamTest;

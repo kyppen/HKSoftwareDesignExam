@@ -1,6 +1,5 @@
 ﻿using SoftwareDesignExam.Controller;
-using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
-using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
@@ -18,14 +17,18 @@ namespace SoftWareDesignExamTest
         [SetUp]
         public void Setup()
         {
-            StockController.CreateStockItem(ItemFactory.CreateItem("Ali Kaffe 500g", "500g bag of coffee beans", 89), 435);
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			sc.CreateStockItem(ItemFactory.CreateItem("Ali Kaffe 500g", "500g bag of coffee beans", 89), 435);
         }
 
 
         [Test]
         public void Test_Stock_Checking()
         {
-            List<StockItem> stocks = StockController.GetByMatchingString("Ali Kaffe 500g");
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			List<StockItem> stocks = sc.GetByMatchingString("Ali Kaffe 500g");
             foreach (StockItem stock in stocks)
             {
                 Assert.That(stock.name, Is.EqualTo("Ali Kaffe 500g"));
@@ -44,8 +47,11 @@ namespace SoftWareDesignExamTest
         [SetUp]
         public void Setup()
         {
-            PopulateStockTable.Populate(StockController);
-            stock = StockController.GetAll();
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+            PopulateStockTable populateStockTable = new PopulateStockTable();
+			populateStockTable.Populate(sc);
+            stock = sc.GetAll();
         }
 
         [Test]

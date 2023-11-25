@@ -12,7 +12,15 @@ public class UserController{
         this.userDataAccess = userDataAccess;
     }
 
-    public long CreateUser(string firstname, string lastname, string email, string password)
+	public List<Entities.User> Read(string email, string password) {
+        return userDataAccess.Read(email, password);
+    }
+
+    public void Remove(long id) { 
+        userDataAccess.Remove(id);
+    }
+
+		public long CreateUser(string firstname, string lastname, string email, string password)
     {
         User user = new User() {
             User_FName = firstname,

@@ -17,7 +17,11 @@ class Program
 {
     static public void Main(String[] args)
     {
-
+	    
+	    //StoreController storeController = new StoreController();
+	    //TestRunner testRunner = new TestRunner();
+	    //testRunner.Run(storeController);
+		
 		MainMenu.startMenu();
 
 		using var loggerFactory = LoggerFactory.Create(builder => {
@@ -26,11 +30,6 @@ class Program
 
 		ILogger logger = loggerFactory.CreateLogger<Program>();
 		logger.LogInformation("Application has started.");
-
-
-		StoreController storeController = new StoreController();
-		TestRunner testRunner = new TestRunner();
-		testRunner.Run(storeController);
 
 		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
 		UserController userController = new UserController(sqlUser);

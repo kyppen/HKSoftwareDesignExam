@@ -6,13 +6,14 @@ using SoftwareDesignExam.ShoppingList;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.UIColorController;
 using System.Data;
+using SoftwareDesignExam.Store;
 
 namespace SoftwareDesignExam.Menu;
 
 
 public static class MainMenu{
     private static Boolean Authenticated = false;
-    public static User? Current_user = null;
+    public static User? Current_user;
     private static Boolean running = true;
     static MenuPrintOptions printer = new MenuPrintOptions();
     public static void startMenu()
@@ -21,7 +22,6 @@ public static class MainMenu{
         //While will run until program is exited
         while (running)
         {
-            
             if (!Authenticated) // If the user is not logged inn
             {
                 Boolean optionSelected = false;
@@ -52,7 +52,7 @@ public static class MainMenu{
                     Console.WriteLine("Choose options!");
                     input = Console.ReadLine();
                     //Takes inn how many options the user has and their input after we've checked if its valid
-                    if (MenuUtils.CheckIfValid(8, input))
+                    if (MenuUtils.CheckIfValid(6, input))
                     {
                         UserSelectOption(input);
                         optionSelected = true;
@@ -84,8 +84,9 @@ public static class MainMenu{
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
                 Console.Clear();
-                foreach (var item in StockController.GetByMatchingString(userSelectItem)) {
-                    item.ToString();
+                foreach (var item in StockController.GetByMatchingString(userSelectItem))
+                {
+                     item.printItem();
                 } 
 
                 break;
@@ -96,7 +97,6 @@ public static class MainMenu{
                 var answer = UserController.Login();
                 if (answer == null)
                 {
-                    Console.WriteLine("user is null");
                     return;
                 }
 
@@ -107,7 +107,6 @@ public static class MainMenu{
             case "4":
                 //Allows user to sign up
                 Console.Clear();
-                Console.WriteLine("Sign up option selected");
                 
                 //password can be left empty for testing purposes.
                 MenuPrintOptions.CreateUser();
@@ -129,21 +128,19 @@ public static class MainMenu{
             //prints all items, user can add items and item quantity here
             case "1":
                 Console.Clear();
-                Console.WriteLine("See all wares option selected");
                 printer.PrintAllLoggedInn();
                 break;
             case "2":
                 Console.Clear();
                 //Same as the above but give the user a list based on search term
-                Console.WriteLine("Search for wares option selected");
-                var something = printer.ContainsSearch();
+                printer.ContainsSearch();
                 break;
             case "3":
                 Console.Clear();
                 //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(Current_user);
-                Console.WriteLine("Remove wares from cart option selected\n");
                 break;
+            /*
             case "4":
                 Console.Clear();
                 Console.WriteLine("Add recipe to cart");
@@ -152,21 +149,24 @@ public static class MainMenu{
                 //Console.Clear();
                 Console.WriteLine("Remove recipe from cart");
                 break;
-            case "6":
+                */
+            case "4":
                 Console.Clear();
-                Console.WriteLine("View Cart");
                 //prints the users cart
                 Current_user.printAll();
                 break;
-            case "7":
+            case "5":
                 //Console.Clear();
                 Console.WriteLine("Checkout");
+                StoreController.CheckOut(Current_user.getShoppingList(), Current_user.getId());
+                Current_user.emptyCart();
                 break;
-            case "8":
+            case "6":
                 //Console.Clear();
                 Console.WriteLine("Log out");
                 Authenticated = false;
                 Current_user = null;
+                Console.WriteLine(Current_user);
                 break;
         }
     }

@@ -1,6 +1,5 @@
 ﻿using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.Items;
-using SoftwareDesignExam.UIColor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

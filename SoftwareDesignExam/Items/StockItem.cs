@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SoftwareDesignExam.UIColorController;
 
+
 namespace SoftwareDesignExam.Items {
     public class StockItem : AbstractItem{
         public long Id { get; set; }
@@ -27,6 +28,8 @@ namespace SoftwareDesignExam.Items {
             Console.Write($"{description}\n");
             UIColor.ColorWriteGreen("Price       : ");
             Console.WriteLine($"{price}\n");
+            Console.WriteLine("Quantity");
+            Console.WriteLine($"{quantity}\n ");
         }
 
         public override string ToString()

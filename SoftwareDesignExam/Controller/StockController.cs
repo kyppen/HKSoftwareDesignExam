@@ -2,7 +2,6 @@
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
-using SoftwareDesignExam.UIColor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

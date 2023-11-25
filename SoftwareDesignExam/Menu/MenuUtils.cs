@@ -21,7 +21,6 @@ public static class MenuUtils{
     {
         if (passwords[0] == passwords[1])
         {
-            Console.WriteLine("Accepted Password!");
             return true;
         }
         Console.WriteLine("Password is wrong. Enter password again!");

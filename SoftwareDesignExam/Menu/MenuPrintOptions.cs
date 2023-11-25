@@ -3,7 +3,9 @@ using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.DataAccess;
+using SoftwareDesignExam.UIColorController;
 namespace SoftwareDesignExam.Menu;
+
 
 
 public class MenuPrintOptions
@@ -119,7 +121,7 @@ public class MenuPrintOptions
         //returns -1 if quantity selected is invalid
         return -1;
     } 
-    public List<StockItem> ContainsSearch(StockController stockController)
+    public void ContainsSearch(StockController stockController)
     {
         Console.WriteLine("Enter an item name");
         string search = Console.ReadLine();
@@ -131,8 +133,6 @@ public class MenuPrintOptions
             //Console.WriteLine($"{items[I].price}\n");
         }  
         SelectItem(items);
-
-        return;
     }
 
     public void SelectItem(List<StockItem> items)
@@ -214,7 +214,6 @@ public class MenuPrintOptions
         string input = Console.ReadLine();
         Console.WriteLine();
         if (input.Equals("0")){
-            List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
             
             List<StockItem> itemStock = stockController.GetByMatchingString(item.name);
             Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);

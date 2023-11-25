@@ -122,6 +122,7 @@ public static class MainMenu{
 
     public static void UserSelectOption(string input)
     {
+		StoreController storeController = new StoreController();
 		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 		StockController sc = new StockController(sqlda);
 
@@ -137,7 +138,7 @@ public static class MainMenu{
                 Console.Clear();
                 //Same as the above but give the user a list based on search term
                 Console.WriteLine("Search for wares option selected");
-                var something = printer.ContainsSearch(sc);
+                printer.ContainsSearch(sc);
                 break;
             case "3":
                 Console.Clear();
@@ -163,7 +164,7 @@ public static class MainMenu{
             case "5":
                 //Console.Clear();
                 Console.WriteLine("Checkout");
-                StoreController.CheckOut(Current_user.getShoppingList(), Current_user.getId());
+				storeController.CheckOut(Current_user.getShoppingList(), Current_user.getId());
                 Current_user.emptyCart();
                 break;
             case "6":

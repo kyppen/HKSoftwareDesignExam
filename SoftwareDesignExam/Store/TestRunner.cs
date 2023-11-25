@@ -16,7 +16,8 @@ namespace SoftwareDesignExam.Store {
 		public void Run(StoreController storeController) {
 			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 			StockController sc = new StockController(sqlda);
-			PopulateStockTable.Populate(sc);
+			PopulateStockTable populateStockTable = new PopulateStockTable();
+			populateStockTable.Populate(sc);
 
 			List<AbstractItem> shoppingList = new List<AbstractItem>() {
 				new StockItem(1, "Jarlsberg", "Block of yellow cheese", 109, 5),
@@ -25,7 +26,7 @@ namespace SoftwareDesignExam.Store {
 			};
 
 			foreach (var item in sc.GetAll()) {
-				UIColorController.ColorWriteYellow("Id          : ");
+				UIColor.ColorWriteYellow("Id          : ");
 				Console.Write($"{item.id}\n");
 				UIColor.ColorWriteYellow("Name        : ");
 				Console.Write($"{item.name}\n");
@@ -36,7 +37,7 @@ namespace SoftwareDesignExam.Store {
 			storeController.CheckOut(shoppingList, 1);
 
 			foreach (var item in sc.GetAll()) {
-				UIColorController.ColorWriteGreen("Id          : ");
+				UIColor.ColorWriteGreen("Id          : ");
 				Console.Write($"{item.id}\n");
 				UIColor.ColorWriteGreen("Name        : ");
 				Console.Write($"{item.name}\n");

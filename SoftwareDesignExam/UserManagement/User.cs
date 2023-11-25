@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.VisualBasic.CompilerServices;
- using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
- using SoftwareDesignExam.Entities;
+using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess;
+using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.ShoppingList;
 
@@ -58,16 +59,18 @@ namespace SoftwareDesignExam.UserManagement
 
         public void addItem(StockItem item, int quantity)
         {
-            StockItem CartItem = item;
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			StockItem CartItem = item;
             CartItem.quantity = quantity;
             foreach (var i in shoppingList)
             {
                 if (i.name == item.name)
                 {
-                    var something = ReadSingleItemFromStockTable.Read(item.name);
+                    var something = sc.GetByMatchingString(item.name);
                     var wantedQuantity = i.quantity + item.quantity;
                     Console.WriteLine("wanted quantity : " + wantedQuantity);
-                    if (wantedQuantity < something[0].Item_Quantity)
+                    if (wantedQuantity < something[0].Quantity)
                     {
                         i.quantity = wantedQuantity;
                         Console.WriteLine($"new quantity for {i.name} is {i.quantity}");

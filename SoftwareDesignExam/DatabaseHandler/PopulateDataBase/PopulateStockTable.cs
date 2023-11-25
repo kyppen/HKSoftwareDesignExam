@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
     public class PopulateStockTable {
-		
-		public static void Populate(StockController stockController) {
+		public void Populate(StockController stockController) {
 			stockController.CreateStockItem(ItemFactory.CreateItem("Jarlsberg", "Block of yellow cheese", 109), 140);
 			stockController.CreateStockItem(ItemFactory.CreateItem("Grandiosa", "Frozen Pizza", 59), 324);
 			stockController.CreateStockItem(ItemFactory.CreateItem("Ali Kaffe 500g", "500g bag of coffee beans", 89), 435);

@@ -6,7 +6,7 @@ using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.Menu;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.Controller;
-using SoftwareDesignExam.UIColor;
+using SoftwareDesignExam.UIColorController;
 using SoftwareDesignExam.Store;
 using Microsoft.Extensions.DependencyInjection;
 using SoftwareDesignExam.DataAccess;
@@ -17,6 +17,9 @@ class Program
 {
     static public void Main(String[] args)
     {
+
+		MainMenu.startMenu();
+
 		using var loggerFactory = LoggerFactory.Create(builder => {
 			builder.AddConsole();
 		});

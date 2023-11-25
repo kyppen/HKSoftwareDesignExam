@@ -10,7 +10,7 @@ namespace SoftwareDesignExam.Menu;
 
 public class MenuPrintOptions
 {
-    private User? user;
+    private User? _User;
     
     
     public void GuestMainMenu()
@@ -24,11 +24,10 @@ public class MenuPrintOptions
     }
     
 
-    public void UserMainMenu(User currentUser)
+    public void UserMainMenu(User CurrentUser)
     {
         //Console.Clear();
-        user = currentUser;
-        Console.WriteLine($"Welcome {user.Username}");
+        _User = CurrentUser;
         Console.WriteLine("1: See all wares \n" +
                           "2: Search for item\n" +
                           "3: Remove ware from cart\n" +
@@ -55,44 +54,44 @@ public class MenuPrintOptions
 
     public void PrintAllLoggedInn(StockController stockController)
     {
-        var allItems = stockController.GetAll();
+        var AllItems = stockController.GetAll();
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
-        for (int i = 0; i < allItems.Count; i++)
+        for (int i = 0; i < AllItems.Count; i++)
         {
             Console.WriteLine($"selection number: {i}");
             UIColor.ColorWriteYellow("Name        : ");
-            Console.WriteLine($"{allItems[i].name}");
+            Console.WriteLine($"{AllItems[i].name}");
             UIColor.ColorWriteYellow("Description : ");
-            Console.WriteLine($"{allItems[i].description}");
+            Console.WriteLine($"{AllItems[i].description}");
             UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{allItems[i].price}");
+            Console.WriteLine($"{AllItems[i].price}");
             Console.WriteLine();
         }
 
-        Boolean selected = false;
-        while (!selected)
+        Boolean Selected = false;
+        while (!Selected)
         {
             Console.WriteLine("Enter the number you want or type exit");
-            string input = Console.ReadLine();
+            string Input = Console.ReadLine();
             //Console.Clear();
-            if (input.ToLower().Equals("exit"))
+            if (Input.ToLower().Equals("exit"))
             {
                 return;
             }
-            int index;
-            if (int.TryParse(input, out index ) && MenuUtils.CheckIfValidZeroAccepted(allItems.Count, input) && index < allItems.Count)
+            int Index;
+            if (int.TryParse(Input, out Index ) && MenuUtils.CheckIfValidZeroAccepted(AllItems.Count, Input) && Index < AllItems.Count)
             {
-                allItems[index].ToString();
-                StockItem item = allItems[index];
-                item.printItem();
-                int quantity = SelectQuantity(item);
-                if (quantity == -1)
+                AllItems[Index].ToString();
+                StockItem Item = AllItems[Index];
+                Item.printItem();
+                int Quantity = SelectQuantity(Item);
+                if (Quantity == -1)
                 {
                     return;
                 }
-                user.addItem(item, quantity);
-                Console.WriteLine($"{item.name} has been added to cart!");
-                selected = true;
+                _User.addItem(Item, Quantity);
+                Console.WriteLine($"{Item.name} has been added to cart!");
+                Selected = true;
             };
             
         }
@@ -101,17 +100,17 @@ public class MenuPrintOptions
     public int SelectQuantity(StockItem item)
     {
         Boolean QuantitySelected = false;
-        int amount = 0;
+        int Amount;
         
         while (!QuantitySelected)
         {
             Console.WriteLine($"Selected how many of the item you want in stock: {item.quantity}");
             string input = Console.ReadLine();
-            if (int.TryParse(input, out amount))
+            if (int.TryParse(input, out Amount))
             {
-                if (amount > 0 && amount < item.quantity)
+                if (Amount > 0 && Amount < item.quantity)
                 {
-                    return amount;
+                    return Amount;
                 }
                 Console.WriteLine("Invalid quantity selected");
                 
@@ -124,41 +123,41 @@ public class MenuPrintOptions
     public void ContainsSearch(StockController stockController)
     {
         Console.WriteLine("Enter an item name");
-        string search = Console.ReadLine();
-        List<StockItem> items = stockController.GetByMatchingString(search);
-        for (int I = 0; I < items.Count; I++)
+        string Search = Console.ReadLine();
+        List<StockItem> Items = stockController.GetByMatchingString(Search);
+        for (int I = 0; I < Items.Count; I++)
         {
             Console.WriteLine($"item number: {I}");
-            items[I].printItem();
+            Items[I].printItem();
             //Console.WriteLine($"{items[I].price}\n");
         }  
-        SelectItem(items);
+        SelectItem(Items);
     }
 
     public void SelectItem(List<StockItem> items)
     {
         Console.WriteLine("Enter the number corresponding to desired item, Enter exit to return");
-        string input = Console.ReadLine();
-        if (input.ToLower().Equals("exit"))
+        string Input = Console.ReadLine();
+        if (Input.ToLower().Equals("exit"))
         {
             return;
         }
 
-        int number;
-        if (int.TryParse(input, out number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, input)) 
+        int Number;
+        if (int.TryParse(Input, out Number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, Input)) 
         {
             
            
-            if (number >= 0 && number < items.Count)
+            if (Number >= 0 && Number < items.Count)
             {
-                var item = items[number];
+                var item = items[Number];
                 Console.WriteLine(item);
                 int amount = SelectQuantity(item);
                 if (amount == -1)
                 {
                     return;
                 }
-                user.addItem(item, amount);
+                _User.addItem(item, amount);
             }
             else
             {

@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace SoftwareDesignExam.DatabaseHandler.Methods.CartTableMethods {
 	internal class ReadCartFromCartTable {
 		
-		public static List<Cart> Read(int id) {
+		public static List<Cart> Read(int userId) {
 			using StoreDbContext db = new StoreDbContext();
 
-			return db.Cart.Where(c => c.User_Id == id).ToList();
+			return db.Cart.Where(c => c.User_Id == userId).ToList();
         }
 		
 		}

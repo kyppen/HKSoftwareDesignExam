@@ -19,5 +19,9 @@ public class CartController
             AddCartToCartTable.Add(cart);
         }
 
+        public static List<Cart> ReadCart(int userId)
+        {
+            return ReadCartFromCartTable.Read(userId);
+        }
         
 }

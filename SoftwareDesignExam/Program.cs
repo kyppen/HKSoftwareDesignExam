@@ -27,15 +27,7 @@ class Program
        
         */
         Console.WriteLine("Starting program!");
-        Console.WriteLine();
-        //PopulateStockTable.Populate();
-
-
-        //Run these only once!
-        PopulateStockTable.Populate();
-        PopulateUserTable.Populate();
-        //PopulateUserTable.Populate();
-        MainMenu.startMenu();
+        TestRunner.Run();
 
     }
 }

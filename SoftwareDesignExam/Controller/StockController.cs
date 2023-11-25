@@ -2,6 +2,7 @@
 using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
+using SoftwareDesignExam.UIColor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,22 @@ using System.Threading.Tasks;
 namespace SoftwareDesignExam.Controller {
 	public class StockController {
 
-		public static bool CheckStockQuantityOfItems(List<AbstractItem> listOfItems) {
+		public static bool CheckStockQuantityOfItems(List<AbstractItem> listOfItems, StoreDbContext dbc) {
+            bool temp = false;
 			foreach (AbstractItem item in listOfItems) {
-				if (item.quantity > ReadQuantityOfItemInStockTable.Read(item.id)) {
-					return false;
+				//UIColorController.ColorWriteRed($"CheckQuantityOfItems foreach\n");
+				//UIColorController.ColorWriteRed($"CheckQuantityOfItems item id -> {item.id}\n");
+				if (item.quantity > ReadQuantityOfItemInStockTable.Read(item.id, dbc)) {
+					//UIColorController.ColorWriteRed($"CheckQuantityOfItems if\n");
+					temp = false;
 				}
+                else {
+					//UIColorController.ColorWriteRed($"CheckQuantityOfItems else\n");
+					temp = true;
+                }
 			}
-			return true;
+			//UIColorController.ColorWriteRed($"CheckQuantityOfItems end\n");
+			return temp;
 		}
 
 		

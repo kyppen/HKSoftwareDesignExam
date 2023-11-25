@@ -3,38 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess.SqLite;
+using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
+using SoftwareDesignExam.Menu;
+using SoftwareDesignExam.UIColor;
+
 
 namespace SoftwareDesignExam.Store
 {
-    public class Store
-    {
-		public void login() {
-
+	public class StoreController {
+		public static void CheckOut(List<AbstractItem> shoppingList, long userId) {
+			MultiThreadBuy(shoppingList, userId);
 		}
 
-		public void logout() { 
-		
-		}
+		private static void MultiThreadBuy(List<AbstractItem> shoppingList, long userId) {
+			Parallel.ForEach(shoppingList, item => {
+				using var context = new StoreDbContext();
+				if (StockController.CheckStockQuantityOfItems(new List<AbstractItem> { item }, context)) {
+					DecrementQuantityOfItemInStockTable.Decrement(item.id, item.quantity, context);
 
-		public void buy() {
-
-		}
-
-		public void addToShoppingCart() { 
-		
-		}
-
-		public void removeFromShoppingCart() {
-
-		}
-
-		public void viewShoppingCart() {
-
-		}
-
-		public void multithreadProcessOrder() {
-
+				}
+			});
 		}
 	}
+
 }

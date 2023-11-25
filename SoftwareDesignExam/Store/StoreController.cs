@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.DataAccess.SqLite;
-using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.Menu;
 
@@ -13,16 +13,16 @@ using SoftwareDesignExam.Menu;
 namespace SoftwareDesignExam.Store
 {
 	public class StoreController {
-		public static void CheckOut(List<AbstractItem> shoppingList, long userId) {
-			MultiThreadBuy(shoppingList, userId);
+		public void CheckOut(List<AbstractItem> shoppingList, long userId) {
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			MultiThreadBuy(shoppingList, userId, sc);
 		}
 
-		private static void MultiThreadBuy(List<AbstractItem> shoppingList, long userId) {
+		public void MultiThreadBuy(List<AbstractItem> shoppingList, long userId, StockController stockController) {
 			Parallel.ForEach(shoppingList, item => {
-				using var context = new StoreDbContext();
-				if (StockController.CheckStockQuantityOfItems(new List<AbstractItem> { item }, context)) {
-					DecrementQuantityOfItemInStockTable.Decrement(item.id, item.quantity, context);
-
+				if (stockController.CheckStockQuantityOfItems(new List<AbstractItem> { item })) {
+					stockController.Decrement(item.id, item.quantity);
 				}
 			});
 		}

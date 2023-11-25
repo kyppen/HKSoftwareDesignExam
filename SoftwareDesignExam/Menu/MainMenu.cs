@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore.Query;
 using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.ShoppingList;
 using SoftwareDesignExam.UserManagement;
@@ -18,9 +19,11 @@ public static class MainMenu{
     static MenuPrintOptions printer = new MenuPrintOptions();
     public static void startMenu()
     {
-        
-        //While will run until program is exited
-        while (running)
+		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+		StockController sc = new StockController(sqlda);
+
+		//While will run until program is exited
+		while (running)
         {
             if (!Authenticated) // If the user is not logged inn
             {
@@ -35,7 +38,7 @@ public static class MainMenu{
                     //Console.WriteLine(CheckIfValid(4, input))
                     if (MenuUtils.CheckIfValid(5, input))
                     {
-                        GuestSelectOption(input);
+                        GuestSelectOption(input, sc);
                         optionSelected = true;
                     }
                 }
@@ -64,29 +67,27 @@ public static class MainMenu{
 
     
     //Select options for Guests
-    public static void GuestSelectOption(string input)
+    public static void GuestSelectOption(string input, StockController stockController)
     {
-        
-        //Inn here we will call functions based on what the user has inputted
-        switch (input)
+		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
+		UserController userController = new UserController(sqlUser);
+
+		//Inn here we will call functions based on what the user has inputted
+		switch (input)
         {
             case "1":
                 //Gets all items from db and prints them for the user
                 Console.Clear();
                 Console.WriteLine("See all wares option selected");
-                printer.PrintAll();
-               
-                //Console.WriteLine();
+                printer.PrintAll(stockController);
                 break;
             case "2":
                 Console.Clear();
                 //Gets spesific items based on entered term
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
-                Console.Clear();
-                foreach (var item in StockController.GetByMatchingString(userSelectItem))
-                {
-                     item.printItem();
+                foreach (var item in stockController.GetByMatchingString(userSelectItem)) {
+                    Console.WriteLine(item);
                 } 
 
                 break;
@@ -94,7 +95,7 @@ public static class MainMenu{
                 //sends the user to a login menu
                 Console.Clear();
                 Console.WriteLine("Login option selected");
-                var answer = UserController.Login();
+                var answer = userController.Login();
                 if (answer == null)
                 {
                     return;
@@ -121,24 +122,28 @@ public static class MainMenu{
 
     public static void UserSelectOption(string input)
     {
-        
-        switch (input)
+		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+		StockController sc = new StockController(sqlda);
+
+		switch (input)
         {
             
             //prints all items, user can add items and item quantity here
             case "1":
-                Console.Clear();
-                printer.PrintAllLoggedInn();
+                Console.WriteLine("See all wares option selected");
+                printer.PrintAllLoggedInn(sc);
                 break;
             case "2":
                 Console.Clear();
                 //Same as the above but give the user a list based on search term
-                printer.ContainsSearch();
+                Console.WriteLine("Search for wares option selected");
+                var something = printer.ContainsSearch(sc);
                 break;
             case "3":
                 Console.Clear();
                 //Controls removal of items from usercart and editing quantity
-                MenuPrintOptions.RemoveItem(Current_user);
+                MenuPrintOptions.RemoveItem(Current_user, sc);
+                Console.WriteLine("Remove wares from cart option selected");
                 break;
             /*
             case "4":

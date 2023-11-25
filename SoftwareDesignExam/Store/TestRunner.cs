@@ -1,4 +1,5 @@
 ﻿using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.DatabaseHandler.PopulateDataBase;
 using SoftwareDesignExam.Items;
 
@@ -12,9 +13,10 @@ using SoftwareDesignExam.UIColorController;
 namespace SoftwareDesignExam.Store {
 	public class TestRunner {
 
-		public static void Run() {
-			PopulateStockTable.Populate();
-			
+		public void Run(StoreController storeController) {
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			PopulateStockTable.Populate(sc);
 
 			List<AbstractItem> shoppingList = new List<AbstractItem>() {
 				new StockItem(1, "Jarlsberg", "Block of yellow cheese", 109, 5),
@@ -22,8 +24,8 @@ namespace SoftwareDesignExam.Store {
 				new StockItem(3, "Ali Kaffe 500g", "500g bag of coffee beans", 89, 25)
 			};
 
-			foreach (var item in StockController.GetAll()) {
-				UIColor.ColorWriteYellow("Id          : ");
+			foreach (var item in sc.GetAll()) {
+				UIColorController.ColorWriteYellow("Id          : ");
 				Console.Write($"{item.id}\n");
 				UIColor.ColorWriteYellow("Name        : ");
 				Console.Write($"{item.name}\n");
@@ -31,10 +33,10 @@ namespace SoftwareDesignExam.Store {
 				Console.Write($"{item.quantity}\n\n");
 			}
 
-			StoreController.CheckOut(shoppingList, 1);
+			storeController.CheckOut(shoppingList, 1);
 
-			foreach (var item in StockController.GetAll()) {
-				UIColor.ColorWriteGreen("Id          : ");
+			foreach (var item in sc.GetAll()) {
+				UIColorController.ColorWriteGreen("Id          : ");
 				Console.Write($"{item.id}\n");
 				UIColor.ColorWriteGreen("Name        : ");
 				Console.Write($"{item.name}\n");

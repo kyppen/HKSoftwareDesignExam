@@ -6,5 +6,6 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.DatabaseHandler.PopulateDataBase {
 	internal class PopulateCartTable {
+
 	}
 }

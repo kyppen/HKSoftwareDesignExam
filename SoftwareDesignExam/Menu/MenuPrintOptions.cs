@@ -1,14 +1,8 @@
 using Microsoft.VisualBasic.CompilerServices;
-using SoftwareDesignExam.DatabaseHandler.Methods.UserTableMethods;
 using SoftwareDesignExam.Controller;
-using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
-using SoftwareDesignExam.UIColorController;
-using System.Diagnostics;
-using System.Xml.Linq;
-using System.Drawing;
-
+using SoftwareDesignExam.DataAccess;
 namespace SoftwareDesignExam.Menu;
 
 
@@ -41,9 +35,9 @@ public class MenuPrintOptions
                           "6: Log out");
     }
 
-    public void PrintAll()
+    public void PrintAll(StockController stockController)
     {
-        var allItems = StockController.GetAll();
+        var allItems = stockController.GetAll();
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         foreach (var item in allItems)
         {
@@ -57,9 +51,9 @@ public class MenuPrintOptions
         
     }
 
-    public void PrintAllLoggedInn()
+    public void PrintAllLoggedInn(StockController stockController)
     {
-        var allItems = StockController.GetAll();
+        var allItems = stockController.GetAll();
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         for (int i = 0; i < allItems.Count; i++)
         {
@@ -125,30 +119,11 @@ public class MenuPrintOptions
         //returns -1 if quantity selected is invalid
         return -1;
     } 
-    public void ContainsSearch()
+    public List<StockItem> ContainsSearch(StockController stockController)
     {
         Console.WriteLine("Enter an item name");
         string search = Console.ReadLine();
-        List<StockItem> items = StockController.GetByMatchingString(search);
-        if (items.Count == 0)
-        {
-            Console.WriteLine($"No items found containing : {search} ");
-            return;
-        }
-        if (items.Count == 1)
-        {
-            Console.WriteLine("Only one item");
-            var item = items[0];
-            item.printItem();
-            int quantity = SelectQuantity(item);
-            if (quantity == -1)
-            {
-                return;
-            }
-            user.addItem(item, quantity);
-            return;
-
-        }
+        List<StockItem> items = stockController.GetByMatchingString(search);
         for (int I = 0; I < items.Count; I++)
         {
             Console.WriteLine($"item number: {I}");
@@ -225,7 +200,7 @@ public class MenuPrintOptions
         return null;
     }
 
-    public static void RemoveItem(User user)
+    public static void RemoveItem(User user, StockController stockController)
     {
         if (user.getShoppingList().Count == 0)
         {
@@ -241,6 +216,7 @@ public class MenuPrintOptions
         if (input.Equals("0")){
             List<StockItem> itemStock = StockController.GetByMatchingString(item.name);
             
+            List<StockItem> itemStock = stockController.GetByMatchingString(item.name);
             Console.WriteLine("Quantity in stock: " + itemStock[0].quantity);
             Console.WriteLine("Quantity in cart: " + item.quantity);
             Console.WriteLine("Enter new quantity");
@@ -276,7 +252,10 @@ public class MenuPrintOptions
     
     public static void CreateUser()
     {
-        string[] passwords = {"", ""};
+		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
+		UserController userController = new UserController(sqlUser);
+
+		string[] passwords = {"", ""};
         Console.WriteLine("User Form:");
         Console.WriteLine("Enter firstname");
         string firstname = Console.ReadLine();
@@ -322,16 +301,14 @@ public class MenuPrintOptions
             return;
         }
 
-        if (!UserController.CheckDuplicate(email))
+        if (!userController.CheckDuplicate(email))
         {
             Console.WriteLine("This email is already registered");
             return;
         }
-        //Console.Clear();
-        Console.WriteLine("User is being created\n");
-        UserController.CreateUser(firstname, lastname, email, password);
-        Thread.Sleep(1000);
-       // Console.Clear() ;
+        Console.WriteLine("User is being created");
+        userController.CreateUser(firstname, lastname, email, password);
+        
         //Console.WriteLine(firstname);
         //Console.WriteLine(lastname);
         //Console.WriteLine(email);

@@ -44,7 +44,7 @@ namespace SoftWareDesignExamTest
         [SetUp]
         public void Setup()
         {
-            PopulateStockTable.Populate();
+            PopulateStockTable.Populate(StockController);
             stock = StockController.GetAll();
         }
 

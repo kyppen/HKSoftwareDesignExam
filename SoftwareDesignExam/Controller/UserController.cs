@@ -2,12 +2,17 @@ using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Menu;
 
 namespace SoftwareDesignExam.Controller;
-using DatabaseHandler.Methods.UserTableMethods;
+using SoftwareDesignExam.DataAccess;
 using System.Xml.Linq;
 
 public class UserController{
 
-    public static long CreateUser(string firstname, string lastname, string email, string password)
+    private readonly IUserDataAccess userDataAccess;
+    public UserController(IUserDataAccess userDataAccess) { 
+        this.userDataAccess = userDataAccess;
+    }
+
+    public long CreateUser(string firstname, string lastname, string email, string password)
     {
         User user = new User() {
             User_FName = firstname,
@@ -16,31 +21,30 @@ public class UserController{
             User_Password = password
         };
 
-        AddUserToUserTable.Add(user);
+		userDataAccess.Add(user);
         //AddUserToUserTable UserAdder = new AddUserToUserTable();
         //AddUserToUserTable.Add(firstname, lastname, email, password);
         return user.Id;
     }
 
-    public static Boolean CheckDuplicate(string email)
+    public  Boolean CheckDuplicate(string email)
     {
-        return CheckForDuplicateEmail.Check(email);
+        return userDataAccess.Check(email);
     }
 
-    public static void DeleteUser()
+    public void DeleteUser()
     {
         //not finished
     }
 
-    public static UserManagement.User Login()
+    public UserManagement.User Login()
     {
         Console.WriteLine("Enter Email");
         string email = Console.ReadLine();
         Console.WriteLine();
         Console.WriteLine("Enter Password");
         string password = Console.ReadLine();
-        Console.WriteLine();
-        List<User> user = ReadUserFromUserTable.Read(email, password);
+        List<User> user = userDataAccess.Read(email, password);
         if (user.Count == 0)
         {
             Console.WriteLine("Login Failed");

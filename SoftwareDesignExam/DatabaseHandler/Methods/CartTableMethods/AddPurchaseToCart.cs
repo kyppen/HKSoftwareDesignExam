@@ -5,8 +5,7 @@ namespace SoftwareDesignExam.DatabaseHandler.Methods.CartTableMethods;
 
 public class AddPurchaseToCart
 {
-    public static void Add(Cart cart)
-    {
+    public static void Add(Cart cart) {
         using StoreDbContext db = new StoreDbContext();
         db.Cart.Add(cart);
         db.SaveChanges();

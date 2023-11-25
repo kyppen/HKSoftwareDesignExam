@@ -71,7 +71,7 @@ public class MenuPrintOptions
         Boolean Selected = false;
         while (!Selected)
         {
-            Console.WriteLine("Enter the number you want or type exit");
+            Console.WriteLine("Enter the number you want, or type exit");
             string Input = Console.ReadLine();
             //Console.Clear();
             if (Input.ToLower().Equals("exit"))
@@ -104,7 +104,7 @@ public class MenuPrintOptions
         
         while (!QuantitySelected)
         {
-            Console.WriteLine($"Selected how many of the item you want in stock: {item.quantity}");
+            Console.WriteLine($"Select how many of the item you want. In stock: {item.quantity}");
             string input = Console.ReadLine();
             if (int.TryParse(input, out Amount))
             {
@@ -230,8 +230,8 @@ public class MenuPrintOptions
                     return;
                 }
                 Console.WriteLine("There seems to be an issue");
-                Console.WriteLine("You cannot change quantity to less then 1");
-                Console.WriteLine("And you cannot add more then there is in stock");
+                Console.WriteLine("You cannot change quantity to less than 1");
+                Console.WriteLine("And you cannot add more than there is in stock");
             }
             
 
@@ -239,7 +239,7 @@ public class MenuPrintOptions
         }else if (input.Equals("1"))
         {
             user.RemoveItem(item);
-            Console.WriteLine(item.name + " has been removed from shoppinglist");
+            Console.WriteLine(item.name + " has been removed from shoppingcart");
         }
         else
         {

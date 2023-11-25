@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.VisualBasic.CompilerServices;
+using SoftwareDesignExam.Controller;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.ShoppingList;
@@ -14,7 +16,7 @@ namespace SoftwareDesignExam.UserManagement
 {
     public class User : IUser
     {
-        private string _userId;
+        private string _userId { get; }
         private string _userName;
         private string _email;
         private string _password;
@@ -30,6 +32,12 @@ namespace SoftwareDesignExam.UserManagement
 
         }
 
+        public long getId()
+        {
+            var id = long.Parse(_userId);
+            return id;
+        }
+
         public SoftwareDesignExam.ShoppingList.AbstractShoppingList CreateList()
         {
             var id = Guid.NewGuid().ToString();
@@ -42,23 +50,38 @@ namespace SoftwareDesignExam.UserManagement
                 $"User Name: {_userName}\n" +
                 $"User Email: {_email}\n" ;
         }
+
+        public void emptyCart()
+        {
+            shoppingList.Clear();
+        }
         
 
         public void addItem(StockItem item, int quantity)
         {
-            StockItem CartItem = item;
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			StockItem CartItem = item;
             CartItem.quantity = quantity;
             foreach (var i in shoppingList)
             {
                 if (i.name == item.name)
                 {
-                    i.quantity += item.quantity;
-                    Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
+                    var something = sc.GetByMatchingString(item.name);
+                    var wantedQuantity = i.quantity + item.quantity;
+                    Console.WriteLine("wanted quantity : " + wantedQuantity);
+                    if (wantedQuantity < something[0].Quantity)
+                    {
+                        i.quantity = wantedQuantity;
+                        Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
+                        return;
+                    }
+                    Console.WriteLine("Not enough in stock");
                     return;
                 }
             }
             
-            Console.WriteLine("item has been added");
+            Console.WriteLine("Item has been added\n");
             shoppingList.Add(CartItem);
             
         }
@@ -74,11 +97,17 @@ namespace SoftwareDesignExam.UserManagement
         }
 
         public void printAll(){
+            if (shoppingList.Count == 0)
+            {
+                Console.WriteLine("Shoppinglist is currently empty, add an item!");
+                return;
+            }
+            Console.WriteLine("function activated");
             foreach (var item in shoppingList)
             {
-                Console.WriteLine(item.ToString());
+                Console.WriteLine(item + " quantity: " + item.quantity);
             }
-            Console.WriteLine($"Total: {getTotalPrice()} Nok");
+            Console.WriteLine($"Total: {getTotalPrice()} Nok\n");
         }
 
         public double getTotalPrice()

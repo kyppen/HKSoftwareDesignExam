@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoftwareDesignExam.UIColorController;
+
 
 namespace SoftwareDesignExam.Items {
     public class StockItem : AbstractItem{
@@ -17,10 +20,21 @@ namespace SoftwareDesignExam.Items {
         public double CalculatePrice() {
             return this.Quantity*base.price;
         }
+        public void printItem()
+        {
+            UIColor.ColorWriteGreen("Name        : ");
+            Console.Write($"{name}\n");
+            UIColor.ColorWriteGreen("Description : ");
+            Console.Write($"{description}\n");
+            UIColor.ColorWriteGreen("Price       : ");
+            Console.WriteLine($"{price}\n");
+            Console.WriteLine("Quantity");
+            Console.WriteLine($"{quantity}\n ");
+        }
 
         public override string ToString()
         {
-            return $"name: {name} price: {price} quantity: {quantity}";
+            return $"name: {name} description: {description} price: {price}";
         }
     }
 }

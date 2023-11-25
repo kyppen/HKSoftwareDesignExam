@@ -1,5 +1,5 @@
-﻿using SoftwareDesignExam.DataAccess.SqLite;
-using SoftwareDesignExam.DatabaseHandler.Methods.StockTableMethods;
+﻿using SoftwareDesignExam.DataAccess;
+using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
 using System;
@@ -10,44 +10,46 @@ using System.Threading.Tasks;
 
 namespace SoftwareDesignExam.Controller {
 	public class StockController {
+        private readonly IStockDataAccess Sda;
+        public StockController(IStockDataAccess stockDataAccess) {
+            Sda = stockDataAccess;
+        }
 
-		public static bool CheckStockQuantityOfItems(List<AbstractItem> listOfItems) {
+		public void Decrement(long itemId, long ammount) {
+            Sda.Decrement(itemId, ammount);
+        }
+
+		public bool CheckStockQuantityOfItems(List<AbstractItem> listOfItems) {
+            bool temp = false;
 			foreach (AbstractItem item in listOfItems) {
-				if (item.quantity > ReadQuantityOfItemInStockTable.Read(item.id)) {
-					return false;
+			
+				if (item.quantity > Sda.ReadQuantity(item.id)) {
+					temp = false;
 				}
+                else {
+					temp = true;
+                }
 			}
-			return true;
+			return temp;
 		}
-
 		
-        public static void CreateStockItem(AbstractItem item, int quantity) {
+        public void CreateStockItem(AbstractItem item, int quantity) {
             Stock StockItem = new Stock() {
                 Item_Name = item.name,
                 Item_Quantity = quantity,
                 Item_Description = item.description,
                 Item_Price = item.price
             };
-            AddItemToStockTable.Add(StockItem);
+            Sda.Add(StockItem);
         }
-        /*
-        public static Boolean CheckIfExists(Item item) {
-            using StoreDbContext db = new StoreDbContext();
-            return (db.Stock.Find(item.Id) == null);
-        }
-        */
 
-        public static List<StockItem> GetAll() {
-            List<Stock> DbStock = ReadAllItemsFromStockTable.Read();
-            //Console.WriteLine("GetAll()");
-            //Console.WriteLine(DbStock.Count);
+        public List<StockItem> GetAll() {
+            List<Stock> DbStock = Sda.ReadAll();
             return GetBody(DbStock);
         }
 
-        public static List<StockItem> GetByMatchingString(string name) {
-            //Console.WriteLine("GetByMatchingString()");
-            List<Stock> DbStock = ReadSingleItemFromStockTable.Read(name);
-            //Console.WriteLine(DbStock.Count);
+        public List<StockItem> GetByMatchingString(string name) {
+            List<Stock> DbStock = Sda.ReadAllByMatching(name);
             return GetBody(DbStock);
         }
 

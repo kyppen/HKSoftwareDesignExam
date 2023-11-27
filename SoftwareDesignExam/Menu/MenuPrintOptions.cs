@@ -12,7 +12,7 @@ namespace SoftwareDesignExam.Menu;
 
 public class MenuPrintOptions
 {
-    private User? _User;
+    private UserManagement.User? _User;
     
     
     public void GuestMainMenu()
@@ -26,7 +26,7 @@ public class MenuPrintOptions
     }
     
 
-    public void UserMainMenu(User CurrentUser)
+    public void UserMainMenu(UserManagement.User CurrentUser)
     {
 		Logger.Instance.LogInformation($"[  UserMainMenu with user {CurrentUser.Username}  ]");
 		//Console.Clear();
@@ -188,7 +188,7 @@ public class MenuPrintOptions
         Console.WriteLine("Invalid input please try again");
     }
     
-    public static AbstractItem RemoveItemMenu(User user)
+    public static AbstractItem RemoveItemMenu(UserManagement.User user)
     {
 		Logger.Instance.LogInformation($"[  RemoveItemMenu with user id: {user.getId} username: {user.Username}  ]");
 		List<AbstractItem> items = user.getShoppingList();
@@ -222,7 +222,7 @@ public class MenuPrintOptions
         return null;
     }
 
-    public static void RemoveItem(User user, StockController stockController)
+    public static void RemoveItem(UserManagement.User user, StockController stockController)
     {
 		Logger.Instance.LogInformation($"[  RemoveItem with user id: {user.getId} username: {user.Username}  ]");
 		if (user.getShoppingList().Count == 0)

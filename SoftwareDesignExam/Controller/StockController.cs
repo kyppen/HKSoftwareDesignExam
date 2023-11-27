@@ -55,6 +55,17 @@ namespace SoftwareDesignExam.Controller {
             return GetBody(DbStock);
         }
 
+        public AbstractItem ReadById(long id) {
+            Stock stock = Sda.ReadById(id);
+            return ItemFactory.CreateItem(
+					stock.Id,
+					stock.Item_Name,
+					stock.Item_Description,
+					stock.Item_Price,
+					stock.Item_Quantity
+				);
+        }
+
         private static List<StockItem> GetBody(List<Stock> stockList) {
             List<StockItem> Items = new();
 

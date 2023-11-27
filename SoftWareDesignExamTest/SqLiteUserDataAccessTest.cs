@@ -37,7 +37,7 @@ namespace SoftWareDesignExamTest {
 
 			Assert.Multiple(() => {
 				foreach (var user in ActualUser) {
-					Assert.NotNull(user);
+					Assert.That(user, Is.Not.Null);
 					Assert.That(ExpectedUser.User_FName, Is.EqualTo(user.User_FName));
 					Assert.That(ExpectedUser.User_LName, Is.EqualTo(user.User_LName));
 					Assert.That(ExpectedUser.User_Email, Is.EqualTo(user.User_Email));

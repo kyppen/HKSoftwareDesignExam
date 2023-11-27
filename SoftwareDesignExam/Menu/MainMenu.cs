@@ -51,8 +51,9 @@ public static class MainMenu{
 
             if (Authenticated) //if the user is logged inn
             {
-                //var userCart = Current_user.CreateList();
-                Boolean OptionSelected = false;
+				Logger.Instance.LogInformation("[  startMenu Authenticated  ]");
+				//var userCart = Current_user.CreateList();
+				Boolean OptionSelected = false;
                 string Input;
                 while (OptionSelected == false)
                 {
@@ -127,55 +128,68 @@ public static class MainMenu{
 
     public static void UserSelectOption(string input)
     {
+		Logger.Instance.LogInformation($"[  UserSelectOption with input string {input}  ]");
 		StoreController storeController = new StoreController();
 		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 		StockController sc = new StockController(sqlda);
         Console.WriteLine($"Welcome {CurrentUser.Username}");
+		Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username}  ]");
+
 
 		switch (input)
         {
             
             //prints all items, user can add items and item quantity here
             case "1":
-                Console.WriteLine("See all wares option selected");
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				Console.WriteLine("See all wares option selected");
                 Printer.PrintAllLoggedInn(sc);
                 break;
             case "2":
-                Console.Clear();
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				Console.Clear();
                 //Same as the above but give the user a list based on search term
                 Console.WriteLine("Search for wares option selected");
                 Printer.ContainsSearch(sc);
                 break;
             case "3":
-                Console.Clear();
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				Console.Clear();
                 //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(CurrentUser, sc);
                 Console.WriteLine("Remove wares from cart option selected");
                 break;
-            /*
+			/*
             case "4":
+            	Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input} ]");
                 Console.Clear();
                 Console.WriteLine("Add recipe to cart");
                 break;
             case "5":
+            	Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input} ]");
                 //Console.Clear();
                 Console.WriteLine("Remove recipe from cart");
                 break;
                 */
-            case "4":
-                Console.Clear();
+			case "4":
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				Console.Clear();
                 //prints the users cart
                 CurrentUser.printAll();
                 break;
             case "5":
-                //Console.Clear();
-                Console.WriteLine("Checkout");
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				//Console.Clear();
+				Console.WriteLine("Checkout");
 				storeController.CheckOut(CurrentUser.getShoppingList(), CurrentUser.getId());
-                CurrentUser.emptyCart();
-                break;
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} before emptyCart() with cart count {CurrentUser.getShoppingList().Count}  ]");
+				CurrentUser.emptyCart();
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} after emptyCart() with cart count {CurrentUser.getShoppingList().Count}  ]");
+				break;
             case "6":
-                //Console.Clear();
-                Console.WriteLine("Log out");
+				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
+				//Console.Clear();
+				Console.WriteLine("Log out");
                 Authenticated = false;
                 CurrentUser = null;
                 Console.WriteLine(CurrentUser);

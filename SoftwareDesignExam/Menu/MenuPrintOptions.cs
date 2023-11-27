@@ -4,6 +4,8 @@ using SoftwareDesignExam.Items;
 using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.UIColorController;
+using SoftwareDesignExam.Logging;
+using SoftwareDesignExam.Entities;
 namespace SoftwareDesignExam.Menu;
 
 
@@ -26,8 +28,9 @@ public class MenuPrintOptions
 
     public void UserMainMenu(User CurrentUser)
     {
-        //Console.Clear();
-        _User = CurrentUser;
+		Logger.Instance.LogInformation($"[  UserMainMenu with user {CurrentUser.Username}  ]");
+		//Console.Clear();
+		_User = CurrentUser;
         Console.WriteLine("1: See all wares \n" +
                           "2: Search for item\n" +
                           "3: Remove ware from cart\n" +
@@ -39,10 +42,12 @@ public class MenuPrintOptions
     public void PrintAll(StockController stockController)
     {
         var allItems = stockController.GetAll();
-        //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
-        foreach (var item in allItems)
+		Logger.Instance.LogInformation($"[  PrintAll allItems with size {allItems.Count}  ]");
+		//List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
+		foreach (var item in allItems)
         {
-            UIColor.ColorWriteCyan("Name        : ");
+			Logger.Instance.LogInformation($"[  PrintAll foreach item in allItems Name: {item.name} Description: {item.description} Price: {item.price}  ]");
+			UIColor.ColorWriteCyan("Name        : ");
             Console.Write($"{item.name}\n");
             UIColor.ColorWriteCyan("Description : ");
             Console.Write($"{item.description}\n");
@@ -55,10 +60,12 @@ public class MenuPrintOptions
     public void PrintAllLoggedInn(StockController stockController)
     {
         var AllItems = stockController.GetAll();
-        //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
-        for (int i = 0; i < AllItems.Count; i++)
+        Logger.Instance.LogInformation($"[  PrintAllLoggedInn AllItems with size {AllItems.Count}  ]");
+		//List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
+		for (int i = 0; i < AllItems.Count; i++)
         {
-            Console.WriteLine($"selection number: {i}");
+			Logger.Instance.LogInformation($"[  PrintAllLoggedInn foreach item in AllItems Name: {AllItems[i].name} Description: {AllItems[i].description} Price: {AllItems[i].price}  ]");
+			Console.WriteLine($"selection number: {i}");
             UIColor.ColorWriteYellow("Name        : ");
             Console.WriteLine($"{AllItems[i].name}");
             UIColor.ColorWriteYellow("Description : ");
@@ -71,10 +78,12 @@ public class MenuPrintOptions
         Boolean Selected = false;
         while (!Selected)
         {
-            Console.WriteLine("Enter the number you want, or type exit");
+			Logger.Instance.LogInformation($"[  PrintAllLoggedInn AllItems with size {AllItems.Count} not selected  ]");
+			Console.WriteLine("Enter the number you want, or type exit");
             string Input = Console.ReadLine();
-            //Console.Clear();
-            if (Input.ToLower().Equals("exit"))
+			Logger.Instance.LogInformation($"[  PrintAllLoggedInn AllItems with size {AllItems.Count} and input {Input}  ]");
+			//Console.Clear();
+			if (Input.ToLower().Equals("exit"))
             {
                 return;
             }
@@ -99,20 +108,27 @@ public class MenuPrintOptions
 
     public int SelectQuantity(StockItem item)
     {
-        Boolean QuantitySelected = false;
+		Logger.Instance.LogInformation($"[  SelectQuantity with item id: {item.id} name: {item.name}  ]");
+		Boolean QuantitySelected = false;
+
         int Amount;
         
         while (!QuantitySelected)
         {
             Console.WriteLine($"Select how many of the item you want. In stock: {item.quantity}");
-            string input = Console.ReadLine();
-            if (int.TryParse(input, out Amount))
+			string input = Console.ReadLine();
+			Logger.Instance.LogInformation($"[  SelectQuantity not selected with item id: {item.id} name: {item.name} and input: {input}  ]");
+			if (int.TryParse(input, out Amount))
             {
                 if (Amount > 0 && Amount < item.quantity)
                 {
-                    return Amount;
+					Logger.Instance.LogInformation($"[  SelectQuantity not selected with item id: {item.id} name: {item.name} and Ammount: {Amount}  ]");
+					return Amount;
                 }
-                Console.WriteLine("Invalid quantity selected");
+				Logger.Instance.LogInformation($"[  SelectQuantity not selected with item id: {item.id} name: {item.name}  ]");
+				Logger.Instance.LogDebug($"[  Invalid quantity selected  ]");
+
+				Console.WriteLine("Invalid quantity selected");
                 
             }
         }
@@ -122,12 +138,16 @@ public class MenuPrintOptions
     } 
     public void ContainsSearch(StockController stockController)
     {
-        Console.WriteLine("Enter an item name");
+		Logger.Instance.LogInformation($"[  ContainsSearch  ]");
+		Console.WriteLine("Enter an item name");
         string Search = Console.ReadLine();
-        List<StockItem> Items = stockController.GetByMatchingString(Search);
-        for (int I = 0; I < Items.Count; I++)
+		Logger.Instance.LogInformation($"[  ContainsSearch with input [ Search ]: {Search}  ]");
+		List<StockItem> Items = stockController.GetByMatchingString(Search);
+		Logger.Instance.LogInformation($"[  ContainsSearch with input [ Search ]: {Search} and Items size {Items.Count}  ]");
+		for (int I = 0; I < Items.Count; I++)
         {
-            Console.WriteLine($"item number: {I}");
+			Logger.Instance.LogInformation($"[  ContainsSearch for loop item nr {I}  ]");
+			Console.WriteLine($"item number: {I}");
             Items[I].printItem();
             //Console.WriteLine($"{items[I].price}\n");
         }  
@@ -136,7 +156,8 @@ public class MenuPrintOptions
 
     public void SelectItem(List<StockItem> items)
     {
-        Console.WriteLine("Enter the number corresponding to desired item, Enter exit to return");
+		Logger.Instance.LogInformation($"[  SelectItem with items list of size {items.Count}  ]");
+		Console.WriteLine("Enter the number corresponding to desired item, Enter exit to return");
         string Input = Console.ReadLine();
         if (Input.ToLower().Equals("exit"))
         {
@@ -169,10 +190,12 @@ public class MenuPrintOptions
     
     public static AbstractItem RemoveItemMenu(User user)
     {
-        List<AbstractItem> items = user.getShoppingList();
+		Logger.Instance.LogInformation($"[  RemoveItemMenu with user id: {user.getId} username: {user.Username}  ]");
+		List<AbstractItem> items = user.getShoppingList();
         for (int i = 0; i < items.Count; i++)
         {
-            AbstractItem item = items[i];
+			Logger.Instance.LogInformation($"[  RemoveItemMenu forloop item id: {items[i].id} name: {items[i].name} quantity: {items[i].quantity}  ]");
+			AbstractItem item = items[i];
             Console.WriteLine("Item number: " + i);
             Console.WriteLine(item);
             Console.WriteLine(item.quantity);
@@ -201,7 +224,8 @@ public class MenuPrintOptions
 
     public static void RemoveItem(User user, StockController stockController)
     {
-        if (user.getShoppingList().Count == 0)
+		Logger.Instance.LogInformation($"[  RemoveItem with user id: {user.getId} username: {user.Username}  ]");
+		if (user.getShoppingList().Count == 0)
         {
             Console.WriteLine("You have no items in ur cart");
             return;
@@ -249,7 +273,8 @@ public class MenuPrintOptions
     
     
     public static void CreateUser()
-    {
+	{
+		Logger.Instance.LogInformation($"[  CreateUser  ]");
 		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
 		UserController userController = new UserController(sqlUser);
 
@@ -257,21 +282,26 @@ public class MenuPrintOptions
         Console.WriteLine("User Form:");
         Console.WriteLine("Enter firstname");
         string firstname = Console.ReadLine();
-        Console.WriteLine();
+		Logger.Instance.LogInformation($"[  CreateUser input [firstname] : {firstname}  ]");
+		Console.WriteLine();
         Console.WriteLine("Enter Lastname");
         string lastname = Console.ReadLine();
-        Console.WriteLine();
+		Logger.Instance.LogInformation($"[  CreateUser input [lastname] : {lastname}  ]");
+		Console.WriteLine();
         Console.WriteLine("Enter your Email address:");
         string email = Console.ReadLine();
-        Console.WriteLine();
+		Logger.Instance.LogInformation($"[  CreateUser input [email] : {email}  ]");
+		Console.WriteLine();
         Console.WriteLine($"Email: {email}");
         Console.WriteLine();
         Console.WriteLine("Enter your password");
         passwords[0] = Console.ReadLine();
-        Console.WriteLine();
+		Logger.Instance.LogInformation($"[  CreateUser input [passwords[0]] : {passwords[0]}  ]");
+		Console.WriteLine();
         Console.WriteLine("Re-enter your password");
         passwords[1] = Console.ReadLine();
-        string password = passwords[1];
+		Logger.Instance.LogInformation($"[  CreateUser input [passwords[1]] : {passwords[1]}  ]");
+		string password = passwords[1];
 
         if (!MenuUtils.ValidateFirstName(firstname))
         {

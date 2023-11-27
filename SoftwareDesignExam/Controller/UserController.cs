@@ -60,6 +60,8 @@ public class UserController{
         }
 
         UserManagement.User userObject = new UserManagement.User($"{user[0].Id}", user[0].User_Email, user[0].User_FName);
+        Console.Clear();
+        Console.WriteLine("Logged in");
         return userObject;
 
     }

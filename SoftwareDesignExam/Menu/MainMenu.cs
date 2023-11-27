@@ -17,7 +17,7 @@ namespace SoftwareDesignExam.Menu;
 public static class MainMenu{
 
     private static Boolean Authenticated = false;
-    public static User? CurrentUser;
+    public static UserManagement.User CurrentUser;
     private static Boolean Running = true;
     static MenuPrintOptions Printer = new MenuPrintOptions();
     public static void startMenu()
@@ -93,7 +93,7 @@ public static class MainMenu{
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
                 foreach (var item in stockController.GetByMatchingString(userSelectItem)) {
-                    Console.WriteLine(item);
+                   item.printItem();
                 } 
 
                 break;
@@ -110,6 +110,8 @@ public static class MainMenu{
                 Authenticated = true;
                 CurrentUser = LoginUser;
                 CurrentUser.CreateList();
+                Console.Clear();
+                Console.WriteLine($"welcome! {CurrentUser.Username}");
                 break;
             case "4":
                 //Allows user to sign up
@@ -132,7 +134,6 @@ public static class MainMenu{
 		StoreController storeController = new StoreController();
 		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 		StockController sc = new StockController(sqlda);
-        Console.WriteLine($"Welcome {CurrentUser.Username}");
 		Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username}  ]");
 
 
@@ -141,15 +142,14 @@ public static class MainMenu{
             
             //prints all items, user can add items and item quantity here
             case "1":
+	            Console.Clear();
 				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
-				Console.WriteLine("See all wares option selected");
                 Printer.PrintAllLoggedInn(sc);
                 break;
             case "2":
 				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
 				Console.Clear();
                 //Same as the above but give the user a list based on search term
-                Console.WriteLine("Search for wares option selected");
                 Printer.ContainsSearch(sc);
                 break;
             case "3":
@@ -157,7 +157,6 @@ public static class MainMenu{
 				Console.Clear();
                 //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(CurrentUser, sc);
-                Console.WriteLine("Remove wares from cart option selected");
                 break;
 			/*
             case "4":
@@ -179,8 +178,16 @@ public static class MainMenu{
                 break;
             case "5":
 				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} and input {input}  ]");
-				//Console.Clear();
+				Console.Clear();
+				
 				Console.WriteLine("Checkout");
+				Console.WriteLine($"Total: {CurrentUser.getTotalPrice()} NOK");
+				if (CurrentUser.getShoppingList().Count == 0)
+				{
+					Console.Clear();
+					Console.WriteLine("Cart is empty");
+					return;
+				}
 				storeController.CheckOut(CurrentUser.getShoppingList(), CurrentUser.getId());
 				Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username} before emptyCart() with cart count {CurrentUser.getShoppingList().Count}  ]");
 				CurrentUser.emptyCart();
@@ -192,7 +199,7 @@ public static class MainMenu{
 				Console.WriteLine("Log out");
                 Authenticated = false;
                 CurrentUser = null;
-                Console.WriteLine(CurrentUser);
+                //Console.WriteLine(CurrentUser);
                 break;
         }
     }

@@ -5,7 +5,6 @@ using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.UIColorController;
 using SoftwareDesignExam.Logging;
-using SoftwareDesignExam.Entities;
 namespace SoftwareDesignExam.Menu;
 
 
@@ -47,12 +46,7 @@ public class MenuPrintOptions
 		foreach (var item in allItems)
         {
 			Logger.Instance.LogInformation($"[  PrintAll foreach item in allItems Name: {item.name} Description: {item.description} Price: {item.price}  ]");
-			UIColor.ColorWriteCyan("Name        : ");
-            Console.Write($"{item.name}\n");
-            UIColor.ColorWriteCyan("Description : ");
-            Console.Write($"{item.description}\n");
-            UIColor.ColorWriteCyan("Price       : ");
-            Console.WriteLine($"{item.price}\n");
+            item.printItem();
         }
         
     }
@@ -65,13 +59,8 @@ public class MenuPrintOptions
 		for (int i = 0; i < AllItems.Count; i++)
         {
 			Logger.Instance.LogInformation($"[  PrintAllLoggedInn foreach item in AllItems Name: {AllItems[i].name} Description: {AllItems[i].description} Price: {AllItems[i].price}  ]");
-			Console.WriteLine($"selection number: {i}");
-            UIColor.ColorWriteYellow("Name        : ");
-            Console.WriteLine($"{AllItems[i].name}");
-            UIColor.ColorWriteYellow("Description : ");
-            Console.WriteLine($"{AllItems[i].description}");
-            UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{AllItems[i].price}");
+            Console.WriteLine($"Select: {i}");
+            AllItems[i].printItem();
             Console.WriteLine();
         }
 
@@ -99,6 +88,7 @@ public class MenuPrintOptions
                     return;
                 }
                 _User.addItem(Item, Quantity);
+                Console.Clear();
                 Console.WriteLine($"{Item.name} has been added to cart!");
                 Selected = true;
             };
@@ -115,7 +105,7 @@ public class MenuPrintOptions
         
         while (!QuantitySelected)
         {
-            Console.WriteLine($"Select how many of the item you want. In stock: {item.quantity}");
+            Console.WriteLine($"Select how many of the item you want. Max: {item.quantity}");
 			string input = Console.ReadLine();
 			Logger.Instance.LogInformation($"[  SelectQuantity not selected with item id: {item.id} name: {item.name} and input: {input}  ]");
 			if (int.TryParse(input, out Amount))
@@ -143,11 +133,32 @@ public class MenuPrintOptions
         string Search = Console.ReadLine();
 		Logger.Instance.LogInformation($"[  ContainsSearch with input [ Search ]: {Search}  ]");
 		List<StockItem> Items = stockController.GetByMatchingString(Search);
-		Logger.Instance.LogInformation($"[  ContainsSearch with input [ Search ]: {Search} and Items size {Items.Count}  ]");
+        if (Items.Count == 0)
+        {
+            Console.WriteLine("No items matches search");
+            return;
+        }
+
+        if (Items.Count == 1)
+        {
+            var item = Items[0];
+            item.printItem();
+            int quantity = SelectQuantity(item);
+            if (quantity == -1)
+            {
+                return;
+            }
+
+            _User.addItem(item, quantity);
+            Console.Clear();
+            return;
+        }
+
+        Logger.Instance.LogInformation($"[  ContainsSearch with input [ Search ]: {Search} and Items size {Items.Count}  ]");
 		for (int I = 0; I < Items.Count; I++)
         {
 			Logger.Instance.LogInformation($"[  ContainsSearch for loop item nr {I}  ]");
-			Console.WriteLine($"item number: {I}");
+			Console.WriteLine($"Select: {I}");
             Items[I].printItem();
             //Console.WriteLine($"{items[I].price}\n");
         }  
@@ -163,7 +174,7 @@ public class MenuPrintOptions
         {
             return;
         }
-
+        
         int Number;
         if (int.TryParse(Input, out Number) && MenuUtils.CheckIfValidZeroAccepted(items.Count, Input)) 
         {
@@ -172,13 +183,15 @@ public class MenuPrintOptions
             if (Number >= 0 && Number < items.Count)
             {
                 var item = items[Number];
-                Console.WriteLine(item);
+                item.printItem();
                 int amount = SelectQuantity(item);
                 if (amount == -1)
                 {
                     return;
                 }
+                Console.Clear();
                 _User.addItem(item, amount);
+                return;
             }
             else
             {
@@ -196,9 +209,8 @@ public class MenuPrintOptions
         {
 			Logger.Instance.LogInformation($"[  RemoveItemMenu forloop item id: {items[i].id} name: {items[i].name} quantity: {items[i].quantity}  ]");
 			AbstractItem item = items[i];
-            Console.WriteLine("Item number: " + i);
-            Console.WriteLine(item);
-            Console.WriteLine(item.quantity);
+            Console.WriteLine("Select: " + i);
+            item.printItem();
         }
 
         Boolean ItemSelcted = false;
@@ -214,7 +226,7 @@ public class MenuPrintOptions
             int inputNum;
             if (int.TryParse(input, out inputNum) && inputNum < items.Count && inputNum >= 0)
             {
-                Console.WriteLine("Selected: " + items[inputNum]);
+                items[inputNum].printItem();
                 return items[inputNum];
             }
             Console.WriteLine("Input not accepted");
@@ -227,7 +239,7 @@ public class MenuPrintOptions
 		Logger.Instance.LogInformation($"[  RemoveItem with user id: {user.getId} username: {user.Username}  ]");
 		if (user.getShoppingList().Count == 0)
         {
-            Console.WriteLine("You have no items in ur cart");
+            Console.WriteLine("Cart is currently empty");
             return;
         }
         AbstractItem item = RemoveItemMenu(user);
@@ -250,9 +262,11 @@ public class MenuPrintOptions
                 if (intQuantity < itemStock[0].quantity && intQuantity > 0)
                 {
                     item.quantity = intQuantity;
+                    Console.Clear();
                     Console.WriteLine($"Quantity has been updated to {item.quantity}");
                     return;
                 }
+                Console.Clear();
                 Console.WriteLine("There seems to be an issue");
                 Console.WriteLine("You cannot change quantity to less than 1");
                 Console.WriteLine("And you cannot add more than there is in stock");
@@ -263,6 +277,7 @@ public class MenuPrintOptions
         }else if (input.Equals("1"))
         {
             user.RemoveItem(item);
+            Console.Clear();
             Console.WriteLine(item.name + " has been removed from shoppingcart");
         }
         else
@@ -334,9 +349,9 @@ public class MenuPrintOptions
             Console.WriteLine("This email is already registered");
             return;
         }
-        Console.WriteLine("User is being created");
         userController.CreateUser(firstname, lastname, email, password);
-        
+        Console.Clear();
+        Console.WriteLine("User has been created");
         //Console.WriteLine(firstname);
         //Console.WriteLine(lastname);
         //Console.WriteLine(email);

@@ -56,6 +56,7 @@ public static class MainMenu{
                 string Input;
                 while (OptionSelected == false)
                 {
+                    
                     Printer.UserMainMenu(CurrentUser);
                     Console.WriteLine("Choose options!");
                     Input = Console.ReadLine();
@@ -91,23 +92,31 @@ public static class MainMenu{
                 //Gets spesific items based on entered term
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
-                foreach (var item in stockController.GetByMatchingString(userSelectItem)) {
-                    Console.WriteLine(item);
+                var items = stockController.GetByMatchingString(userSelectItem);
+                if (items.Count == 0)
+                {
+                    Console.WriteLine("No items matches search");
+                    return;
+                }
+                foreach (var item in items) {
+                    item.printItem();
                 } 
 
                 break;
             case "3":
                 //sends the user to a login menu
                 Console.Clear();
-                Console.WriteLine("Login option selected");
+                Console.WriteLine("Login: ");
                 var LoginUser = userController.Login();
                 if (LoginUser == null)
                 {
                     return;
                 }
 
+                
                 Authenticated = true;
                 CurrentUser = LoginUser;
+                Console.WriteLine("Welcome! " + CurrentUser.Username);
                 CurrentUser.CreateList();
                 break;
             case "4":
@@ -124,33 +133,34 @@ public static class MainMenu{
                 break;
         }
     }
+    
+    
+    //Activated if the user is logged inn
 
     public static void UserSelectOption(string input)
     {
 		StoreController storeController = new StoreController();
 		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 		StockController sc = new StockController(sqlda);
-        Console.WriteLine($"Welcome {CurrentUser.Username}");
+        //Console.WriteLine($"Welcome {CurrentUser.Username}");
 
 		switch (input)
         {
             
             //prints all items, user can add items and item quantity here
             case "1":
-                Console.WriteLine("See all wares option selected");
+                Console.Clear();
                 Printer.PrintAllLoggedInn(sc);
                 break;
             case "2":
                 Console.Clear();
                 //Same as the above but give the user a list based on search term
-                Console.WriteLine("Search for wares option selected");
                 Printer.ContainsSearch(sc);
                 break;
             case "3":
                 Console.Clear();
                 //Controls removal of items from usercart and editing quantity
                 MenuPrintOptions.RemoveItem(CurrentUser, sc);
-                Console.WriteLine("Remove wares from cart option selected");
                 break;
             /*
             case "4":
@@ -169,8 +179,16 @@ public static class MainMenu{
                 break;
             case "5":
                 //Console.Clear();
-                Console.WriteLine("Checkout");
+                if (CurrentUser.getShoppingList().Count == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Add something to your cart before trying to checkout");
+                    return;
+                }
 				storeController.CheckOut(CurrentUser.getShoppingList(), CurrentUser.getId());
+                Console.Clear();
+                Console.WriteLine("Checked out");
+                Console.WriteLine($"Total: {CurrentUser.getTotalPrice()} NOK");
                 CurrentUser.emptyCart();
                 break;
             case "6":
@@ -178,13 +196,11 @@ public static class MainMenu{
                 Console.WriteLine("Log out");
                 Authenticated = false;
                 CurrentUser = null;
-                Console.WriteLine(CurrentUser);
+                //Console.WriteLine(CurrentUser);
                 break;
         }
     }
     
-    
-    //This will verify if the input is a number and that it's a valid number for our menu
     
     
 }

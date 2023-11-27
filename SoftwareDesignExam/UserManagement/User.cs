@@ -10,9 +10,10 @@ using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
 using SoftwareDesignExam.ShoppingList;
+ using SoftwareDesignExam.UIColorController;
 
 
-namespace SoftwareDesignExam.UserManagement
+ namespace SoftwareDesignExam.UserManagement
 {
     public class User : IUser
     {
@@ -81,7 +82,8 @@ namespace SoftwareDesignExam.UserManagement
                 }
             }
             
-            Console.WriteLine("Item has been added\n");
+            //Console.WriteLine("Item has been added\n");
+            Console.Clear();
             shoppingList.Add(CartItem);
             
         }
@@ -102,10 +104,17 @@ namespace SoftwareDesignExam.UserManagement
                 Console.WriteLine("Shoppinglist is currently empty, add an item!");
                 return;
             }
-            Console.WriteLine("function activated");
             foreach (var item in shoppingList)
             {
-                Console.WriteLine(item + " quantity: " + item.quantity);
+                UIColor.ColorWriteGreen("Name        : ");
+                Console.Write($"{item.name}\n");
+                UIColor.ColorWriteGreen("Description : ");
+                Console.Write($"{item.description}\n");
+                UIColor.ColorWriteGreen("Price       : ");
+                Console.Write($"{item.price}\n");
+                UIColor.ColorWriteGreen("Quantity    : ");
+                Console.Write($"{item.quantity}\n");
+                Console.WriteLine();
             }
             Console.WriteLine($"Total: {getTotalPrice()} Nok\n");
         }

@@ -13,6 +13,13 @@ using Microsoft.Extensions.Logging;
 
 namespace SoftwareDesignExam.Store {
 	public class TestRunner {
+		public void PopulateStock(StoreController storeController)
+		{
+			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
+			StockController sc = new StockController(sqlda);
+			PopulateStockTable populateStockTable = new PopulateStockTable();
+			populateStockTable.Populate(sc);
+		}
 		public void Run(StoreController storeController) {
 			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 			StockController sc = new StockController(sqlda);

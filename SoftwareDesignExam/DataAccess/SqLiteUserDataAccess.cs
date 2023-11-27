@@ -17,10 +17,8 @@ namespace SoftwareDesignExam.DataAccess {
 			using StoreDbContext dbContext = new StoreDbContext();
 			var user = dbContext.User.Where(x => x.User_Email.ToLower() == email.ToLower()).ToList();
 			if (user.Count == 0) {
-				Console.WriteLine("True");
 				return true;
 			}
-			Console.WriteLine("False");
 			return false;
 		}
 

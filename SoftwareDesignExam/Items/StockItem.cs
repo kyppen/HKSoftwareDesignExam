@@ -27,9 +27,10 @@ namespace SoftwareDesignExam.Items {
             UIColor.ColorWriteGreen("Description : ");
             Console.Write($"{description}\n");
             UIColor.ColorWriteGreen("Price       : ");
-            Console.WriteLine($"{price}\n");
-            Console.WriteLine("Quantity");
-            Console.WriteLine($"{quantity}\n ");
+            Console.Write($"{price}\n");
+            UIColor.ColorWriteGreen("Quantity    : ");
+            Console.Write($"{quantity}\n");
+            Console.WriteLine();
         }
 
         public override string ToString()

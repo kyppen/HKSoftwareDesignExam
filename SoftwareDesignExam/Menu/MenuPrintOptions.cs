@@ -42,14 +42,8 @@ public class MenuPrintOptions
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         foreach (var item in allItems)
         {
-            UIColor.ColorWriteCyan("Name        : ");
-            Console.Write($"{item.name}\n");
-            UIColor.ColorWriteCyan("Description : ");
-            Console.Write($"{item.description}\n");
-            UIColor.ColorWriteCyan("Price       : ");
-            Console.WriteLine($"{item.price}\n");
+            item.printItem();
         }
-        
     }
 
     public void PrintAllLoggedInn(StockController stockController)
@@ -58,14 +52,8 @@ public class MenuPrintOptions
         //List<Entities.Stock> allitems = ReadAllItemsFromStockTable.Read();
         for (int i = 0; i < AllItems.Count; i++)
         {
-            Console.WriteLine($"selection number: {i}");
-            UIColor.ColorWriteYellow("Name        : ");
-            Console.WriteLine($"{AllItems[i].name}");
-            UIColor.ColorWriteYellow("Description : ");
-            Console.WriteLine($"{AllItems[i].description}");
-            UIColor.ColorWriteYellow("Price       : ");
-            Console.WriteLine($"{AllItems[i].price}");
-            Console.WriteLine();
+            Console.WriteLine($"Select: {i}");
+            AllItems[i].printItem();
         }
 
         Boolean Selected = false;
@@ -104,11 +92,11 @@ public class MenuPrintOptions
         
         while (!QuantitySelected)
         {
-            Console.WriteLine($"Select how many of the item you want. In stock: {item.quantity}");
+            Console.WriteLine($"Select how many of the item you want. Max: {item.quantity}");
             string input = Console.ReadLine();
             if (int.TryParse(input, out Amount))
             {
-                if (Amount > 0 && Amount < item.quantity)
+                if (Amount > 0 && Amount <= item.quantity)
                 {
                     return Amount;
                 }
@@ -125,9 +113,27 @@ public class MenuPrintOptions
         Console.WriteLine("Enter an item name");
         string Search = Console.ReadLine();
         List<StockItem> Items = stockController.GetByMatchingString(Search);
+        if (Items.Count == 0)
+        {
+            Console.WriteLine("No items matches search");
+            return;
+        }
+        if (Items.Count == 1)
+        {
+            var item = Items[0];
+            item.printItem();
+            int quantity = SelectQuantity(item);
+            if (quantity == -1)
+            {
+                return;
+            }
+            _User.addItem(item, quantity);
+            return;
+
+        }
         for (int I = 0; I < Items.Count; I++)
         {
-            Console.WriteLine($"item number: {I}");
+            Console.WriteLine($"Select: {I}");
             Items[I].printItem();
             //Console.WriteLine($"{items[I].price}\n");
         }  
@@ -173,15 +179,14 @@ public class MenuPrintOptions
         for (int i = 0; i < items.Count; i++)
         {
             AbstractItem item = items[i];
-            Console.WriteLine("Item number: " + i);
-            Console.WriteLine(item);
-            Console.WriteLine(item.quantity);
+            Console.WriteLine("Select: " + i);
+            item.printItem();
         }
 
         Boolean ItemSelcted = false;
         while (!ItemSelcted)
         {
-            Console.WriteLine("Enter the number corresponding to item.");
+            Console.WriteLine("Select an item");
             string input = Console.ReadLine();
             Console.WriteLine();
             if (input.ToLower() == "exit")
@@ -203,13 +208,13 @@ public class MenuPrintOptions
     {
         if (user.getShoppingList().Count == 0)
         {
-            Console.WriteLine("You have no items in ur cart");
+            Console.WriteLine("Cart is currently empty");
             return;
         }
         AbstractItem item = RemoveItemMenu(user);
         
         Console.WriteLine("0: Edit quantity");
-        Console.WriteLine("1: Remove Item from List");
+        Console.WriteLine("1: Remove Item from Cart");
         string input = Console.ReadLine();
         Console.WriteLine();
         if (input.Equals("0")){
@@ -304,15 +309,15 @@ public class MenuPrintOptions
             Console.WriteLine("This email is already registered");
             return;
         }
-        Console.WriteLine("User is being created");
         userController.CreateUser(firstname, lastname, email, password);
-        
+        Console.WriteLine("Account creation success!");
+        Console.WriteLine("You can now login");
         //Console.WriteLine(firstname);
         //Console.WriteLine(lastname);
         //Console.WriteLine(email);
         //Console.WriteLine(passwords[0]);
         //Console.WriteLine(passwords[1]);
-        
+
     }
     
     

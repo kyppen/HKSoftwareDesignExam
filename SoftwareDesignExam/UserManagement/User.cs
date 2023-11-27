@@ -73,6 +73,7 @@ namespace SoftwareDesignExam.UserManagement
                     if (wantedQuantity < something[0].Quantity)
                     {
                         i.quantity = wantedQuantity;
+                        Console.Clear();
                         Console.WriteLine($"new quantity for {i.name} is {i.quantity}");
                         return;
                     }
@@ -81,8 +82,9 @@ namespace SoftwareDesignExam.UserManagement
                 }
             }
             
-            Console.WriteLine("Item has been added\n");
             shoppingList.Add(CartItem);
+            Console.Clear();
+            Console.WriteLine(CartItem.name + " has been added to cart");
             
         }
 
@@ -102,10 +104,9 @@ namespace SoftwareDesignExam.UserManagement
                 Console.WriteLine("Shoppinglist is currently empty, add an item!");
                 return;
             }
-            Console.WriteLine("function activated");
             foreach (var item in shoppingList)
             {
-                Console.WriteLine(item + " quantity: " + item.quantity);
+                item.printItem();
             }
             Console.WriteLine($"Total: {getTotalPrice()} Nok\n");
         }

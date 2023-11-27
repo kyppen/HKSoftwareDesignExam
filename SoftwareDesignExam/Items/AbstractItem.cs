@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SoftwareDesignExam.UIColorController;
 
 namespace SoftwareDesignExam.Items {
     public abstract class AbstractItem {
@@ -24,6 +25,17 @@ namespace SoftwareDesignExam.Items {
             this.name = name;
             this.description = description;
             this.price = price;
+        }
+        public void printItem()
+        {
+            UIColor.ColorWriteGreen("Name        : ");
+            Console.Write($"{name}\n");
+            UIColor.ColorWriteGreen("Description : ");
+            Console.Write($"{description}\n");
+            UIColor.ColorWriteGreen("Price       : ");
+            Console.Write($"{price}\n");
+            UIColor.ColorWriteGreen("Quantity    : ");
+            Console.WriteLine($"{quantity}\n ");
         }
     }
 }

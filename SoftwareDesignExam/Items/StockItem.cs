@@ -27,8 +27,8 @@ namespace SoftwareDesignExam.Items {
             UIColor.ColorWriteGreen("Description : ");
             Console.Write($"{description}\n");
             UIColor.ColorWriteGreen("Price       : ");
-            Console.WriteLine($"{price}\n");
-            Console.WriteLine("Quantity");
+            Console.Write($"{price}\n");
+            UIColor.ColorWriteGreen("Quantity    : ");
             Console.WriteLine($"{quantity}\n ");
         }
 

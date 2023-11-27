@@ -6,12 +6,13 @@ class Program
 {
     static public void Main(String[] args)
     {
-		StoreController storeController = new();
+		//StoreController storeController = new();
+		//TestRunner testRunner = new();
+		//1
+		//testRunner.Run(storeController);
 
 		MainMenu.startMenu();
-
-		TestRunner testRunner = new();
-		testRunner.Run(storeController);
+		
 	}
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,32 +9,32 @@ namespace SoftwareDesignExam.Logging
 {
     public class Logger
     {
-        private static Logger _instance;
-        private List<String> _logMessages;
+		private static readonly Lazy<Logger> _instance = new Lazy<Logger>(() => new Logger());
+		private readonly ILogger _logger;
 
-        private Logger() 
-        { 
-            _logMessages = new List<String>();
-        }
+		private Logger() {
+			using var loggerFactory = LoggerFactory.Create(builder =>
+			{
+				builder.AddDebug()
+				.SetMinimumLevel(LogLevel.Debug);
+			});
 
-        public static Logger GetInstance()
-        {
-            if (_instance == null)
-                _instance = new Logger();
+			_logger = loggerFactory.CreateLogger("[   CustomLogger   ]");
+		}
 
-            return _instance;
-        }
+		public static Logger Instance => _instance.Value;
 
-        public void Log(String message)
-        {
-            
-            _logMessages.Add(message);
-        }
-        // Save to the database
-        public List<String> GetLogs()
-        {
-            return _logMessages;
-        }
+		public void LogInformation(string message) {
+			_logger?.LogInformation(message);
+		}
 
-    }
+		public void LogError(string message, Exception ex) {
+			_logger?.LogError(ex, message);
+		}
+
+		public void LogDebug(string message) {
+			_logger?.LogDebug(message);
+		}
+
+	}
 }

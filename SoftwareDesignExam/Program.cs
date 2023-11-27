@@ -17,27 +17,12 @@ class Program
 {
     static public void Main(String[] args)
     {
-	    
-	    //StoreController storeController = new StoreController();
-	    //TestRunner testRunner = new TestRunner();
-	    //testRunner.Run(storeController);
-		
+		StoreController storeController = new();
+
 		MainMenu.startMenu();
 
-		using var loggerFactory = LoggerFactory.Create(builder => {
-			builder.AddConsole();
-		});
-
-		ILogger logger = loggerFactory.CreateLogger<Program>();
-		logger.LogInformation("Application has started.");
-
-		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
-		UserController userController = new UserController(sqlUser);
-
-		PopulateUserTable populateUserTable = new PopulateUserTable();
-		populateUserTable.Populate(userController);
-
-
+		TestRunner testRunner = new();
+		testRunner.Run(storeController);
 	}
 
 }

@@ -1,7 +1,9 @@
-﻿using SoftwareDesignExam.DataAccess;
+﻿using Microsoft.Extensions.Logging;
+using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.DataAccess.SqLite;
 using SoftwareDesignExam.Entities;
 using SoftwareDesignExam.Items;
+using SoftwareDesignExam.Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;

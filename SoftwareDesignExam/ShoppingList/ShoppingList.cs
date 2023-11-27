@@ -15,8 +15,6 @@ namespace SoftwareDesignExam.ShoppingList
         protected string _name;
         protected DateTime _creationDate;
         protected List<AbstractItem> _items;
-        protected Logger _logger;
-
         
         public AbstractShoppingList(string id, string name) 
         {
@@ -24,7 +22,6 @@ namespace SoftwareDesignExam.ShoppingList
             _name = name;
             _items = new List<AbstractItem>();
             _creationDate = DateTime.Now;
-            _logger = Logger.GetInstance();
         }
 
 
@@ -39,16 +36,22 @@ namespace SoftwareDesignExam.ShoppingList
         {
             if(_items.Contains(item))
                 _items.Remove(item);
-            else
-            {
-                _logger.Log("Item was not in the list.");
+            else {
+				Logger.Instance.LogError("[  Item was not in the list.  ]", new Exception("No item in list exception"));
             }
                 
         }
 
-        public List<AbstractItem> GetItems()
+        public List<AbstractItem>? GetItems()
         {
-            return _items;
+            if (_items == null) {
+				Logger.Instance.LogError($"[  Shoppinglist.GetItems _items is NULL ]", new Exception("_items is NULL exeption"));
+			}
+            else {
+				Logger.Instance.LogInformation($"[  Shoppinglist.GetItems _items.Count {_items.Count}  ]");
+				return _items;
+			}
+            return null;
         }
 
         public virtual double GetTotalPrice()

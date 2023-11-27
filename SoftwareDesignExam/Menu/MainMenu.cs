@@ -8,11 +8,13 @@ using SoftwareDesignExam.UserManagement;
 using SoftwareDesignExam.UIColorController;
 using System.Data;
 using SoftwareDesignExam.Store;
+using Microsoft.Extensions.Logging;
 
 namespace SoftwareDesignExam.Menu;
 
 
 public static class MainMenu{
+
     private static Boolean Authenticated = false;
     public static User? CurrentUser;
     private static Boolean Running = true;

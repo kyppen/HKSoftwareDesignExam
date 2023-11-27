@@ -2,6 +2,8 @@ using SoftwareDesignExam.Controller;
 using SoftwareDesignExam.DataAccess;
 using SoftwareDesignExam.Entities;
 
+using NUnit.Framework;
+
 namespace SoftWareDesignExamTest;
 
 public class UserTableTest
@@ -26,10 +28,12 @@ public class UserTableTest
 		SqLiteUserDataAccess sqlUser = new SqLiteUserDataAccess();
 		UserController userController = new UserController(sqlUser);
 		List<User> answer = userController.Read("ladygaga@gmail.com", "password");
-        Assert.That(answer[0].User_LName, Is.EqualTo("Gaga"));
-        Assert.That(answer[0].User_FName, Is.EqualTo("Lady"));
-        Assert.That(answer[0].User_Email, Is.EqualTo("ladygaga@gmail.com"));
-        Assert.That(answer[0].User_Password, Is.EqualTo("password"));
+        Assert.Multiple(() => {
+			Assert.That(answer[0].User_LName, Is.EqualTo("Gaga"));
+			Assert.That(answer[0].User_FName, Is.EqualTo("Lady"));
+			Assert.That(answer[0].User_Email, Is.EqualTo("ladygaga@gmail.com"));
+			Assert.That(answer[0].User_Password, Is.EqualTo("password"));
+		});
         userController.Remove(_id);
 
     }

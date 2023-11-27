@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SoftwareDesignExam.UIColorController;
+using Microsoft.Extensions.Logging;
 
 namespace SoftwareDesignExam.Store {
 	public class TestRunner {
-
 		public void Run(StoreController storeController) {
 			SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 			StockController sc = new StockController(sqlda);

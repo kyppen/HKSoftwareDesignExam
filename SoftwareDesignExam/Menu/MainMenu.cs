@@ -9,6 +9,7 @@ using SoftwareDesignExam.UIColorController;
 using System.Data;
 using SoftwareDesignExam.Store;
 using Microsoft.Extensions.Logging;
+using SoftwareDesignExam.Logging;
 
 namespace SoftwareDesignExam.Menu;
 
@@ -21,6 +22,7 @@ public static class MainMenu{
     static MenuPrintOptions Printer = new MenuPrintOptions();
     public static void startMenu()
     {
+		Logger.Instance.LogInformation("[  startMenu()  ]");
 		SqLiteStockDataAccess sqlda = new SqLiteStockDataAccess();
 		StockController sc = new StockController(sqlda);
 
@@ -29,7 +31,8 @@ public static class MainMenu{
         {
             if (!Authenticated) // If the user is not logged inn
             {
-                Boolean OptionSelected = false;
+				Logger.Instance.LogInformation("[  startMenu not Authenticated  ]");
+				Boolean OptionSelected = false;
                 string Input;
                 while (OptionSelected == false)
                 {

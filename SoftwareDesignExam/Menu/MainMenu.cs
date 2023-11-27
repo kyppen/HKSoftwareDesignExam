@@ -135,6 +135,7 @@ public static class MainMenu{
         Console.WriteLine($"Welcome {CurrentUser.Username}");
 		Logger.Instance.LogInformation($"[  UserSelectOption with user {CurrentUser.Username}  ]");
 
+
 		switch (input)
         {
             

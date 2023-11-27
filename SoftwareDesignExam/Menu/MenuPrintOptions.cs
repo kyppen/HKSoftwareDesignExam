@@ -110,6 +110,7 @@ public class MenuPrintOptions
     {
 		Logger.Instance.LogInformation($"[  SelectQuantity with item id: {item.id} name: {item.name}  ]");
 		Boolean QuantitySelected = false;
+
         int Amount;
         
         while (!QuantitySelected)

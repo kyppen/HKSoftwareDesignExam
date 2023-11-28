@@ -21,4 +21,3 @@ A program that simulates an online store.
 * The method responsible for handeling the checkout is multithreaded with `parallel.foreach` in order to mitigate conflicting changes made to the database.
 * The creation of `shopping carts` and `items` are handled by factory methods.
 * The database layer follows the `Dependency Inversion Principle` and can therefor be changed for other databases.
-Word-link: https://egms-my.sharepoint.com/:w:/r/personal/sado006_egms_no/Documents/Exam-process.docx?d=wf5c7aad3f9644be3bf06db72c8370e0a&csf=1&web=1&e=wetVH9

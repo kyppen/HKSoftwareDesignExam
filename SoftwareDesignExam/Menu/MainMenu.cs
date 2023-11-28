@@ -93,7 +93,7 @@ public static class MainMenu{
                 Console.WriteLine("Search for item option selected");
                 string userSelectItem = Console.ReadLine();
                 foreach (var item in stockController.GetByMatchingString(userSelectItem)) {
-                   item.printItem();
+                   item.PrintItem();
                 } 
 
                 break;

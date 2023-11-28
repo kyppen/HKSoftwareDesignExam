@@ -46,7 +46,7 @@ public class MenuPrintOptions
 		foreach (var item in allItems)
         {
 			Logger.Instance.LogInformation($"[  PrintAll foreach item in allItems Name: {item.name} Description: {item.description} Price: {item.price}  ]");
-            item.printItem();
+            item.PrintItem();
         }
         
     }
@@ -60,7 +60,7 @@ public class MenuPrintOptions
         {
 			Logger.Instance.LogInformation($"[  PrintAllLoggedInn foreach item in AllItems Name: {AllItems[i].name} Description: {AllItems[i].description} Price: {AllItems[i].price}  ]");
             Console.WriteLine($"Select: {i}");
-            AllItems[i].printItem();
+            AllItems[i].PrintItem();
             Console.WriteLine();
         }
 
@@ -81,7 +81,7 @@ public class MenuPrintOptions
             {
                 AllItems[Index].ToString();
                 StockItem Item = AllItems[Index];
-                Item.printItem();
+                Item.PrintItem();
                 int Quantity = SelectQuantity(Item);
                 if (Quantity == -1)
                 {
@@ -142,7 +142,7 @@ public class MenuPrintOptions
         if (Items.Count == 1)
         {
             var item = Items[0];
-            item.printItem();
+            item.PrintItem();
             int quantity = SelectQuantity(item);
             if (quantity == -1)
             {
@@ -159,7 +159,7 @@ public class MenuPrintOptions
         {
 			Logger.Instance.LogInformation($"[  ContainsSearch for loop item nr {I}  ]");
 			Console.WriteLine($"Select: {I}");
-            Items[I].printItem();
+            Items[I].PrintItem();
             //Console.WriteLine($"{items[I].price}\n");
         }  
         SelectItem(Items);
@@ -183,7 +183,7 @@ public class MenuPrintOptions
             if (Number >= 0 && Number < items.Count)
             {
                 var item = items[Number];
-                item.printItem();
+                item.PrintItem();
                 int amount = SelectQuantity(item);
                 if (amount == -1)
                 {
@@ -210,7 +210,7 @@ public class MenuPrintOptions
 			Logger.Instance.LogInformation($"[  RemoveItemMenu forloop item id: {items[i].id} name: {items[i].name} quantity: {items[i].quantity}  ]");
 			AbstractItem item = items[i];
             Console.WriteLine("Select: " + i);
-            item.printItem();
+            item.PrintItem();
         }
 
         Boolean ItemSelcted = false;
@@ -226,7 +226,7 @@ public class MenuPrintOptions
             int inputNum;
             if (int.TryParse(input, out inputNum) && inputNum < items.Count && inputNum >= 0)
             {
-                items[inputNum].printItem();
+                items[inputNum].PrintItem();
                 return items[inputNum];
             }
             Console.WriteLine("Input not accepted");

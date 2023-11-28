@@ -20,7 +20,7 @@ namespace SoftwareDesignExam.Items {
         public double CalculatePrice() {
             return this.Quantity*base.price;
         }
-        public void printItem()
+        public void PrintItem()
         {
             UIColor.ColorWriteGreen("Name        : ");
             Console.Write($"{name}\n");

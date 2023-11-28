@@ -106,7 +106,7 @@ namespace SoftwareDesignExam.UserManagement
             }
             foreach (var item in shoppingList)
             {
-                item.printItem();
+                item.PrintItem();
             }
             Console.WriteLine($"Total: {getTotalPrice()} Nok\n");
         }

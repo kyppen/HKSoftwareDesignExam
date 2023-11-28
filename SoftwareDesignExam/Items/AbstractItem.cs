@@ -26,7 +26,7 @@ namespace SoftwareDesignExam.Items {
             this.description = description;
             this.price = price;
         }
-        public void printItem()
+        public void PrintItem()
         {
             UIColor.ColorWriteGreen("Name        : ");
             Console.Write($"{name}\n");

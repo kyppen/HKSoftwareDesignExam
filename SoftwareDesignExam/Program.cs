@@ -6,10 +6,11 @@ class Program
 {
     static public void Main(String[] args)
     {
-		//StoreController storeController = new();
-		//TestRunner testRunner = new();
+		StoreController storeController = new();
+		TestRunner testRunner = new();
 		//1
-		//testRunner.Run(storeController);
+		//if you wanna populate the database with items, you can run testrunner.Run(StoreController).
+		testRunner.Run(storeController);
 
 		MainMenu.startMenu();
 		
